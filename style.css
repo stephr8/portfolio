@@ -1,0 +1,118 @@
+:root {
+    --blue: #2355A4;
+    --blue_light: #DDE4F5;
+    --red: #BF1B1B;
+    --red_dark: #5D1313;
+    --pink: #FFC9EF;
+    --green: #C0D676;
+    --yellow: #F5F1DD;
+    --white: #F8F6ED;
+}
+
+@font-face {
+    font-family: 'Inclusive Sans';
+    src: url(assets/fonts/inclusivesans-variablefont_wght-webfont.woff2) format('woff2'),
+        url(assets/fonts/inclusivesans-variablefont_wght-webfont.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Neue Regrade';
+    font-weight: 300;
+    src: url(assets/fonts/neueregrade-light.woff2) format('woff2'),
+        url(assets/fonts/neueregrade-light.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Neue Regrade';
+    font-weight: 400;
+    src: url(assets/fonts/neueregrade-regular.woff2) format('woff2'),
+        url(assets/fonts/neueregrade-regular.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Neue Regrade';
+    font-weight: 500;
+    src: url(assets/fonts/neueregrade-medium.woff2) format('woff2'),
+        url(assets/fonts/neueregrade-medium.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Neue Regrade';
+    font-weight: 600;
+    src: url(assets/fonts/neueregrade-semibold.woff2) format('woff2'),
+        url(assets/fonts/neueregrade-semibold.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Neue Regrade';
+    font-weight: 700;
+    src: url(assets/fonts/neueregrade-bold.woff2) format('woff2'),
+        url(assets/fonts/neueregrade-bold.woff) format('woff');
+}
+
+body{
+    background-color: var(--white);
+}
+
+h1 {
+    font-family: 'Neue Regrade', sans-serif;
+    font-weight: 500;
+    font-size: 4.5rem;
+    color: var(--blue);
+}
+
+h2 {
+    font-family: 'Neue Regrade', sans-serif;
+    font-weight: 700;
+    font-size: 2.25rem;
+}
+
+h3 {
+    font-family: 'Neue Regrade', sans-serif;
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+body {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 400;
+    font-size: 1.625rem;
+    line-height: 2rem;
+}
+
+button {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.625rem;
+    line-height: 2rem;
+    background-color: var(--blue_light);
+    padding: 8px 16px;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    border: 3px solid transparent;
+}
+
+button a {
+    text-decoration: none;
+    color: var(--red_dark);
+}
+
+button:hover {
+    border: #5D1313 3px solid;
+}
+
+tag {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.125rem;
+    cursor: pointer;
+    color: var(--red_dark);
+    background-color: var(--pink);
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    border: none;
+    position: relative;
+}
