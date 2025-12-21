@@ -93,4 +93,51 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Folder tab management
+  const tabs = document.querySelectorAll('.folder-index');
+  const folderPaper = document.querySelector('.folder-paper');
+  if (tabs.length > 0 && folderPaper) {
+    tabs[0].classList.add('active');
+    folderPaper.classList.add('color-blue_light');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        // Change folder paper color
+        const color = tab.getAttribute('data-color');
+        folderPaper.classList.remove('color-blue_light', 'color-pink', 'color-green', 'color-yellow');
+        folderPaper.classList.add(`color-${color}`);
+      });
+    });
+  }
+
+  // New simplified folder tabs
+  const newTabs = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  const folderContent = document.querySelector('.folder-content');
+  
+  newTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const tabName = tab.getAttribute('data-tab');
+      
+      // Update active tab
+      newTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      
+      // Update active content
+      tabContents.forEach(content => {
+        if (content.getAttribute('data-content') === tabName) {
+          content.classList.add('active');
+        } else {
+          content.classList.remove('active');
+        }
+      });
+      
+      // Update folder content border color
+      if (folderContent) {
+        folderContent.setAttribute('data-active-tab', tabName);
+      }
+    });
+  });
 });

@@ -109,8 +109,28 @@ button a {
     color: var(--red_dark);
 }
 
-button:hover {
+button:not(.tab-btn):hover {
     border: #5D1313 3px solid;
+}
+
+.tab-btn[data-tab="projects"]:hover {
+    background: var(--blue_light);
+    border-color: var(--blue_light);
+}
+
+.tab-btn[data-tab="skills"]:hover {
+    background: var(--pink);
+    border-color: var(--pink);
+}
+
+.tab-btn[data-tab="about"]:hover {
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.tab-btn[data-tab="contact"]:hover {
+    background: var(--yellow);
+    border-color: var(--yellow);
 }
 
 tag {
@@ -136,4 +156,129 @@ nav{
     display: flex;
     gap: 2rem;
     z-index: 2000;
+}
+
+/* New simplified folder system */
+.projects-folder {
+    max-width: min(90vw, 1200px);
+    margin: 8rem auto 4rem;
+    padding: 0 1rem;
+}
+
+.folder-tabs-new {
+    display: flex;
+    gap: 0;
+    margin-bottom: -2px;
+    position: relative;
+    z-index: 10;
+}
+
+.tab-btn {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    padding: 1rem 2rem;
+    color: var(--red_dark);
+    border: 8px solid;
+    border-bottom: none;
+    border-radius: 1.5rem 1.5rem 0 0;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    position: relative;
+    margin-left: -1.5rem;
+    filter: drop-shadow(0px -2px 8px rgba(0,0,0,0.1));
+}
+
+.tab-btn:first-child {
+    margin-left: 0;
+}
+
+.tab-btn:nth-child(1) { z-index: 4; }
+.tab-btn:nth-child(2) { z-index: 3; }
+.tab-btn:nth-child(3) { z-index: 2; }
+.tab-btn:nth-child(4) { z-index: 1; }
+
+.tab-btn[data-tab="projects"] {
+    background: var(--blue_light);
+    border-color: var(--blue_light);
+}
+
+.tab-btn[data-tab="skills"] {
+    background: var(--pink);
+    border-color: var(--pink);
+}
+
+.tab-btn[data-tab="about"] {
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.tab-btn[data-tab="contact"] {
+    background: var(--yellow);
+    border-color: var(--yellow);
+}
+
+
+
+.tab-btn.active {
+    z-index: 10;
+}
+
+.tab-btn[data-tab="projects"].active {
+    background: var(--blue_light);
+    border-color: var(--blue_light);
+    border-bottom-color: var(--white);
+}
+
+.tab-btn[data-tab="skills"].active {
+    background: var(--pink);
+    border-color: var(--pink);
+    border-bottom-color: var(--white);
+}
+
+.tab-btn[data-tab="about"].active {
+    background: var(--green);
+    border-color: var(--green);
+    border-bottom-color: var(--white);
+}
+
+.tab-btn[data-tab="contact"].active {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    border-bottom-color: var(--white);
+}
+
+.folder-content {
+    background: var(--white);
+    border: 8px solid var(--blue_light);
+    border-radius: 0 1rem 1rem 1rem;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    min-height: 400px;
+    transition: border-color 0.3s;
+}
+
+.folder-content[data-active-tab="skills"] {
+    border-color: var(--pink);
+}
+
+.folder-content[data-active-tab="about"] {
+    border-color: var(--green);
+}
+
+.folder-content[data-active-tab="contact"] {
+    border-color: var(--yellow);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
