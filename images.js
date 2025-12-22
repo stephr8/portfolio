@@ -74,8 +74,10 @@ window.addEventListener('DOMContentLoaded', () => {
         return;
       }
       isDragging = true;
-      offsetX = e.clientX - img.offsetLeft;
-      offsetY = e.clientY - img.offsetTop;
+      const parent = img.offsetParent || img.parentElement;
+      const parentRect = parent.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
       img.style.cursor = 'grabbing';
       topZ++;
       img.style.zIndex = topZ;
@@ -83,8 +85,12 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     document.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
-      img.style.left = (e.clientX - offsetX) + 'px';
-      img.style.top = (e.clientY - offsetY) + 'px';
+      const parent = img.offsetParent || img.parentElement;
+      const parentRect = parent.getBoundingClientRect();
+      const newLeft = ((e.clientX - offsetX - parentRect.left) / parentRect.width) * 100;
+      const newTop = ((e.clientY - offsetY - parentRect.top) / parentRect.height) * 100;
+      img.style.left = newLeft + '%';
+      img.style.top = newTop + '%';
     });
     document.addEventListener('mouseup', () => {
       if (isDragging) {
