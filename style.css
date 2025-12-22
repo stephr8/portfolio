@@ -183,14 +183,14 @@ nav{
     top: 4%;
     left: 3.75%;
     width: auto;
-    max-width: 19.5625%;
+    max-width: min(313px, 19%);
 }
 
 .hero-section h1:last-of-type {
     bottom: 4%;
     right: 3.75%;
     width: auto;
-    max-width: 20.8125%;
+    max-width: min(333px, 20%);
     text-align: right;
 }
 
@@ -701,7 +701,11 @@ nav{
     }
     
     .hero-section {
-        padding-bottom: 75%; /* Slightly taller aspect ratio on mobile */
+        padding-bottom: 100%; /* Square aspect ratio on tablet */
+        overflow: hidden;
+    }
+    .hero-section .drawn-img {
+        transform: scale(1.2);
     }
     
     .projects-folder {
@@ -772,11 +776,27 @@ nav{
         flex-direction: column;
         align-items: flex-end;
         gap: 0.5rem;
+        top: 1rem;
+        right: 1rem;
     }
     
-    .hero-section h1:first-of-type,
+    .hero-section {
+        padding-bottom: 145%; /* Taller on mobile */
+    }
+    
+    .hero-section h1:first-of-type {
+        top: 3%;
+        left: 5%;
+        max-width: 50%;
+    }
+    
     .hero-section h1:last-of-type {
-        max-width: 70%;
+        right: 5%;
+        max-width: 50%;
+    }
+    
+    .hero-section .drawn-img {
+        transform: scale(1.4) translateY(70%);
     }
     
     .tab-btn {
