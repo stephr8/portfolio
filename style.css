@@ -455,10 +455,6 @@ nav{
     .projects-grid {
         grid-template-columns: 1fr;
     }
-    
-    .project-card {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* About Section with Post-its */
@@ -731,10 +727,6 @@ nav{
         grid-template-columns: 1fr;
     }
     
-    .project-card {
-        grid-template-columns: 1fr;
-    }
-    
     /* Hide project navigation arrows on mobile */
     #prev-projects,
     #next-projects {
@@ -744,10 +736,25 @@ nav{
     .postits-container {
         grid-template-columns: 1fr;
         padding: 0;
+        gap: 0;
     }
     
     .postit {
-        transform: rotate(0deg) !important;
+        max-width: 280px;
+        margin: -0.75rem auto;
+    }
+    
+    .postit:first-child {
+        margin-top: 0;
+        transform: rotate(-1.5deg) !important;
+    }
+    
+    .postit:nth-child(2) {
+        transform: rotate(1deg) !important;
+    }
+    
+    .postit:nth-child(3) {
+        transform: rotate(-0.8deg) !important;
     }
     
     .contact-container {
@@ -797,6 +804,25 @@ nav{
     
     .hero-section .drawn-img {
         transform: scale(1.4) translateY(70%);
+    }
+    
+    .postit {
+        max-width: 220px;
+        padding: 1.25rem;
+        margin: -1rem auto;
+    }
+    
+    .postit:first-child {
+        margin-top: 0;
+        transform: rotate(-2deg) !important;
+    }
+    
+    .postit:nth-child(2) {
+        transform: rotate(1.5deg) !important;
+    }
+    
+    .postit:nth-child(3) {
+        transform: rotate(-1deg) !important;
     }
     
     .tab-btn {
