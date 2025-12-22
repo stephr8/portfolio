@@ -137,11 +137,11 @@ window.addEventListener('DOMContentLoaded', () => {
         folderContent.setAttribute('data-active-tab', tabName);
       }
       
-      // Filter projects based on tab
+      // Filter projects based on tab - set data attribute but don't hide yet
       if (tabName === 'projects') {
         // Show all projects
         projectCards.forEach(card => {
-          card.style.display = 'grid';
+          card.setAttribute('data-visible', 'true');
         });
       } else {
         // Map tab names to filter types
@@ -152,15 +152,20 @@ window.addEventListener('DOMContentLoaded', () => {
         };
         const filterType = filterMap[tabName];
         
-        // Show/hide projects based on their tags
+        // Mark projects as visible/hidden based on their tags
         projectCards.forEach(card => {
           const tags = card.getAttribute('data-tags');
           if (tags && tags.includes(filterType)) {
-            card.style.display = 'grid';
+            card.setAttribute('data-visible', 'true');
           } else {
-            card.style.display = 'none';
+            card.setAttribute('data-visible', 'false');
           }
         });
+      }
+      
+      // Reset pagination and trigger page display
+      if (window.resetProjectPagination) {
+        window.resetProjectPagination();
       }
     });
   });

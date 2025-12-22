@@ -1,3 +1,6 @@
+/* ============================================
+   CSS Variables
+   ============================================ */
 :root {
     --blue: #2355A4;
     --blue_light: #DDE4F5;
@@ -9,6 +12,9 @@
     --white: #F8F6ED;
 }
 
+/* ============================================
+   Font Declarations
+   ============================================ */
 @font-face {
     font-family: 'Inclusive Sans';
     src: url(assets/fonts/inclusivesans-variablefont_wght-webfont.woff2) format('woff2'),
@@ -50,7 +56,16 @@
         url(assets/fonts/neueregrade-bold.woff) format('woff');
 }
 
-body{
+/* ============================================
+   Base Styles
+   ============================================ */
+body {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 2vw, 1.625rem);
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
     background-color: var(--white);
 }
 
@@ -62,16 +77,6 @@ h1 {
     line-height: 1.2;
     margin: 0;
     position: absolute;
-}
-
-.drawn-img {
-    pointer-events: auto;
-    position: absolute;
-    transition: opacity 0.5s linear;
-    opacity: 1;
-    filter: drop-shadow(0px 0px 36px rgba(0,0,0,0.15));
-    z-index: 1000;
-    cursor: grab;
 }
 
 h2 {
@@ -86,15 +91,9 @@ h3 {
     font-size: clamp(1.25rem, 2.5vw, 2rem);
 }
 
-body {
-    font-family: 'Inclusive Sans', sans-serif;
-    font-weight: 400;
-    font-size: clamp(1rem, 2vw, 1.625rem);
-    line-height: 1.5;
-    margin: 0;
-    padding: 0;
-}
-
+/* ============================================
+   Button Styles
+   ============================================ */
 button {
     font-family: 'Inclusive Sans', sans-serif;
     font-weight: 700;
@@ -114,46 +113,13 @@ button a {
 }
 
 button:not(.tab-btn):hover {
-    border: #5D1313 3px solid;
+    border-color: var(--red_dark);
 }
 
-.tab-btn[data-tab="projects"]:hover {
-    background: var(--blue_light);
-    border-color: var(--blue_light);
-}
-
-.tab-btn[data-tab="skills"]:hover {
-    background: var(--pink);
-    border-color: var(--pink);
-}
-
-.tab-btn[data-tab="about"]:hover {
-    background: var(--green);
-    border-color: var(--green);
-}
-
-.tab-btn[data-tab="contact"]:hover {
-    background: var(--yellow);
-    border-color: var(--yellow);
-}
-
-tag {
-    font-family: 'Inclusive Sans', sans-serif;
-    font-weight: 600;
-    font-size: 1.125rem;
-    cursor: pointer;
-    color: var(--red_dark);
-    background-color: var(--pink);
-    display: flex;
-    align-items: center;
-    padding: 8px 16px;
-    box-sizing: border-box;
-    border-radius: 1rem;
-    border: none;
-    position: relative;
-}
-
-nav{
+/* ============================================
+   Navigation
+   ============================================ */
+nav {
     position: absolute;
     top: clamp(2rem, 4vw, 4rem);
     right: clamp(1.5rem, 5vw, 6rem);
@@ -164,19 +130,17 @@ nav{
     justify-content: flex-end;
 }
 
-/* Hero Section */
+/* ============================================
+   Hero Section
+   ============================================ */
 .hero-section {
     position: relative;
     width: 100%;
     max-width: 1600px;
     height: 0;
-    padding-bottom: 62.5%; /* 1000/1600 = 0.625 to maintain aspect ratio */
+    padding-bottom: 62.5%;
     margin: 0 auto;
     overflow: visible;
-}
-
-.hero-section h1 {
-    position: absolute;
 }
 
 .hero-section h1:first-of-type {
@@ -194,11 +158,19 @@ nav{
     text-align: right;
 }
 
-.hero-section .drawn-img {
+.drawn-img {
+    pointer-events: auto;
+    position: absolute;
+    transition: opacity 0.5s linear;
+    opacity: 1;
     filter: drop-shadow(0px 0px 36px rgba(0,0,0,0.15));
+    z-index: 1000;
+    cursor: grab;
 }
 
-/* New simplified folder system */
+/* ============================================
+   Folder Tabs System
+   ============================================ */
 .projects-folder {
     max-width: min(90vw, 1200px);
     margin: 8rem auto 4rem;
@@ -260,7 +232,25 @@ nav{
     border-color: var(--yellow);
 }
 
+.tab-btn[data-tab="projects"]:hover {
+    background: var(--blue_light);
+    border-color: var(--blue_light);
+}
 
+.tab-btn[data-tab="skills"]:hover {
+    background: var(--pink);
+    border-color: var(--pink);
+}
+
+.tab-btn[data-tab="about"]:hover {
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.tab-btn[data-tab="contact"]:hover {
+    background: var(--yellow);
+    border-color: var(--yellow);
+}
 
 .tab-btn.active {
     z-index: 10;
@@ -294,8 +284,7 @@ nav{
     background: #F1F2F5;
     border: 8px solid var(--blue_light);
     border-radius: 0 1rem 1rem 1rem;
-    padding: clamp(1.5rem, 4vw, 3rem);
-    min-height: 400px;
+    padding: clamp(2rem, 4vw, 3.5rem);
     transition: border-color 0.3s;
 }
 
@@ -325,7 +314,9 @@ nav{
     to { opacity: 1; }
 }
 
-/* Project Grid */
+/* ============================================
+   Projects Section
+   ============================================ */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -362,8 +353,8 @@ nav{
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.main-image {
-    position: relative !important;
+.project-image-stack .main-image {
+    position: relative;
     z-index: 3;
 }
 
@@ -422,6 +413,13 @@ nav{
     line-height: 1.4;
 }
 
+.project-chips {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.25rem;
+}
+
 .project-chip {
     font-family: 'Inclusive Sans', sans-serif;
     font-weight: 600;
@@ -431,13 +429,6 @@ nav{
     border-radius: 0.75rem;
     display: inline-block;
     width: fit-content;
-    margin-top: 0.25rem;
-}
-
-.project-chips {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
     margin-top: 0.25rem;
 }
 
@@ -453,20 +444,12 @@ nav{
     background: var(--yellow);
 }
 
-.project-chip[data-type="anderes"] {
-    background: var(--yellow);
-}
-
-@media (max-width: 768px) {
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* About Section with Post-its */
+/* ============================================
+   About Section - Post-its
+   ============================================ */
 .about-section {
     max-width: min(90vw, 1200px);
-    margin: 8rem auto 4rem;
+    margin: 12rem auto 12rem;
     padding: 0 1rem;
 }
 
@@ -493,24 +476,39 @@ nav{
     justify-content: center;
 }
 
+.postit-green {
+    background: var(--green);
+    transform: rotate(2.47deg);
+}
+
+.postit-pink {
+    background: var(--pink);
+    transform: rotate(-1.34deg) scale(1.05);
+}
+
+.postit-yellow {
+    background: var(--yellow);
+    transform: rotate(0.92deg) scale(0.95);
+}
+
 .postit:hover {
-    transform: translateY(-5px) rotate(0deg) !important;
+    transform: translateY(-5px) rotate(0deg);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     z-index: 10;
 }
 
 .postit.active {
-    transform: rotate(0deg) !important;
+    transform: rotate(0deg);
     box-shadow: 0 6px 16px rgba(0,0,0,0.18);
     z-index: 10;
 }
 
 .postit-pink.active {
-    transform: rotate(0deg) scale(1.05) !important;
+    transform: rotate(0deg) scale(1.05);
 }
 
 .postit-yellow.active {
-    transform: rotate(0deg) scale(0.95) !important;
+    transform: rotate(0deg) scale(0.95);
 }
 
 .postit h3 {
@@ -565,32 +563,9 @@ nav{
     transform: scale(1.1);
 }
 
-.postit-green {
-    background: var(--green);
-    transform: rotate(2.47deg);
-}
-
-.postit-pink {
-    background: var(--pink);
-    transform: rotate(-1.34deg) scale(1.05);
-}
-
-.postit-yellow {
-    background: var(--yellow);
-    transform: rotate(0.92deg) scale(0.95);
-}
-
-@media (max-width: 768px) {
-    .postits-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .postit {
-        transform: rotate(0deg) !important;
-    }
-}
-
-/* Contact Section */
+/* ============================================
+   Contact Section
+   ============================================ */
 .contact-section {
     max-width: min(90vw, 1200px);
     margin: 8rem auto 4rem;
@@ -636,7 +611,7 @@ nav{
     background: #3A69B5;
     color: #F8F6ED;
     border-radius: 1.5rem 1.5rem 0.25rem 1.5rem;
-    align-self:center;
+    align-self: center;
     max-width: 60%;
     padding: 2rem 1.75rem;
 }
@@ -718,6 +693,9 @@ nav{
     transform: scale(1.1);
 }
 
+/* ============================================
+   Media Queries - Tablet (768px)
+   ============================================ */
 @media (max-width: 768px) {
     nav {
         top: 1.5rem;
@@ -726,9 +704,10 @@ nav{
     }
     
     .hero-section {
-        padding-bottom: 100%; /* Square aspect ratio on tablet */
+        padding-bottom: 100%;
         overflow: hidden;
     }
+    
     .hero-section .drawn-img {
         transform: scale(1.2);
     }
@@ -756,12 +735,6 @@ nav{
         grid-template-columns: 1fr;
     }
     
-    /* Hide project navigation arrows on mobile */
-    #prev-projects,
-    #next-projects {
-        display: none;
-    }
-    
     .postits-container {
         grid-template-columns: 1fr;
         padding: 0;
@@ -771,19 +744,20 @@ nav{
     .postit {
         max-width: 280px;
         margin: -0.75rem auto;
+        transform: rotate(0deg);
     }
     
     .postit:first-child {
         margin-top: 0;
-        transform: rotate(-1.5deg) !important;
+        transform: rotate(-1.5deg);
     }
     
     .postit:nth-child(2) {
-        transform: rotate(1deg) !important;
+        transform: rotate(1deg);
     }
     
     .postit:nth-child(3) {
-        transform: rotate(-0.8deg) !important;
+        transform: rotate(-0.8deg);
     }
     
     .contact-container {
@@ -812,6 +786,9 @@ nav{
     }
 }
 
+/* ============================================
+   Media Queries - Mobile (480px)
+   ============================================ */
 @media (max-width: 480px) {
     nav {
         flex-direction: column;
@@ -822,7 +799,7 @@ nav{
     }
     
     .hero-section {
-        padding-bottom: 145%; /* Taller on mobile */
+        padding-bottom: 145%;
     }
     
     .hero-section h1:first-of-type {
@@ -848,15 +825,15 @@ nav{
     
     .postit:first-child {
         margin-top: 0;
-        transform: rotate(-2deg) !important;
+        transform: rotate(-2deg);
     }
     
     .postit:nth-child(2) {
-        transform: rotate(1.5deg) !important;
+        transform: rotate(1.5deg);
     }
     
     .postit:nth-child(3) {
-        transform: rotate(-1deg) !important;
+        transform: rotate(-1deg);
     }
     
     .tab-btn {

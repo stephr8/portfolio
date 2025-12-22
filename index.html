@@ -47,12 +47,12 @@
         </div>
         <div class="folder-content">
             <div class="tab-content active" data-content="projects">
-                <div style="position: relative;">
-                    <button id="prev-projects" style="position: absolute; left: -5rem; top: 50%; transform: translateY(-50%); z-index: 100; opacity: 0.5; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.5'">
-                        <a href="#" onclick="event.preventDefault();">←</a>
+                <div style="position: relative; padding: 0 3rem;">
+                    <button id="prev-projects" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 100; opacity: 0.6; transition: opacity 0.3s; background: transparent; border: none; font-size: 2rem; padding: 0.5rem;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+                        <a href="#" onclick="event.preventDefault();" style="color: var(--blue);">←</a>
                     </button>
-                    <button id="next-projects" style="position: absolute; right: -5rem; top: 50%; transform: translateY(-50%); z-index: 100; opacity: 0.5; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.5'">
-                        <a href="#" onclick="event.preventDefault();">→</a>
+                    <button id="next-projects" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 100; opacity: 0.6; transition: opacity 0.3s; background: transparent; border: none; font-size: 2rem; padding: 0.5rem;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+                        <a href="#" onclick="event.preventDefault();" style="color: var(--blue);">→</a>
                     </button>
                     <div class="projects-grid">
                     <div class="project-card" data-tags="design code">
@@ -214,7 +214,7 @@
 
 </body>
 
-<footer style="display: flex; justify-content: center; align-items: center; gap: 2rem; padding: 3rem 0; margin-top: 4rem;">
+<footer style="display: flex; justify-content: center; align-items: center; gap: 2rem; padding: 3rem 0 5rem 0; margin-top: 4rem;">
     <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="index.html">&copy; 2026 stephanie römer</a></button>
     <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="impressum.html">impressum</a></button>
 </footer>
@@ -250,7 +250,16 @@ document.querySelectorAll('nav a[href^="#"], #scroll-to-top a').forEach(anchor =
 // Show/hide scroll-to-top button
 const scrollToTopBtn = document.getElementById('scroll-to-top');
 window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 400) {
+    const footer = document.querySelector('footer');
+    const footerTop = footer.offsetTop;
+    const scrollPosition = window.pageYOffset + window.innerHeight;
+    
+    // Show button after scrolling 400px
+    const shouldShow = window.pageYOffset > 400;
+    // Hide button when near footer (150px before footer)
+    const nearFooter = scrollPosition > footerTop - 150;
+    
+    if (shouldShow && !nearFooter) {
         scrollToTopBtn.style.opacity = '1';
         scrollToTopBtn.style.pointerEvents = 'auto';
     } else {
@@ -261,27 +270,51 @@ window.addEventListener('scroll', () => {
 
 // Project navigation
 let currentProjectPage = 0;
-const projectsPerPage = 4;
 const projectGrid = document.querySelector('.projects-grid');
 const allProjects = Array.from(projectGrid.children);
-const totalPages = Math.ceil(allProjects.length / projectsPerPage);
+
+function getProjectsPerPage() {
+    // Show 2 projects on tablet and mobile, 4 on desktop
+    return window.innerWidth <= 768 ? 2 : 4;
+}
+
+function getVisibleProjects() {
+    // Get only projects that should be visible based on current filter
+    return allProjects.filter(project => {
+        const isVisible = project.getAttribute('data-visible');
+        return isVisible === null || isVisible === 'true';
+    });
+}
 
 function showProjectPage(pageIndex) {
+    const projectsPerPage = getProjectsPerPage();
+    const visibleProjects = getVisibleProjects();
+    const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
     const startIndex = pageIndex * projectsPerPage;
     const endIndex = startIndex + projectsPerPage;
     
-    allProjects.forEach((project, index) => {
+    // First, hide all projects
+    allProjects.forEach(project => {
+        project.style.display = 'none';
+    });
+    
+    // Then show only the visible projects for the current page
+    visibleProjects.forEach((project, index) => {
         if (index >= startIndex && index < endIndex) {
             project.style.display = 'grid';
-        } else {
-            project.style.display = 'none';
         }
     });
     
     // Update button visibility
     document.getElementById('prev-projects').style.visibility = pageIndex === 0 ? 'hidden' : 'visible';
-    document.getElementById('next-projects').style.visibility = pageIndex === totalPages - 1 ? 'hidden' : 'visible';
+    document.getElementById('next-projects').style.visibility = pageIndex === totalPages - 1 || totalPages === 0 ? 'hidden' : 'visible';
 }
+
+// Expose reset function for tab filtering
+window.resetProjectPagination = function() {
+    currentProjectPage = 0;
+    showProjectPage(currentProjectPage);
+};
 
 document.getElementById('prev-projects').addEventListener('click', (e) => {
     e.preventDefault();
@@ -293,10 +326,19 @@ document.getElementById('prev-projects').addEventListener('click', (e) => {
 
 document.getElementById('next-projects').addEventListener('click', (e) => {
     e.preventDefault();
+    const projectsPerPage = getProjectsPerPage();
+    const visibleProjects = getVisibleProjects();
+    const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
     if (currentProjectPage < totalPages - 1) {
         currentProjectPage++;
         showProjectPage(currentProjectPage);
     }
+});
+
+// Reset to first page on window resize
+window.addEventListener('resize', () => {
+    currentProjectPage = 0;
+    showProjectPage(currentProjectPage);
 });
 
 // Initialize first page
