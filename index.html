@@ -301,6 +301,41 @@ document.getElementById('next-projects').addEventListener('click', (e) => {
 
 // Initialize first page
 showProjectPage(currentProjectPage);
+
+// Scroll-triggered animations (only on tablet and mobile)
+if (window.innerWidth <= 1024) {
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -20% 0px',
+        threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    // Observe envelope wrapper
+    const envelopeWrapper = document.querySelector('.envelope-wrapper');
+    if (envelopeWrapper) {
+        observer.observe(envelopeWrapper);
+    }
+
+    // Observe all project cards
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+        observer.observe(card);
+    });
+
+    // Observe all postits
+    const postits = document.querySelectorAll('.postit');
+    postits.forEach(postit => {
+        observer.observe(postit);
+    });
+}
 </script>
 
 </html>

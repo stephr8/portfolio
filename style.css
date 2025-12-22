@@ -373,6 +373,10 @@ nav{
     transform: translate(0, 0) rotate(0deg) scale(0.85);
 }
 
+.project-card.active .stack-image {
+    transition-delay: 0.4s;
+}
+
 .stack-left {
     z-index: 2;
 }
@@ -381,12 +385,14 @@ nav{
     z-index: 1;
 }
 
-.project-card:hover .stack-left {
+.project-card:hover .stack-left,
+.project-card.active .stack-left {
     opacity: 1;
     transform: translate(-15%, 5%) rotate(-8deg) scale(0.85);
 }
 
-.project-card:hover .stack-right {
+.project-card:hover .stack-right,
+.project-card.active .stack-right {
     opacity: 1;
     transform: translate(15%, 5%) rotate(8deg) scale(0.85);
 }
@@ -493,6 +499,20 @@ nav{
     z-index: 10;
 }
 
+.postit.active {
+    transform: rotate(0deg) !important;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+    z-index: 10;
+}
+
+.postit-pink.active {
+    transform: rotate(0deg) scale(1.05) !important;
+}
+
+.postit-yellow.active {
+    transform: rotate(0deg) scale(0.95) !important;
+}
+
 .postit h3 {
     font-family: 'Neue Regrade', sans-serif;
     font-weight: 600;
@@ -552,12 +572,12 @@ nav{
 
 .postit-pink {
     background: var(--pink);
-    transform: rotate(-1.34deg);
+    transform: rotate(-1.34deg) scale(1.05);
 }
 
 .postit-yellow {
     background: var(--yellow);
-    transform: rotate(0.92deg);
+    transform: rotate(0.92deg) scale(0.95);
 }
 
 @media (max-width: 768px) {
@@ -651,7 +671,12 @@ nav{
     transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.envelope-wrapper:hover .envelope-flap {
+.envelope-wrapper.active .envelope-flap {
+    transition-delay: 0.3s;
+}
+
+.envelope-wrapper:hover .envelope-flap,
+.envelope-wrapper.active .envelope-flap {
     transform: rotateX(-25deg) translateY(-15px);
 }
 
@@ -668,20 +693,24 @@ nav{
     padding: 6px 12px;
 }
 
-.envelope-wrapper:hover .email-button {
+.envelope-wrapper.active .email-button {
+    transition-delay: 0.5s;
+}
+
+.envelope-wrapper:hover .email-button,
+.envelope-wrapper.active .email-button {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
     transition-delay: 0.2s;
 }
 
 .linkedin-icon {
-    width: clamp(70px, 13vw, 100px);
+    width: clamp(90px, 15vw, 120px);
     height: auto;
     transition: transform 0.3s ease;
     filter: drop-shadow(0px 4px 12px rgba(0,0,0,0.15));
-    position: absolute;
-    bottom: -1rem;
-    right: -1rem;
+    display: block;
+    margin: 0 auto;
     z-index: 2;
 }
 
@@ -768,6 +797,11 @@ nav{
     
     .contact-icons {
         flex-direction: row;
+        gap: 3rem;
+    }
+    
+    .linkedin-icon {
+        width: clamp(100px, 16vw, 130px);
     }
     
     #scroll-to-top {
