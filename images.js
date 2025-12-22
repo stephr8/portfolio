@@ -116,6 +116,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const newTabs = document.querySelectorAll('.tab-btn');
   const tabContents = document.querySelectorAll('.tab-content');
   const folderContent = document.querySelector('.folder-content');
+  const projectCards = document.querySelectorAll('.project-card');
   
   newTabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -125,19 +126,56 @@ window.addEventListener('DOMContentLoaded', () => {
       newTabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       
-      // Update active content
-      tabContents.forEach(content => {
-        if (content.getAttribute('data-content') === tabName) {
-          content.classList.add('active');
-        } else {
-          content.classList.remove('active');
-        }
-      });
-      
       // Update folder content border color
       if (folderContent) {
         folderContent.setAttribute('data-active-tab', tabName);
       }
+      
+      // Filter projects based on tab
+      if (tabName === 'projects') {
+        // Show all projects
+        projectCards.forEach(card => {
+          card.style.display = 'grid';
+        });
+      } else {
+        // Map tab names to filter types
+        const filterMap = {
+          'skills': 'design',
+          'about': 'code',
+          'contact': 'anderes'
+        };
+        const filterType = filterMap[tabName];
+        
+        // Show/hide projects based on their tags
+        projectCards.forEach(card => {
+          const tags = card.getAttribute('data-tags');
+          if (tags && tags.includes(filterType)) {
+            card.style.display = 'grid';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
     });
+  });
+
+  // GIF hover animation for project cards
+  const projectCardsWithGif = document.querySelectorAll('.project-card');
+  
+  projectCardsWithGif.forEach(card => {
+    const gifImage = card.querySelector('.gif-image');
+    
+    if (gifImage) {
+      const staticSrc = gifImage.dataset.static;
+      const animatedSrc = gifImage.dataset.animated;
+      
+      card.addEventListener('mouseenter', () => {
+        gifImage.src = animatedSrc;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        gifImage.src = staticSrc;
+      });
+    }
   });
 });
