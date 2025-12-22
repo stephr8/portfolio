@@ -9,10 +9,14 @@
     <title>stephanies portfolio</title>
 </head>
 <nav>
-    <button><a href="index.html">projekte</a></button>
-    <button><a href="about.html">über mich</a></button>
-    <button><a href="contact.html">kontakt</a></button>
+    <button><a href="#projects">projekte</a></button>
+    <button><a href="#about">über mich</a></button>
+    <button><a href="#contact">kontakt</a></button>
 </nav>
+
+<button id="scroll-to-top" style="position: fixed; right: 2rem; bottom: 2rem; z-index: 3000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">
+    <a href="#top">nach oben ↑</a>
+</button>
 
 <body>
     
@@ -34,7 +38,7 @@
     <h1 style="bottom: 4rem; right: 6rem; width: 333px; text-align: right;">ux/ui designerin</h1>
     </div>
 
-    <section class="projects-folder">
+    <section class="projects-folder" id="projects">
         <div class="folder-tabs-new">
             <button class="tab-btn active" data-tab="projects">alle projekte</button>
             <button class="tab-btn" data-tab="skills">design</button>
@@ -43,7 +47,14 @@
         </div>
         <div class="folder-content">
             <div class="tab-content active" data-content="projects">
-                <div class="projects-grid">
+                <div style="position: relative;">
+                    <button id="prev-projects" style="position: absolute; left: -5rem; top: 50%; transform: translateY(-50%); z-index: 100; opacity: 0.5; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.5'">
+                        <a href="#" onclick="event.preventDefault();">←</a>
+                    </button>
+                    <button id="next-projects" style="position: absolute; right: -5rem; top: 50%; transform: translateY(-50%); z-index: 100; opacity: 0.5; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.5'">
+                        <a href="#" onclick="event.preventDefault();">→</a>
+                    </button>
+                    <div class="projects-grid">
                     <div class="project-card" data-tags="design code">
                         <div class="project-image-stack">
                             <img src="assets/projects/fangis3.png" alt="fangis 3" class="project-image stack-image stack-right">
@@ -92,12 +103,13 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
             <div class="tab-content" data-content="skills">
         </div>
     </section>
 
-    <section class="about-section">
+    <section class="about-section" id="about">
         <div class="postits-container">
             <div class="postit postit-green">
                 <img src="assets/img/photoboothimage.png" alt="photobooth" class="postit-image">
@@ -123,7 +135,7 @@
         </div>
     </section>
 
-    <section class="contact-section">
+    <section class="contact-section" id="contact">
         <div class="contact-container">
             <div class="messages">
                 <div class="message message-other">
@@ -201,5 +213,94 @@
     </section>
 
 </body>
+
+<footer style="display: flex; justify-content: center; align-items: center; gap: 2rem; padding: 3rem 0; margin-top: 4rem;">
+    <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="index.html">&copy; 2026 stephanie römer</a></button>
+    <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="impressum.html">impressum</a></button>
+</footer>
+
+<script>
+// Smooth scroll to center sections
+document.querySelectorAll('nav a[href^="#"], #scroll-to-top a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        
+        if (targetId === 'top') {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            return;
+        }
+        
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - (window.innerHeight / 2) + (targetElement.offsetHeight / 2);
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Show/hide scroll-to-top button
+const scrollToTopBtn = document.getElementById('scroll-to-top');
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 400) {
+        scrollToTopBtn.style.opacity = '1';
+        scrollToTopBtn.style.pointerEvents = 'auto';
+    } else {
+        scrollToTopBtn.style.opacity = '0';
+        scrollToTopBtn.style.pointerEvents = 'none';
+    }
+});
+
+// Project navigation
+let currentProjectPage = 0;
+const projectsPerPage = 4;
+const projectGrid = document.querySelector('.projects-grid');
+const allProjects = Array.from(projectGrid.children);
+const totalPages = Math.ceil(allProjects.length / projectsPerPage);
+
+function showProjectPage(pageIndex) {
+    const startIndex = pageIndex * projectsPerPage;
+    const endIndex = startIndex + projectsPerPage;
+    
+    allProjects.forEach((project, index) => {
+        if (index >= startIndex && index < endIndex) {
+            project.style.display = 'grid';
+        } else {
+            project.style.display = 'none';
+        }
+    });
+    
+    // Update button visibility
+    document.getElementById('prev-projects').style.visibility = pageIndex === 0 ? 'hidden' : 'visible';
+    document.getElementById('next-projects').style.visibility = pageIndex === totalPages - 1 ? 'hidden' : 'visible';
+}
+
+document.getElementById('prev-projects').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentProjectPage > 0) {
+        currentProjectPage--;
+        showProjectPage(currentProjectPage);
+    }
+});
+
+document.getElementById('next-projects').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentProjectPage < totalPages - 1) {
+        currentProjectPage++;
+        showProjectPage(currentProjectPage);
+    }
+});
+
+// Initialize first page
+showProjectPage(currentProjectPage);
+</script>
 
 </html>
