@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/main.css">
-    <script src="images.js"></script>
     <title>stephanies portfolio</title>
 </head>
 <nav>
@@ -56,7 +55,13 @@
                         <a href="#" onclick="event.preventDefault();" style="color: var(--blue);">→</a>
                     </button>
                     <div class="projects-grid">
-                    <div class="project-card" data-tags="design code">
+                    <div class="project-card" data-tags="design code" 
+                         data-title="fangis" 
+                         data-type="multiplayer mobile app"
+                         data-description="Eine interaktive Multiplayer-App, die klassisches Fangen mit moderner Technologie verbindet. Spieler können sich in Echtzeit verfolgen und markieren, während sie durch ihre reale Umgebung laufen."
+                         data-details="Das Projekt kombiniert Game Design, UX/UI Design und mobile Entwicklung. Die App nutzt GPS-Tracking für Echtzeit-Positionsbestimmung und bietet verschiedene Spielmodi für unterschiedliche Gruppengrössen. Besonderer Fokus lag auf einer intuitiven Benutzeroberfläche und flüssigen Animationen."
+                         data-link="#"
+                         data-images="assets/projects/fangis1.png,assets/projects/fangis2.png,assets/projects/fangis3.png">
                         <div class="project-image-stack">
                             <img src="assets/projects/fangis3.png" alt="fangis 3" class="project-image stack-image stack-right">
                             <img src="assets/projects/fangis2.png" alt="fangis 2" class="project-image stack-image stack-left">
@@ -71,7 +76,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card" data-tags="code">
+                    <div class="project-card" data-tags="code"
+                         data-title="wordle"
+                         data-type="desktop game"
+                         data-description="Eine deutsche Version des beliebten Worträtselspiels, entwickelt als Desktop-Anwendung mit modernem, minimalistischem Interface."
+                         data-details="Das Projekt wurde in JavaScript entwickelt und nutzt lokale Wortlisten für deutsche 5-Buchstaben-Wörter. Features umfassen ein Farbsystem für Feedback, Tastaturintegration und Spielstatistiken. Der Fokus lag auf Performance und einer zugänglichen Benutzeroberfläche."
+                         data-link="#"
+                         data-images="assets/projects/wordle.png">
                         <img src="assets/projects/wordle.png" alt="wordle" class="project-image">
                         <div class="project-info">
                             <h3 class="project-title">wordle</h3>
@@ -79,7 +90,13 @@
                             <span class="project-chip" data-type="code">code</span>
                         </div>
                     </div>
-                    <div class="project-card" data-tags="anderes">
+                    <div class="project-card" data-tags="anderes"
+                         data-title="markthalle ix"
+                         data-type="kurzdoku"
+                         data-description="Eine dokumentarische Kurzfilm über die Markthalle Neun in Berlin-Kreuzberg, die lokale Lebensmittelkultur und Community feiert."
+                         data-details="Das Videoprojekt wurde über mehrere Wochen hinweg gedreht und zeigt die Vielfalt der Händler und Besucher. Besonderer Fokus lag auf authentischen Momenten und der Atmosphäre des Ortes. Die Postproduktion umfasste Farbkorrektur, Sound Design und Motion Graphics."
+                         data-link="#"
+                         data-images="assets/projects/markthalleix_static.png">
                         <img src="assets/projects/markthalleix_static.png" 
                              data-static="assets/projects/markthalleix_static.png" 
                              data-animated="assets/projects/markthalleix.gif" 
@@ -91,7 +108,13 @@
                             <span class="project-chip" data-type="anderes">anderes</span>
                         </div>
                     </div>
-                    <div class="project-card" data-tags="design">
+                    <div class="project-card" data-tags="design"
+                         data-title="shuffle"
+                         data-type="mobile musik und workout app"
+                         data-description="Eine innovative Fitness-App, die Workout-Routinen dynamisch an den Musikgeschmack und Rhythmus des Nutzers anpasst."
+                         data-details="Das Design-Konzept verbindet Musik-Streaming mit personalisierten Workout-Plänen. Die App analysiert den Beat der Musik und passt Übungsintervalle entsprechend an. Durch ein motivierendes Interface mit energiegeladenen Farben und flüssigen Übergängen wird das Training zum Erlebnis. Das Projekt umfasste User Research, Wireframing, Visual Design und Prototyping."
+                         data-link="#"
+                         data-images="assets/projects/shuffle1.png,assets/projects/shuffle2.png,assets/projects/shuffle3.png">
                         <div class="project-image-stack">
                             <img src="assets/projects/shuffle3.png" alt="shuffle 3" class="project-image stack-image stack-right">
                             <img src="assets/projects/shuffle2.png" alt="shuffle 2" class="project-image stack-image stack-left">
@@ -105,8 +128,28 @@
                     </div>
                 </div>
                 </div>
+                
+                <!-- Project Detail View inside folder -->
+                <div class="project-detail-container" id="projectDetailContainer" style="display: none;">
+                    <button class="detail-back-btn" id="backToProjects">✕</button>
+                    <div class="detail-grid">
+                        <div class="detail-images">
+                            <div class="detail-image-container" id="detailImages"></div>
+                        </div>
+                        <div class="detail-info">
+                            <h2 class="detail-title" id="detailTitle"></h2>
+                            <div class="detail-chips" id="detailChips"></div>
+                            <p class="detail-description" id="detailDescription"></p>
+                            <p class="detail-body" id="detailBody"></p>
+                            <a href="#" class="detail-link" id="detailLink" target="_blank" rel="noopener noreferrer">
+                                <button>projekt ansehen →</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="tab-content" data-content="skills">
+        </div>
         </div>
     </section>
 
@@ -168,183 +211,7 @@
     <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="impressum.html">impressum</a></button>
 </footer>
 
-<script>
-// Smooth scroll to center sections
-document.querySelectorAll('nav a[href^="#"], #scroll-to-top a').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        
-        if (targetId === 'top') {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-            return;
-        }
-        
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = elementPosition - (window.innerHeight / 2) + (targetElement.offsetHeight / 2);
-            
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Show/hide scroll-to-top button
-const scrollToTopBtn = document.getElementById('scroll-to-top');
-window.addEventListener('scroll', () => {
-    const isMobile = window.innerWidth <= 768;
-    const projectsSection = document.getElementById('projects');
-    const footer = document.querySelector('footer');
-    
-    if (!projectsSection || !footer) return;
-    
-    const projectsTop = projectsSection.offsetTop;
-    const footerTop = footer.offsetTop;
-    const scrollPosition = window.pageYOffset + window.innerHeight;
-    const currentScroll = window.pageYOffset;
-    
-    if (isMobile) {
-        // On mobile/tablet: show after scrolling 400px, hide near footer
-        const shouldShow = currentScroll > 400;
-        const nearFooter = scrollPosition > footerTop - 150;
-        
-        if (shouldShow && !nearFooter) {
-            scrollToTopBtn.style.opacity = '1';
-            scrollToTopBtn.style.pointerEvents = 'auto';
-        } else {
-            scrollToTopBtn.style.opacity = '0';
-            scrollToTopBtn.style.pointerEvents = 'none';
-        }
-    } else {
-        // On desktop: show when reaching projects section, always visible (no hide at footer)
-        if (currentScroll >= projectsTop - 200) {
-            scrollToTopBtn.style.opacity = '1';
-            scrollToTopBtn.style.pointerEvents = 'auto';
-        } else {
-            scrollToTopBtn.style.opacity = '0';
-            scrollToTopBtn.style.pointerEvents = 'none';
-        }
-    }
-});
-
-
-// Project navigation
-let currentProjectPage = 0;
-const projectGrid = document.querySelector('.projects-grid');
-const allProjects = Array.from(projectGrid.children);
-
-function getProjectsPerPage() {
-    // Show 2 projects on tablet and mobile, 4 on desktop
-    return window.innerWidth <= 768 ? 2 : 4;
-}
-
-function getVisibleProjects() {
-    // Get only projects that should be visible based on current filter
-    return allProjects.filter(project => {
-        const isVisible = project.getAttribute('data-visible');
-        return isVisible === null || isVisible === 'true';
-    });
-}
-
-function showProjectPage(pageIndex) {
-    const projectsPerPage = getProjectsPerPage();
-    const visibleProjects = getVisibleProjects();
-    const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
-    const startIndex = pageIndex * projectsPerPage;
-    const endIndex = startIndex + projectsPerPage;
-    
-    // First, hide all projects
-    allProjects.forEach(project => {
-        project.style.display = 'none';
-    });
-    
-    // Then show only the visible projects for the current page
-    visibleProjects.forEach((project, index) => {
-        if (index >= startIndex && index < endIndex) {
-            project.style.display = 'grid';
-        }
-    });
-    
-    // Update button visibility
-    document.getElementById('prev-projects').style.visibility = pageIndex === 0 ? 'hidden' : 'visible';
-    document.getElementById('next-projects').style.visibility = pageIndex === totalPages - 1 || totalPages === 0 ? 'hidden' : 'visible';
-}
-
-// Expose reset function for tab filtering
-window.resetProjectPagination = function() {
-    currentProjectPage = 0;
-    showProjectPage(currentProjectPage);
-};
-
-document.getElementById('prev-projects').addEventListener('click', (e) => {
-    e.preventDefault();
-    if (currentProjectPage > 0) {
-        currentProjectPage--;
-        showProjectPage(currentProjectPage);
-    }
-});
-
-document.getElementById('next-projects').addEventListener('click', (e) => {
-    e.preventDefault();
-    const projectsPerPage = getProjectsPerPage();
-    const visibleProjects = getVisibleProjects();
-    const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
-    if (currentProjectPage < totalPages - 1) {
-        currentProjectPage++;
-        showProjectPage(currentProjectPage);
-    }
-});
-
-// Reset to first page on window resize
-window.addEventListener('resize', () => {
-    currentProjectPage = 0;
-    showProjectPage(currentProjectPage);
-});
-
-// Initialize first page
-showProjectPage(currentProjectPage);
-
-// Scroll-triggered animations (only on tablet and mobile)
-if (window.innerWidth <= 1024) {
-    const observerOptions = {
-        root: null,
-        rootMargin: '-20% 0px -20% 0px',
-        threshold: 0.5
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
-        });
-    }, observerOptions);
-
-    // Observe envelope wrapper
-    const envelopeWrapper = document.querySelector('.envelope-wrapper');
-    if (envelopeWrapper) {
-        observer.observe(envelopeWrapper);
-    }
-
-    // Observe all project cards
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-        observer.observe(card);
-    });
-
-    // Observe all postits
-    const postits = document.querySelectorAll('.postit');
-    postits.forEach(postit => {
-        observer.observe(postit);
-    });
-}
-</script>
+<script src="projects.js"></script>
+<script src="images.js"></script>
 
 </html>

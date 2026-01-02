@@ -268,3 +268,152 @@
 .project-chip[data-type="anderes"] {
     background: var(--yellow);
 }
+
+/* ============================================
+   Project Detail View (Inside Folder)
+   ============================================ */
+.project-detail-container {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.detail-back-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--red_dark);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.detail-back-btn:hover {
+    transform: scale(1.1);
+    background: var(--blue);
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.detail-images {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+}
+
+.detail-image-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 80%;
+    overflow: visible;
+}
+
+.detail-image-container img {
+    position: absolute;
+    max-width: 50%;
+    max-height: 90%;
+    height: auto;
+    width: auto;
+    border-radius: 1rem;
+    border: none;
+    transition: transform 0.3s ease;
+    object-fit: contain;
+}
+
+.detail-image-container img:first-child {
+    left: 5%;
+    top: 0%;
+    z-index: 1;
+}
+
+.detail-image-container img:nth-child(2) {
+    left: 25%;
+    top: 10%;
+    z-index: 2;
+}
+
+.detail-image-container img:nth-child(3) {
+    left: 45%;
+    top: 20%;
+    z-index: 3;
+}
+
+.detail-image-container img:only-child {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+    max-height: 100%;
+    z-index: 1;
+}
+
+.detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.detail-title {
+    font-family: 'Neue Regrade', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--red_dark);
+    margin: 0;
+}
+
+.detail-chips {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.detail-description {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    line-height: 1.5;
+    color: var(--red_dark);
+    margin: 1rem 0;
+}
+
+.detail-body {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.6;
+    color: var(--red_dark);
+    margin: 0;
+}
+
+.detail-link {
+    margin-top: 1.5rem;
+    text-decoration: none;
+}
+
+.detail-link button {
+    width: 100%;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.project-card {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+}
