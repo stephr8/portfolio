@@ -1,0 +1,34 @@
+/* ============================================
+   Base Styles
+   ============================================ */
+body {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 2vw, 1.625rem);
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    background-color: var(--white);
+}
+
+h1 {
+    font-family: 'Neue Regrade', sans-serif;
+    font-weight: 500;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    color: var(--blue);
+    line-height: 1.2;
+    margin: 0;
+    position: absolute;
+}
+
+h2 {
+    font-family: 'Neue Regrade', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+h3 {
+    font-family: 'Neue Regrade', sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.25rem, 2.5vw, 2rem);
+}

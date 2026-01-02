@@ -1,0 +1,24 @@
+/* ============================================
+   Button Styles
+   ============================================ */
+button {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1rem, 2vw, 1.625rem);
+    line-height: 1.5;
+    background-color: var(--blue_light);
+    padding: 8px 16px;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    border: 3px solid transparent;
+    cursor: pointer;
+}
+
+button a {
+    text-decoration: none;
+    color: var(--red_dark);
+}
+
+button:not(.tab-btn):hover {
+    border-color: var(--red_dark);
+}

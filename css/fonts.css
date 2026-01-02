@@ -1,0 +1,43 @@
+/* ============================================
+   Font Declarations
+   ============================================ */
+@font-face {
+    font-family: 'Inclusive Sans';
+    src: url(../assets/fonts/inclusivesans-variablefont_wght-webfont.woff2) format('woff2'),
+        url(../assets/fonts/inclusivesans-variablefont_wght-webfont.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Neue Regrade';
+    font-weight: 300;
+    src: url(../assets/fonts/neueregrade-light.woff2) format('woff2'),
+        url(../assets/fonts/neueregrade-light.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Neue Regrade';
+    font-weight: 400;
+    src: url(../assets/fonts/neueregrade-regular.woff2) format('woff2'),
+        url(../assets/fonts/neueregrade-regular.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Neue Regrade';
+    font-weight: 500;
+    src: url(../assets/fonts/neueregrade-medium.woff2) format('woff2'),
+        url(../assets/fonts/neueregrade-medium.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Neue Regrade';
+    font-weight: 600;
+    src: url(../assets/fonts/neueregrade-semibold.woff2) format('woff2'),
+        url(../assets/fonts/neueregrade-semibold.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Neue Regrade';
+    font-weight: 700;
+    src: url(../assets/fonts/neueregrade-bold.woff2) format('woff2'),
+        url(../assets/fonts/neueregrade-bold.woff) format('woff');
+}

@@ -1,0 +1,233 @@
+/* ============================================
+   Media Queries - Tablet (768px)
+   ============================================ */
+@media (max-width: 768px) {
+    nav {
+        top: 1.5rem;
+        right: 1.5rem;
+        gap: 0.5rem;
+    }
+    
+    .hero-section {
+        padding-bottom: 80%;
+        overflow: hidden;
+    }
+    
+    .hero-section .drawn-img {
+        transform: scale(1.6);
+    }
+    
+    .projects-folder {
+        margin: 4rem auto 2rem;
+    }
+    
+    .tab-btn {
+        margin-left: -0.75rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    .tab-btn:first-child {
+        margin-left: 0;
+    }
+    
+    .folder-content {
+        padding: 1.5rem;
+        border-width: 4px;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .postits-container {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 0;
+    }
+    
+    .postit {
+        max-width: 280px;
+        margin: -0.75rem auto;
+        transform: rotate(0deg);
+    }
+    
+    .postit:first-child {
+        margin-top: 0;
+        transform: rotate(-1.5deg);
+    }
+    
+    .postit:nth-child(2) {
+        transform: rotate(1deg);
+    }
+    
+    .postit:nth-child(3) {
+        transform: rotate(-0.8deg);
+    }
+    
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+    
+    .contact-icons {
+        flex-direction: row;
+        gap: 3rem;
+    }
+    
+    .linkedin-icon {
+        width: clamp(100px, 16vw, 130px);
+    }
+    
+    #scroll-to-top {
+        right: 1rem;
+        bottom: 1rem;
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/* ============================================
+   Media Queries - Mobile (480px)
+   ============================================ */
+@media (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.5rem;
+        top: 1rem;
+        right: 1rem;
+    }
+    
+    .hero-section {
+        padding-bottom: 145%;
+    }
+    
+    .hero-section h1:first-of-type {
+        top: 2%;
+        left: 5%;
+        max-width: 50%;
+    }
+    
+    .hero-section h1:last-of-type {
+        bottom: 2%;
+        right: 5%;
+        max-width: 50%;
+    }
+    
+    .hero-section .drawn-img {
+        transform: scale(1) translateY(0);
+    }
+    
+    /* Reposition images for vertical mobile layout */
+    .hero-section img[alt="laptop"] {
+        left: 35% !important;
+        top: 15% !important;
+        width: 35% !important;
+    }
+    
+    .hero-section img[alt="star pink"] {
+        left: 25% !important;
+        top: 19% !important;
+        width: 12% !important;
+    }
+    
+    .hero-section img[alt="connect"] {
+        left: 10% !important;
+        top: 23% !important;
+        width: 38% !important;
+    }
+    
+    .hero-section img[alt="cards"] {
+        left: 58% !important;
+        top: 24% !important;
+        width: 32% !important;
+    }
+    
+    .hero-section img[alt="sketchbook"] {
+        left: 5% !important;
+        top: 34% !important;
+        width: 60% !important;
+    }
+    
+    .hero-section img[alt="wordle"] {
+        left: 32% !important;
+        top: 43% !important;
+        width: 55% !important;
+    }
+    
+    .hero-section img[alt="favorites"] {
+        left: 20% !important;
+        top: 56% !important;
+        width: 7% !important;
+    }
+    
+    .hero-section img[alt="watchlist"] {
+        left: 54% !important;
+        top: 40% !important;
+        width: 7% !important;
+    }
+    
+    .hero-section img[alt="currently playing"] {
+        left: 55% !important;
+        top: 54% !important;
+        width: 42% !important;
+    }
+    
+    .hero-section img[alt="fangis card"] {
+        left: 20% !important;
+        top: 60% !important;
+        width: 43% !important;
+    }
+    
+    .hero-section img[alt="game title"] {
+        left: 50% !important;
+        top: 64% !important;
+        width: 38% !important;
+    }
+    
+    .hero-section img[alt="star yellow"] {
+        left: 15% !important;
+        top: 73% !important;
+        width: 13% !important;
+    }
+    
+    .hero-section img[alt="smiley"] {
+        left: 48% !important;
+        top: 78% !important;
+        width: 14% !important;
+    }
+    
+    .postit {
+        max-width: 220px;
+        padding: 1.25rem;
+        margin: -1rem auto;
+    }
+    
+    .postit:first-child {
+        margin-top: 0;
+        transform: rotate(-2deg);
+    }
+    
+    .postit:nth-child(2) {
+        transform: rotate(1.5deg);
+    }
+    
+    .postit:nth-child(3) {
+        transform: rotate(-1deg);
+    }
+    
+    .tab-btn {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.6rem;
+        margin-left: -0.5rem;
+    }
+    
+    .folder-tabs-new {
+        margin-bottom: 0;
+    }
+}

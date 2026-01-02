@@ -1,0 +1,129 @@
+/* ============================================
+   Contact Section
+   ============================================ */
+.contact-section {
+    max-width: min(90vw, 1200px);
+    margin: 8rem auto 4rem;
+    padding: 0 1rem;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: center;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.message {
+    padding: 1.5rem 2rem;
+    border-radius: 1.5rem;
+    max-width: 80%;
+    position: relative;
+}
+
+.message p {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.message-other {
+    background: #E8E8E8;
+    color: var(--red_dark);
+    border-radius: 1.5rem 1.5rem 1.5rem 0.25rem;
+    align-self: flex-start;
+}
+
+.message-me {
+    background: #3A69B5;
+    color: #F8F6ED;
+    border-radius: 1.5rem 1.5rem 0.25rem 1.5rem;
+    align-self: center;
+    max-width: 60%;
+    padding: 2rem 1.75rem;
+}
+
+.contact-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.envelope-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    margin-top: -2rem;
+}
+
+.envelope-icon {
+    width: clamp(220px, 35vw, 320px);
+    height: auto;
+    filter: drop-shadow(0px 4px 12px rgba(0,0,0,0.15));
+    display: block;
+}
+
+.envelope-flap {
+    transform-origin: center center;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.envelope-wrapper.active .envelope-flap {
+    transition-delay: 0.3s;
+}
+
+.envelope-wrapper:hover .envelope-flap,
+.envelope-wrapper.active .envelope-flap {
+    transform: rotateX(-25deg) translateY(-15px);
+}
+
+.email-button {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    white-space: nowrap;
+    z-index: 10;
+    font-size: clamp(0.75rem, 1.2vw, 1rem);
+    padding: 6px 12px;
+}
+
+.envelope-wrapper.active .email-button {
+    transition-delay: 0.5s;
+}
+
+.envelope-wrapper:hover .email-button,
+.envelope-wrapper.active .email-button {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition-delay: 0.2s;
+}
+
+.linkedin-icon {
+    width: clamp(90px, 15vw, 120px);
+    height: auto;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0px 4px 12px rgba(0,0,0,0.15));
+    display: block;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.linkedin-icon:hover {
+    transform: scale(1.1);
+}

@@ -1,0 +1,13 @@
+/* ============================================
+   CSS Variables
+   ============================================ */
+:root {
+    --blue: #2355A4;
+    --blue_light: #DDE4F5;
+    --red: #BF1B1B;
+    --red_dark: #5D1313;
+    --pink: #FFC9EF;
+    --green: #C0D676;
+    --yellow: #f3ecc6;
+    --white: #F8F6ED;
+}

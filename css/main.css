@@ -1,0 +1,20 @@
+/* ============================================
+   Main Stylesheet 
+   ============================================ */
+
+/* Core Styles */
+@import 'variables.css';
+@import 'fonts.css';
+@import 'base.css';
+@import 'animations.css';
+
+/* Component Styles */
+@import 'buttons.css';
+@import 'navigation.css';
+@import 'hero.css';
+@import 'projects.css';
+@import 'about.css';
+@import 'contact.css';
+
+/* Responsive Styles */
+@import 'responsive.css';

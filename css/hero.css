@@ -1,0 +1,39 @@
+/* ============================================
+   Hero Section
+   ============================================ */
+.hero-section {
+    position: relative;
+    width: 100%;
+    max-width: 1600px;
+    height: 0;
+    padding-bottom: 62.5%;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.hero-section h1:first-of-type {
+    top: 4%;
+    left: 3.75%;
+    width: auto;
+    max-width: min(313px, 19%);
+}
+
+.hero-section h1:last-of-type {
+    bottom: 4%;
+    right: 3.75%;
+    width: auto;
+    max-width: min(333px, 20%);
+    text-align: right;
+}
+
+.drawn-img {
+    pointer-events: auto;
+    position: absolute;
+    transition: opacity 0.5s linear;
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    animation: gentleSlideIn 0.8s ease-out forwards;
+    filter: drop-shadow(0px 0px 36px rgba(0,0,0,0.15));
+    z-index: 1000;
+    cursor: grab;
+}

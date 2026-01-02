@@ -1,0 +1,23 @@
+/* ============================================
+   Navigation
+   ============================================ */
+nav {
+    position: absolute;
+    top: clamp(2rem, 4vw, 4rem);
+    right: clamp(1.5rem, 5vw, 6rem);
+    display: flex;
+    gap: clamp(0.75rem, 2vw, 2rem);
+    z-index: 3500;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+#scroll-to-top {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 3000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}

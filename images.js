@@ -1,7 +1,10 @@
 
 window.addEventListener('DOMContentLoaded', () => {
   let topZ = 1000;
-  document.querySelectorAll('img.drawn-img, img.movable-img').forEach((img) => {
+  document.querySelectorAll('img.drawn-img, img.movable-img').forEach((img, index) => {
+    // Add staggered animation delay
+    img.style.animationDelay = `${index * 0.05}s`;
+    
     // Pixel-perfect hover logic
     img.addEventListener('mousemove', (e) => {
       const rect = img.getBoundingClientRect();

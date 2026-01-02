@@ -1,0 +1,270 @@
+/* ============================================
+   Folder Tabs System
+   ============================================ */
+.projects-folder {
+    max-width: min(90vw, 1200px);
+    margin: 8rem auto 4rem;
+    padding: 0 1rem;
+}
+
+.folder-tabs-new {
+    display: flex;
+    gap: 0;
+    margin-bottom: -2px;
+    position: relative;
+    z-index: 10;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.875rem, 1.8vw, 1.5rem);
+    padding: clamp(0.5rem, 1.5vw, 1rem) clamp(0.75rem, 2vw, 2rem);
+    color: var(--red_dark);
+    border: clamp(4px, 0.8vw, 8px) solid;
+    border-bottom: none;
+    border-radius: 1.5rem 1.5rem 0 0;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    position: relative;
+    margin-left: -1.5rem;
+    filter: drop-shadow(0px -2px 8px rgba(0,0,0,0.1));
+    white-space: nowrap;
+}
+
+.tab-btn:first-child {
+    margin-left: 0;
+}
+
+.tab-btn:nth-child(1) { z-index: 4; }
+.tab-btn:nth-child(2) { z-index: 3; }
+.tab-btn:nth-child(3) { z-index: 2; }
+.tab-btn:nth-child(4) { z-index: 1; }
+
+.tab-btn[data-tab="projects"] {
+    background: var(--blue_light);
+    border-color: var(--blue_light);
+}
+
+.tab-btn[data-tab="skills"] {
+    background: var(--pink);
+    border-color: var(--pink);
+}
+
+.tab-btn[data-tab="about"] {
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.tab-btn[data-tab="contact"] {
+    background: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.tab-btn[data-tab="projects"]:hover {
+    background: var(--blue_light);
+    border-color: var(--blue_light);
+}
+
+.tab-btn[data-tab="skills"]:hover {
+    background: var(--pink);
+    border-color: var(--pink);
+}
+
+.tab-btn[data-tab="about"]:hover {
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.tab-btn[data-tab="contact"]:hover {
+    background: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.tab-btn.active {
+    z-index: 10;
+}
+
+.tab-btn[data-tab="projects"].active {
+    background: var(--blue_light);
+    border-color: var(--blue_light);
+    border-bottom-color: var(--white);
+}
+
+.tab-btn[data-tab="skills"].active {
+    background: var(--pink);
+    border-color: var(--pink);
+    border-bottom-color: var(--white);
+}
+
+.tab-btn[data-tab="about"].active {
+    background: var(--green);
+    border-color: var(--green);
+    border-bottom-color: var(--white);
+}
+
+.tab-btn[data-tab="contact"].active {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    border-bottom-color: var(--white);
+}
+
+.folder-content {
+    background: #F1F2F5;
+    border: 8px solid var(--blue_light);
+    border-radius: 0 1rem 1rem 1rem;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    transition: border-color 0.3s;
+}
+
+.folder-content[data-active-tab="skills"] {
+    border-color: var(--pink);
+}
+
+.folder-content[data-active-tab="about"] {
+    border-color: var(--green);
+}
+
+.folder-content[data-active-tab="contact"] {
+    border-color: var(--yellow);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+
+/* ============================================
+   Projects Grid & Cards
+   ============================================ */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    width: 100%;
+}
+
+.project-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    align-items: center;
+}
+
+.project-image-stack {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    filter: drop-shadow(0px 2px 8px rgba(0,0,0,0.1));
+}
+
+.project-image-stack .project-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.project-image-stack .main-image {
+    position: relative;
+    z-index: 3;
+}
+
+.stack-image {
+    opacity: 0;
+    z-index: 1;
+    transform: translate(0, 0) rotate(0deg) scale(0.85);
+}
+
+.project-card.active .stack-image {
+    transition-delay: 0.4s;
+}
+
+.stack-left {
+    z-index: 2;
+}
+
+.stack-right {
+    z-index: 1;
+}
+
+.project-card:hover .stack-left,
+.project-card.active .stack-left {
+    opacity: 1;
+    transform: translate(-15%, 5%) rotate(-8deg) scale(0.85);
+}
+
+.project-card:hover .stack-right,
+.project-card.active .stack-right {
+    opacity: 1;
+    transform: translate(15%, 5%) rotate(8deg) scale(0.85);
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+
+.project-title {
+    font-family: 'Neue Regrade', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    color: var(--red_dark);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.project-type {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 400;
+    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    color: var(--red_dark);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.project-chips {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.25rem;
+}
+
+.project-chip {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 600;
+    font-size: clamp(0.75rem, 1.2vw, 1rem);
+    color: var(--red_dark);
+    padding: 0.4rem 1rem;
+    border-radius: 0.75rem;
+    display: inline-block;
+    width: fit-content;
+    margin-top: 0.25rem;
+}
+
+.project-chip[data-type="design"] {
+    background: var(--pink);
+}
+
+.project-chip[data-type="code"] {
+    background: var(--green);
+}
+
+.project-chip[data-type="anderes"] {
+    background: var(--yellow);
+}
