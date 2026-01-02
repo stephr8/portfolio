@@ -9,9 +9,16 @@
 
 .contact-container {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2fr auto 1fr;
     gap: clamp(2rem, 4vw, 4rem);
     align-items: center;
+}
+
+.contact-arrow {
+    width: clamp(120px, 14vw, 180px);
+    height: auto;
+    filter: drop-shadow(0px 2px 8px rgba(0,0,0,0.1));
+    margin-top: 3rem;
 }
 
 .messages {
