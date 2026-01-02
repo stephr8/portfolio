@@ -21,19 +21,19 @@
 <body>
     
     <div class="hero-section">
-        <img src="assets/img/star_yellow.png" class="drawn-img movable-img" style="position:absolute; left:22.625%; top:66%; width:8.6875%; height:auto;" alt="star yellow">
-        <img src="assets/img/sketchbook.png" class="drawn-img movable-img" style="position:absolute; left:7.25%; top:32.2%; width:39.6875%; height:auto;" alt="sketchbook">
-        <img src="assets/img/wordle.png" class="drawn-img movable-img" style="position:absolute; left:42%; top:41%; width:36.9375%; height:auto;" alt="wordle">
-        <img src="assets/img/fangis_card.png" class="drawn-img movable-img" style="position:absolute; left:30.125%; top:54.2%; width:29%; height:auto;" alt="fangis card">
-        <img src="assets/img/cards.png" class="drawn-img movable-img" style="position:absolute; left:66.6875%; top:23.8%; width:21.25%; height:auto;" alt="cards">
-        <img src="assets/img/smiley.png" class="drawn-img movable-img" style="position:absolute; left:56.5%; top:68.6%; width:9.5%; height:auto;" alt="smiley">
-        <img src="assets/img/game_title.png" class="drawn-img movable-img" style="position:absolute; left:50.5%; top:55%; width:25.625%; height:auto;" alt="game title">
-        <img src="assets/img/connect.png" class="drawn-img movable-img" style="position:absolute; left:29.5%; top:28.2%; width:24.9375%; height:auto;" alt="connect">
-        <img src="assets/img/currently_playing.png" class="drawn-img movable-img" style="position:absolute; left:64.625%; top:53.2%; width:28.0625%; height:auto;" alt="currently playing">
-        <img src="assets/img/favorites.png" class="drawn-img movable-img" style="position:absolute; left:40.3125%; top:51.6%; width:4.5625%; height:auto;" alt="favorites">
-        <img src="assets/img/watchlist.png" class="drawn-img movable-img" style="position:absolute; left:76.125%; top:49%; width:4.625%; height:auto;" alt="watchlist">
-        <img src="assets/img/laptop.png" class="drawn-img movable-img" style="position:absolute; left:50.5%; top:15%; width:23.375%; height:auto;" alt="laptop">
-        <img src="assets/img/star_pink.png" class="drawn-img movable-img" style="position:absolute; left:50%; top:23.8%; width:7.9375%; height:auto;" alt="star pink">
+        <img src="assets/img/star_yellow.png" class="drawn-img movable-img" alt="star yellow">
+        <img src="assets/img/sketchbook.png" class="drawn-img movable-img" alt="sketchbook">
+        <img src="assets/img/wordle.png" class="drawn-img movable-img" alt="wordle">
+        <img src="assets/img/fangis_card.png" class="drawn-img movable-img" alt="fangis card">
+        <img src="assets/img/cards.png" class="drawn-img movable-img" alt="cards">
+        <img src="assets/img/smiley.png" class="drawn-img movable-img" alt="smiley">
+        <img src="assets/img/game_title.png" class="drawn-img movable-img" alt="game title">
+        <img src="assets/img/connect.png" class="drawn-img movable-img" alt="connect">
+        <img src="assets/img/currently_playing.png" class="drawn-img movable-img" alt="currently playing">
+        <img src="assets/img/favorites.png" class="drawn-img movable-img" alt="favorites">
+        <img src="assets/img/watchlist.png" class="drawn-img movable-img" alt="watchlist">
+        <img src="assets/img/laptop.png" class="drawn-img movable-img" alt="laptop">
+        <img src="assets/img/star_pink.png" class="drawn-img movable-img" alt="star pink">
         <h1>stephanie römer</h1>
         <h1>ux/ui designerin</h1>
     </div>
@@ -145,6 +145,7 @@
                     <p>möchtest du zusammenarbeiten? nur hallo sagen? egal was es ist, schreib mir gerne ne mail oder auf linkedin :-)</p>
                 </div>
             </div>
+            <img src="assets/img/arrow.svg" alt="arrow" class="contact-arrow">
             <div class="contact-icons">
                 <div class="envelope-wrapper">
                     <svg class="envelope-icon" width="445" height="280" viewBox="0 0 445 280" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -250,23 +251,41 @@ document.querySelectorAll('nav a[href^="#"], #scroll-to-top a').forEach(anchor =
 // Show/hide scroll-to-top button
 const scrollToTopBtn = document.getElementById('scroll-to-top');
 window.addEventListener('scroll', () => {
+    const isMobile = window.innerWidth <= 768;
+    const projectsSection = document.getElementById('projects');
     const footer = document.querySelector('footer');
+    
+    if (!projectsSection || !footer) return;
+    
+    const projectsTop = projectsSection.offsetTop;
     const footerTop = footer.offsetTop;
     const scrollPosition = window.pageYOffset + window.innerHeight;
+    const currentScroll = window.pageYOffset;
     
-    // Show button after scrolling 400px
-    const shouldShow = window.pageYOffset > 400;
-    // Hide button when near footer (150px before footer)
-    const nearFooter = scrollPosition > footerTop - 150;
-    
-    if (shouldShow && !nearFooter) {
-        scrollToTopBtn.style.opacity = '1';
-        scrollToTopBtn.style.pointerEvents = 'auto';
+    if (isMobile) {
+        // On mobile/tablet: show after scrolling 400px, hide near footer
+        const shouldShow = currentScroll > 400;
+        const nearFooter = scrollPosition > footerTop - 150;
+        
+        if (shouldShow && !nearFooter) {
+            scrollToTopBtn.style.opacity = '1';
+            scrollToTopBtn.style.pointerEvents = 'auto';
+        } else {
+            scrollToTopBtn.style.opacity = '0';
+            scrollToTopBtn.style.pointerEvents = 'none';
+        }
     } else {
-        scrollToTopBtn.style.opacity = '0';
-        scrollToTopBtn.style.pointerEvents = 'none';
+        // On desktop: show when reaching projects section, always visible (no hide at footer)
+        if (currentScroll >= projectsTop - 100) {
+            scrollToTopBtn.style.opacity = '1';
+            scrollToTopBtn.style.pointerEvents = 'auto';
+        } else {
+            scrollToTopBtn.style.opacity = '0';
+            scrollToTopBtn.style.pointerEvents = 'none';
+        }
     }
 });
+
 
 // Project navigation
 let currentProjectPage = 0;

@@ -6,7 +6,7 @@
     width: 100%;
     max-width: 1600px;
     height: 0;
-    padding-bottom: 62.5%;
+    padding-bottom: 52%;
     margin: 0 auto;
     overflow: visible;
 }
@@ -36,4 +36,83 @@
     filter: drop-shadow(0px 0px 36px rgba(0,0,0,0.15));
     z-index: 1000;
     cursor: grab;
+}
+
+/* Desktop image positioning */
+.hero-section img[alt="star yellow"] {
+    left: 22.625%;
+    top: 66%;
+    width: 8.6875%;
+}
+
+.hero-section img[alt="sketchbook"] {
+    left: 7.25%;
+    top: 32.2%;
+    width: 39.6875%;
+}
+
+.hero-section img[alt="wordle"] {
+    left: 42%;
+    top: 41%;
+    width: 36.9375%;
+}
+
+.hero-section img[alt="fangis card"] {
+    left: 30.125%;
+    top: 54.2%;
+    width: 29%;
+}
+
+.hero-section img[alt="cards"] {
+    left: 66.6875%;
+    top: 23.8%;
+    width: 21.25%;
+}
+
+.hero-section img[alt="smiley"] {
+    left: 56.5%;
+    top: 68.6%;
+    width: 9.5%;
+}
+
+.hero-section img[alt="game title"] {
+    left: 50.5%;
+    top: 55%;
+    width: 25.625%;
+}
+
+.hero-section img[alt="connect"] {
+    left: 29.5%;
+    top: 28.2%;
+    width: 24.9375%;
+}
+
+.hero-section img[alt="currently playing"] {
+    left: 64.625%;
+    top: 53.2%;
+    width: 28.0625%;
+}
+
+.hero-section img[alt="favorites"] {
+    left: 40.3125%;
+    top: 51.6%;
+    width: 4.5625%;
+}
+
+.hero-section img[alt="watchlist"] {
+    left: 76.125%;
+    top: 49%;
+    width: 4.625%;
+}
+
+.hero-section img[alt="laptop"] {
+    left: 50.5%;
+    top: 15%;
+    width: 23.375%;
+}
+
+.hero-section img[alt="star pink"] {
+    left: 50%;
+    top: 23.8%;
+    width: 7.9375%;
 }

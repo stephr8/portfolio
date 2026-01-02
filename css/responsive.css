@@ -70,6 +70,10 @@
         gap: 3rem;
     }
     
+    .contact-arrow {
+        display: none;
+    }
+    
     .message {
         max-width: 90%;
     }
@@ -104,7 +108,7 @@
     }
     
     .hero-section {
-        padding-bottom: 145%;
+        padding-bottom: 135%;
     }
     
     .hero-section h1:first-of-type {
@@ -125,81 +129,81 @@
     
     /* Reposition images for vertical mobile layout */
     .hero-section img[alt="laptop"] {
-        left: 35% !important;
-        top: 15% !important;
-        width: 35% !important;
+        left: 35%;
+        top: 16%;
+        width: 32%;
     }
     
     .hero-section img[alt="star pink"] {
-        left: 25% !important;
-        top: 19% !important;
-        width: 12% !important;
+        left: 25%;
+        top: 20%;
+        width: 11%;
     }
     
     .hero-section img[alt="connect"] {
-        left: 10% !important;
-        top: 23% !important;
-        width: 38% !important;
+        left: 10%;
+        top: 24%;
+        width: 35%;
     }
     
     .hero-section img[alt="cards"] {
-        left: 58% !important;
-        top: 24% !important;
-        width: 32% !important;
+        left: 58%;
+        top: 25%;
+        width: 30%;
     }
     
     .hero-section img[alt="sketchbook"] {
-        left: 5% !important;
-        top: 34% !important;
-        width: 60% !important;
+        left: 5%;
+        top: 34%;
+        width: 55%;
     }
     
     .hero-section img[alt="wordle"] {
-        left: 32% !important;
-        top: 43% !important;
-        width: 55% !important;
+        left: 32%;
+        top: 42%;
+        width: 52%;
     }
     
     .hero-section img[alt="favorites"] {
-        left: 20% !important;
-        top: 56% !important;
-        width: 7% !important;
+        left: 20%;
+        top: 50%;
+        width: 7%;
     }
     
     .hero-section img[alt="watchlist"] {
-        left: 54% !important;
-        top: 40% !important;
-        width: 7% !important;
+        left: 54%;
+        top: 40%;
+        width: 7%;
     }
     
     .hero-section img[alt="currently playing"] {
-        left: 55% !important;
-        top: 54% !important;
-        width: 42% !important;
+        left: 55%;
+        top: 54%;
+        width: 40%;
     }
     
     .hero-section img[alt="fangis card"] {
-        left: 20% !important;
-        top: 60% !important;
-        width: 43% !important;
+        left: 20%;
+        top: 60%;
+        width: 40%;
     }
     
     .hero-section img[alt="game title"] {
-        left: 50% !important;
-        top: 64% !important;
-        width: 38% !important;
+        left: 50%;
+        top: 64%;
+        width: 35%;
     }
     
     .hero-section img[alt="star yellow"] {
-        left: 15% !important;
-        top: 73% !important;
-        width: 13% !important;
+        left: 15%;
+        top: 72%;
+        width: 12%;
     }
     
     .hero-section img[alt="smiley"] {
-        left: 48% !important;
-        top: 78% !important;
-        width: 14% !important;
+        left: 48%;
+        top: 76%;
+        width: 13%;
     }
     
     .postit {
