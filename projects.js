@@ -70,8 +70,8 @@ const projectGrid = document.querySelector('.projects-grid');
 const allProjects = Array.from(projectGrid.children);
 
 function getProjectsPerPage() {
-    // Show 2 projects on tablet and mobile, 4 on desktop
-    return window.innerWidth <= 768 ? 2 : 4;
+    // Show 3 projects on mobile/tablet, 4 on desktop
+    return window.innerWidth <= 768 ? 3 : 4;
 }
 
 function getVisibleProjects() {
@@ -143,7 +143,7 @@ showProjectPage(currentProjectPage);
 // Project Detail View (inside folder)
 const projectDetailContainer = document.getElementById('projectDetailContainer');
 const backToProjectsBtn = document.getElementById('backToProjects');
-const projectsWrapper = document.querySelector('[style*="position: relative; padding: 0 3rem"]');
+const projectsWrapper = document.querySelector('.projects-wrapper');
 
 function openProjectDetail(projectCard) {
     const title = projectCard.dataset.title;
@@ -152,12 +152,19 @@ function openProjectDetail(projectCard) {
     const details = projectCard.dataset.details;
     const link = projectCard.dataset.link;
     const images = projectCard.dataset.images.split(',');
-    const tags = projectCard.dataset.tags.split(' ');
+    const tags = projectCard.dataset.tags;
     
     // Populate detail view
     document.getElementById('detailTitle').textContent = title;
     document.getElementById('detailDescription').textContent = description;
-    document.getElementById('detailBody').textContent = details;
+    
+    // Format details with proper line breaks and bold titles
+    const detailBody = document.getElementById('detailBody');
+    let formattedDetails = details.replace(/\n/g, '<br>');
+    formattedDetails = formattedDetails.replace(/Verantwortung & Beitrag:/g, '<strong>Verantwortung & Beitrag:</strong>');
+    formattedDetails = formattedDetails.replace(/Fokus:/g, '<strong>Fokus:</strong>');
+    detailBody.innerHTML = formattedDetails;
+    
     document.getElementById('detailLink').href = link;
     
     // Add images
@@ -170,14 +177,17 @@ function openProjectDetail(projectCard) {
         imagesContainer.appendChild(img);
     });
     
-    // Add chips
+    // Add chips - format: "label|color,label2|color2"
     const chipsContainer = document.getElementById('detailChips');
     chipsContainer.innerHTML = '';
-    tags.forEach(tag => {
+    const tagsList = tags.split(',');
+    
+    tagsList.forEach(tagData => {
+        const [label, colorType] = tagData.split('|');
         const chip = document.createElement('span');
         chip.className = 'project-chip';
-        chip.setAttribute('data-type', tag);
-        chip.textContent = tag;
+        chip.setAttribute('data-type', colorType.trim());
+        chip.textContent = label.trim();
         chipsContainer.appendChild(chip);
     });
     

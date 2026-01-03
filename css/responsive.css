@@ -32,8 +32,25 @@
     }
     
     .folder-content {
-        padding: 1.5rem;
+        padding: 1.5rem 0.75rem;
         border-width: 4px;
+    }
+    
+    .projects-wrapper {
+        padding: 0 2.5rem;
+    }
+    
+    #prev-projects,
+    #next-projects {
+        font-size: 1.5rem;
+    }
+    
+    #prev-projects {
+        left: 0.25rem;
+    }
+    
+    #next-projects {
+        right: 0.25rem;
     }
     
     .projects-grid {

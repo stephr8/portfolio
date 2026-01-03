@@ -265,7 +265,7 @@
     background: var(--green);
 }
 
-.project-chip[data-type="anderes"] {
+.project-chip[data-type="weiteres"] {
     background: var(--yellow);
 }
 
@@ -399,6 +399,10 @@
     margin: 0;
 }
 
+.detail-body strong {
+    font-weight: 700;
+}
+
 .detail-link {
     margin-top: 1.5rem;
     text-decoration: none;
@@ -412,8 +416,4 @@
 .project-card {
     cursor: pointer;
     transition: transform 0.2s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-4px);
 }

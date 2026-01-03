@@ -151,7 +151,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const filterMap = {
           'skills': 'design',
           'about': 'code',
-          'contact': 'anderes'
+          'contact': 'weiteres'
         };
         const filterType = filterMap[tabName];
         

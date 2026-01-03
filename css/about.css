@@ -46,7 +46,7 @@
 }
 
 .postit:hover {
-    transform: translateY(-5px) rotate(0deg);
+    transform: translateY(-5px) rotate(0deg) scale(1.06);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     z-index: 10;
 }

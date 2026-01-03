@@ -14,12 +14,13 @@
     <button><a href="#contact">kontakt</a></button>
 </nav>
 
-<button id="scroll-to-top" style="position: fixed; right: 2rem; bottom: 2rem; z-index: 3000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">
+<button id="scroll-to-top"
+    style="position: fixed; right: 2rem; bottom: 2rem; z-index: 3000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">
     <a href="#top">nach oben ↑</a>
 </button>
 
 <body>
-    
+
     <div class="hero-section">
         <img src="assets/img/star_yellow.png" class="drawn-img movable-img" alt="star yellow">
         <img src="assets/img/sketchbook.png" class="drawn-img movable-img" alt="sketchbook">
@@ -43,92 +44,103 @@
             <button class="tab-btn active" data-tab="projects">alle projekte</button>
             <button class="tab-btn" data-tab="skills">design</button>
             <button class="tab-btn" data-tab="about">code</button>
-            <button class="tab-btn" data-tab="contact">anderes</button>
+            <button class="tab-btn" data-tab="contact">weiteres</button>
         </div>
         <div class="folder-content">
             <div class="tab-content active" data-content="projects">
-                <div style="position: relative; padding: 0 3rem;">
-                    <button id="prev-projects" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 100; opacity: 0.6; transition: opacity 0.3s; background: transparent; border: none; font-size: 2rem; padding: 0.5rem;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+                <div class="projects-wrapper" style="position: relative; padding: 0 3rem;">
+                    <button id="prev-projects"
+                        style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 100; opacity: 0.6; transition: opacity 0.3s; background: transparent; border: none; font-size: 2rem; padding: 0.5rem;"
+                        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
                         <a href="#" onclick="event.preventDefault();" style="color: var(--blue);">←</a>
                     </button>
-                    <button id="next-projects" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 100; opacity: 0.6; transition: opacity 0.3s; background: transparent; border: none; font-size: 2rem; padding: 0.5rem;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+                    <button id="next-projects"
+                        style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 100; opacity: 0.6; transition: opacity 0.3s; background: transparent; border: none; font-size: 2rem; padding: 0.5rem;"
+                        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
                         <a href="#" onclick="event.preventDefault();" style="color: var(--blue);">→</a>
                     </button>
                     <div class="projects-grid">
-                    <div class="project-card" data-tags="design code" 
-                         data-title="fangis" 
-                         data-type="multiplayer mobile app"
-                         data-description="Eine interaktive Multiplayer-App, die klassisches Fangen mit moderner Technologie verbindet. Spieler können sich in Echtzeit verfolgen und markieren, während sie durch ihre reale Umgebung laufen."
-                         data-details="Das Projekt kombiniert Game Design, UX/UI Design und mobile Entwicklung. Die App nutzt GPS-Tracking für Echtzeit-Positionsbestimmung und bietet verschiedene Spielmodi für unterschiedliche Gruppengrössen. Besonderer Fokus lag auf einer intuitiven Benutzeroberfläche und flüssigen Animationen."
-                         data-link="#"
-                         data-images="assets/projects/fangis1.png,assets/projects/fangis2.png,assets/projects/fangis3.png">
-                        <div class="project-image-stack">
-                            <img src="assets/projects/fangis3.png" alt="fangis 3" class="project-image stack-image stack-right">
-                            <img src="assets/projects/fangis2.png" alt="fangis 2" class="project-image stack-image stack-left">
-                            <img src="assets/projects/fangis1.png" alt="fangis" class="project-image main-image">
+                        <div class="project-card" data-tags="ux/ui design|design,frontend development|code" data-title="fangis"
+                            data-type="multiplayer mobile app"
+                            data-description="Eine interaktive Multiplayer-App, die klassisches Fangen mit moderner Technologie verbindet."
+                            data-details="Fokus:
+• Konzeption der User Flows und zentralen Interaktionen
+• Entwicklung des visuellen Konzepts und UI-Designs
+• Umsetzung des Frontends mit Vue in einer komponentenbasierten Struktur"
+                            data-link="https://www.fangis.app/landing_page"
+                            data-images="assets/projects/fangis1.png,assets/projects/fangis2.png,assets/projects/fangis3.png">
+                            <div class="project-image-stack">
+                                <img src="assets/projects/fangis3.png" alt="fangis 3"
+                                    class="project-image stack-image stack-right">
+                                <img src="assets/projects/fangis2.png" alt="fangis 2"
+                                    class="project-image stack-image stack-left">
+                                <img src="assets/projects/fangis1.png" alt="fangis" class="project-image main-image">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">fangis</h3>
+                                <p class="project-type">multiplayer mobile app</p>
+                                <div class="project-chips">
+                                    <span class="project-chip" data-type="design">design</span>
+                                    <span class="project-chip" data-type="code">code</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="project-info">
-                            <h3 class="project-title">fangis</h3>
-                            <p class="project-type">multiplayer mobile app</p>
-                            <div class="project-chips">
-                                <span class="project-chip" data-type="design">design</span>
+                        <div class="project-card" data-tags="code|code" data-title="wordle"
+                            data-type="desktop game"
+                            data-description="Eine alternative Version des beliebten Worträtselspiels, wobei ein Synonym gesucht wird. Entwickelt als Desktop-Anwendung."
+                            data-details="Fokus:
+• Integration zwei externer APIs
+• Erweiterung um eigene Features wie Dark Mode und visuelles Feedback (Konfetti)"
+                            data-link="https://digezz.ch/projekte/wordle/" data-images="assets/projects/wordle.png">
+                            <img src="assets/projects/wordle.png" alt="wordle" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">wordle</h3>
+                                <p class="project-type">desktop game</p>
                                 <span class="project-chip" data-type="code">code</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="project-card" data-tags="code"
-                         data-title="wordle"
-                         data-type="desktop game"
-                         data-description="Eine deutsche Version des beliebten Worträtselspiels, entwickelt als Desktop-Anwendung mit modernem, minimalistischem Interface."
-                         data-details="Das Projekt wurde in JavaScript entwickelt und nutzt lokale Wortlisten für deutsche 5-Buchstaben-Wörter. Features umfassen ein Farbsystem für Feedback, Tastaturintegration und Spielstatistiken. Der Fokus lag auf Performance und einer zugänglichen Benutzeroberfläche."
-                         data-link="#"
-                         data-images="assets/projects/wordle.png">
-                        <img src="assets/projects/wordle.png" alt="wordle" class="project-image">
-                        <div class="project-info">
-                            <h3 class="project-title">wordle</h3>
-                            <p class="project-type">desktop game</p>
-                            <span class="project-chip" data-type="code">code</span>
+                        <div class="project-card" data-tags="filmproduktion|weiteres,postproduktion|weiteres" data-title="markthalle ix"
+                            data-type="kurzdoku"
+                            data-description="Eine Kurzdoku über die Markthalle Neun in Berlin-Kreuzberg." data-details="Fokus:
+• Mitarbeit an der inhaltlichen Konzeption
+• Mitarbeit in sämtlichen Produktionsbereichen (Ton, Kamera, Licht) zur ganzheitlichen Projektumsetzung
+• Aufbau narrativer Struktur in der Postproduktion
+• Color Correction und Color Grading" data-link="https://youtu.be/hV32e24igqA"
+                            data-images="assets/projects/markthalleix_static.png">
+                            <img src="assets/projects/markthalleix_static.png"
+                                data-static="assets/projects/markthalleix_static.png"
+                                data-animated="assets/projects/markthalleix.gif" alt="markthalle ix"
+                                class="project-image gif-image">
+                            <div class="project-info">
+                                <h3 class="project-title">markthalle ix</h3>
+                                <p class="project-type">kurzdoku</p>
+                                <span class="project-chip" data-type="weiteres">weiteres</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="project-card" data-tags="anderes"
-                         data-title="markthalle ix"
-                         data-type="kurzdoku"
-                         data-description="Eine dokumentarische Kurzfilm über die Markthalle Neun in Berlin-Kreuzberg, die lokale Lebensmittelkultur und Community feiert."
-                         data-details="Das Videoprojekt wurde über mehrere Wochen hinweg gedreht und zeigt die Vielfalt der Händler und Besucher. Besonderer Fokus lag auf authentischen Momenten und der Atmosphäre des Ortes. Die Postproduktion umfasste Farbkorrektur, Sound Design und Motion Graphics."
-                         data-link="#"
-                         data-images="assets/projects/markthalleix_static.png">
-                        <img src="assets/projects/markthalleix_static.png" 
-                             data-static="assets/projects/markthalleix_static.png" 
-                             data-animated="assets/projects/markthalleix.gif" 
-                             alt="markthalle ix" 
-                             class="project-image gif-image">
-                        <div class="project-info">
-                            <h3 class="project-title">markthalle ix</h3>
-                            <p class="project-type">kurzdoku</p>
-                            <span class="project-chip" data-type="anderes">anderes</span>
-                        </div>
-                    </div>
-                    <div class="project-card" data-tags="design"
-                         data-title="shuffle"
-                         data-type="mobile musik und workout app"
-                         data-description="Eine innovative Fitness-App, die Workout-Routinen dynamisch an den Musikgeschmack und Rhythmus des Nutzers anpasst."
-                         data-details="Das Design-Konzept verbindet Musik-Streaming mit personalisierten Workout-Plänen. Die App analysiert den Beat der Musik und passt Übungsintervalle entsprechend an. Durch ein motivierendes Interface mit energiegeladenen Farben und flüssigen Übergängen wird das Training zum Erlebnis. Das Projekt umfasste User Research, Wireframing, Visual Design und Prototyping."
-                         data-link="#"
-                         data-images="assets/projects/shuffle1.png,assets/projects/shuffle2.png,assets/projects/shuffle3.png">
-                        <div class="project-image-stack">
-                            <img src="assets/projects/shuffle3.png" alt="shuffle 3" class="project-image stack-image stack-right">
-                            <img src="assets/projects/shuffle2.png" alt="shuffle 2" class="project-image stack-image stack-left">
-                            <img src="assets/projects/shuffle1.png" alt="shuffle" class="project-image main-image">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">shuffle</h3>
-                            <p class="project-type">mobile musik und workout app</p>
-                            <span class="project-chip" data-type="design">design</span>
+                        <div class="project-card" data-tags="ux/ui design|design" data-title="shuffle"
+                            data-type="mobile musik und workout app"
+                            data-description="Eine Musik- und Fitness-App mit Customization und Social Features." data-details="Fokus:
+• UX-Research mit Erstellung von Personas, User Journeys und Competitor Analysis
+• Konzeption der Informationsarchitektur
+• Aufbau eines konsistenten Design Systems
+• Gestaltung eines interaktiven, funktionsfähigen Prototypen in Figma" data-link="#"
+                            data-images="assets/projects/shuffle1.png,assets/projects/shuffle2.png,assets/projects/shuffle3.png">
+                            <div class="project-image-stack">
+                                <img src="assets/projects/shuffle3.png" alt="shuffle 3"
+                                    class="project-image stack-image stack-right">
+                                <img src="assets/projects/shuffle2.png" alt="shuffle 2"
+                                    class="project-image stack-image stack-left">
+                                <img src="assets/projects/shuffle1.png" alt="shuffle" class="project-image main-image">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">shuffle</h3>
+                                <p class="project-type">mobile musik und workout app</p>
+                                <span class="project-chip" data-type="design">design</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                </div>
-                
+
                 <!-- Project Detail View inside folder -->
                 <div class="project-detail-container" id="projectDetailContainer" style="display: none;">
                     <button class="detail-back-btn" id="backToProjects">✕</button>
@@ -149,7 +161,7 @@
                 </div>
             </div>
             <div class="tab-content" data-content="skills">
-        </div>
+            </div>
         </div>
     </section>
 
@@ -160,7 +172,9 @@
             </div>
             <div class="postit postit-pink">
                 <h3 style="color: var(--red);">hi!</h3>
-                <p style="color: var(--red);">ich bin stephanie - eine ux/ui designerin, die sich für alles mögliche kreative begeistern kann. sei es design, videoschnitt oder web development - solange ich meinen laptop und meine playlist habe, läuft’s!</p>
+                <p style="color: var(--red);">ich bin stephanie - eine ux/ui designerin, die sich für alles mögliche
+                    kreative begeistern kann. sei es design, videoschnitt oder web development - solange ich meinen
+                    laptop und meine playlist habe, läuft’s!</p>
             </div>
             <div class="postit postit-yellow">
                 <p>software und technologien, mit denen ich arbeite:</p>
@@ -186,7 +200,8 @@
                     <p>let's get in touch!</p>
                 </div>
                 <div class="message message-me">
-                    <p>möchtest du zusammenarbeiten? nur hallo sagen? egal was es ist, schreib mir gerne ne mail oder auf linkedin :-)</p>
+                    <p>möchtest du zusammenarbeiten? nur hallo sagen? egal was es ist, schreib mir gerne ne mail oder
+                        auf linkedin :-)</p>
                 </div>
             </div>
             <img src="assets/img/arrow.svg" alt="arrow" class="contact-arrow">
@@ -195,9 +210,11 @@
                     <object type="image/svg+xml" data="assets/folder/envelope.svg" class="envelope-icon">
                         <img src="assets/folder/envelope.svg" alt="Envelope">
                     </object>
-                    <button class="email-button"><a href="mailto:sroemer.work@gmail.com">sroemer.work@gmail.com</a></button>
+                    <button class="email-button"><a
+                            href="mailto:sroemer.work@gmail.com">sroemer.work@gmail.com</a></button>
                 </div>
-                <a href="https://www.linkedin.com/in/stephanie-r%C3%B6mer-b70280240/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/stephanie-r%C3%B6mer-b70280240/" target="_blank"
+                    rel="noopener noreferrer">
                     <img src="assets/skills/linkedin.png" alt="LinkedIn" class="linkedin-icon">
                 </a>
             </div>
@@ -206,8 +223,10 @@
 
 </body>
 
-<footer style="display: flex; justify-content: center; align-items: center; gap: 2rem; padding: 3rem 0 5rem 0; margin-top: 4rem;">
-    <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="index.html">&copy; 2026 stephanie römer</a></button>
+<footer
+    style="display: flex; justify-content: center; align-items: center; gap: 2rem; padding: 3rem 0 5rem 0; margin-top: 4rem;">
+    <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="index.html">&copy; 2026 stephanie
+            römer</a></button>
     <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="impressum.html">impressum</a></button>
 </footer>
 
