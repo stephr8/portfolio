@@ -167,13 +167,19 @@ function openProjectDetail(projectCard) {
     
     document.getElementById('detailLink').href = link;
     
-    // Add images
+    // Add images with lazy loading and error handling
     const imagesContainer = document.getElementById('detailImages');
     imagesContainer.innerHTML = '';
+    
     images.forEach(imgSrc => {
         const img = document.createElement('img');
         img.src = imgSrc.trim();
         img.alt = title;
+        img.loading = 'lazy';
+        img.onerror = function() {
+            console.error('Failed to load image:', imgSrc);
+            this.style.display = 'none';
+        };
         imagesContainer.appendChild(img);
     });
     
@@ -199,6 +205,12 @@ function openProjectDetail(projectCard) {
 function closeProjectDetail() {
     projectsWrapper.style.display = 'block';
     projectDetailContainer.style.display = 'none';
+    
+    // Clean up images to free memory on mobile
+    const imagesContainer = document.getElementById('detailImages');
+    if (imagesContainer && window.innerWidth <= 768) {
+        imagesContainer.innerHTML = '';
+    }
 }
 
 // Add click listeners to all project cards
@@ -229,12 +241,6 @@ if (window.innerWidth <= 1024) {
 
     // Observe envelope wrapper
     const envelopeWrapper = document.querySelector('.envelope-wrapper');
-    if (envelopeWrapper) {
-        observer.observe(envelopeWrapper);
-    }
-
-    // Observe all project cards
-    const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
         observer.observe(card);
     });
