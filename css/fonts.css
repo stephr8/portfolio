@@ -5,6 +5,7 @@
     font-family: 'Inclusive Sans';
     src: url(../assets/fonts/inclusivesans-variablefont_wght-webfont.woff2) format('woff2'),
         url(../assets/fonts/inclusivesans-variablefont_wght-webfont.woff) format('woff');
+    font-display: swap;
 }
 
 @font-face {
@@ -12,6 +13,7 @@
     font-weight: 400;
     src: url(../assets/fonts/neue-regrade-regular-bf65af35d81f2ff-webfont.woff2) format('woff2'),
         url(../assets/fonts/neue-regrade-regular-bf65af35d81f2ff-webfont.woff) format('woff');
+    font-display: swap;
 }
 
 @font-face {
@@ -19,6 +21,7 @@
     font-weight: 500;
     src: url(../assets/fonts/neue-regrade-medium-bf65af35d843ed6-webfont.woff2) format('woff2'),
         url(../assets/fonts/neue-regrade-medium-bf65af35d843ed6-webfont.woff) format('woff');
+    font-display: swap;
 }
 
 @font-face {
@@ -26,6 +29,7 @@
     font-weight: 600;
     src: url(../assets/fonts/neue-regrade-semibold-bf65af35d8354a8-webfont.woff2) format('woff2'),
         url(../assets/fonts/neue-regrade-semibold-bf65af35d8354a8-webfont.woff) format('woff');
+    font-display: swap;
 }
 
 @font-face {
@@ -33,4 +37,5 @@
     font-weight: 700;
     src: url(../assets/fonts/neue-regrade-bold-bf65af35d84e111-webfont.woff2) format('woff2'),
         url(../assets/fonts/neue-regrade-bold-bf65af35d84e111-webfont.woff) format('woff');
+    font-display: swap;
 }
