@@ -11,6 +11,7 @@ Meine grösste Challenge bei diesem Projekt war es, mich nicht zu sehr an meinem
 *Das ursprüngliche Design des Ordners*
 
 Herausfordernd war auch, das Portfolio responsive zu machen. Da die UI-Komponente in der Hero-Section pixel-spezifische Positionen haben, war es ein langes Ausprobieren, an welchen Stellen die Komponente auf Mobile sein sollten, bis es einigermassen sinnvoll aussah.
+Ausserdem musste ich die Bilder in der Hero-Section oft komprimieren und zu Webps konvertieren, da sie ansonsten viel zu gross waren und das Laden der Seite stark verlangsamten.
 
 ## Ressourcen
 Inspiration für das Design holte ich mir vor allem bei anderen Portfolios, meistens erstellt mit ReadyMag oder Framer. Für die Umsetzung nutzte ich vor allem an komplizierten Stellen wie der Hero-Section und dem Ordner mit Tabs Claude Sonnet 4.5.
