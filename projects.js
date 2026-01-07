@@ -167,7 +167,22 @@ function openProjectDetail(projectCard) {
     formattedDetails = formattedDetails.replace(/Fokus:/g, '<strong>Fokus:</strong>');
     detailBody.innerHTML = formattedDetails;
     
-    document.getElementById('detailLink').href = link;
+    // Update link button based on whether link is available
+    const detailLink = document.getElementById('detailLink');
+    const linkButton = detailLink.querySelector('button');
+    
+    if (link === '#' || !link) {
+        linkButton.textContent = 'coming soon';
+        detailLink.style.pointerEvents = 'none';
+        detailLink.style.opacity = '0.6';
+        detailLink.style.cursor = 'default';
+    } else {
+        linkButton.textContent = 'projekt ansehen →';
+        detailLink.style.pointerEvents = 'auto';
+        detailLink.style.opacity = '1';
+        detailLink.style.cursor = 'pointer';
+        detailLink.href = link;
+    }
     
     // Add images with lazy loading and error handling
     const imagesContainer = document.getElementById('detailImages');
@@ -188,16 +203,21 @@ function openProjectDetail(projectCard) {
     // Add chips - format: "label|color,label2|color2"
     const chipsContainer = document.getElementById('detailChips');
     chipsContainer.innerHTML = '';
-    const tagsList = tags.split(',');
     
-    tagsList.forEach(tagData => {
-        const [label, colorType] = tagData.split('|');
-        const chip = document.createElement('span');
-        chip.className = 'project-chip';
-        chip.setAttribute('data-type', colorType.trim());
-        chip.textContent = label.trim();
-        chipsContainer.appendChild(chip);
-    });
+    if (tags && tags.trim() !== '') {
+        const tagsList = tags.split(',');
+        
+        tagsList.forEach(tagData => {
+            const [label, colorType] = tagData.split('|');
+            if (label && colorType) {
+                const chip = document.createElement('span');
+                chip.className = 'project-chip';
+                chip.setAttribute('data-type', colorType.trim());
+                chip.textContent = label.trim();
+                chipsContainer.appendChild(chip);
+            }
+        });
+    }
     
     // Hide projects grid and show detail view
     projectsWrapper.style.display = 'none';
@@ -243,6 +263,7 @@ if (window.innerWidth <= 1024) {
 
     // Observe envelope wrapper
     const envelopeWrapper = document.querySelector('.envelope-wrapper');
+    const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
         observer.observe(card);
     });
