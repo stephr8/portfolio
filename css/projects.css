@@ -399,6 +399,14 @@
     margin: 0;
 }
 
+.detail-year {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--red_dark);
+    margin: 1rem 0 0 0;
+}
+
 .detail-body strong {
     font-weight: 700;
 }

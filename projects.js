@@ -148,6 +148,7 @@ const projectsWrapper = document.querySelector('.projects-wrapper');
 function openProjectDetail(projectCard) {
     const title = projectCard.dataset.title;
     const type = projectCard.dataset.type;
+    const year = projectCard.dataset.year;
     const description = projectCard.dataset.description;
     const details = projectCard.dataset.details;
     const link = projectCard.dataset.link;
@@ -156,6 +157,7 @@ function openProjectDetail(projectCard) {
     
     // Populate detail view
     document.getElementById('detailTitle').textContent = title;
+    document.getElementById('detailYear').textContent = year;
     document.getElementById('detailDescription').textContent = description;
     
     // Format details with proper line breaks and bold titles
