@@ -2,7 +2,7 @@
 Mein Portfolio stellt einige meiner Projekte vor und vermittelt einen ersten Eindruck, wie meine Arbeit als Designerin aussieht. Mir war es wichtig, durch das Design meine Persönlichkeit zu zeigen und gleichzeitig meine Fähigkeiten zu präsentieren. Das Portfolio enthält viele kleine Animationen und einige versteckte Interaktionsmöglichkeiten.
 
 ## Learnings
-Da mich interaktive Webelemente faszinieren, wollte ich unbedingt einmal ausprobieren**,** mit JavaScript selber solche Elemente zu coden. Mit Inspiration von anderen Portfolios und ChatGPT gelang es mir schliesslich, die UI-Komponente in der Hero-Section „draggable“ zu machen.
+Da mich interaktive Webelemente faszinieren, wollte ich unbedingt einmal ausprobieren, mit JavaScript selber solche Elemente zu coden. Mit Inspiration von anderen Portfolios und ChatGPT gelang es mir schliesslich, die UI-Komponente in der Hero-Section „draggable“ zu machen.
 
 ## Schwierigkeiten
 Meine grösste Challenge bei diesem Projekt war es, mich nicht zu sehr an meinem Figma-Design festzuhalten. Den Ordner mit den Tabs, in dem die Projekte zu sehen sind, hatte ich ursprünglich anders gestaltet. Da dies jedoch komplizierter zu coden war als gedacht, musste ich mich mit einer vereinfachten Version zufriedenstellen.
@@ -17,5 +17,5 @@ Inspiration für das Design holte ich mir vor allem bei anderen Portfolios, meis
 
 Link zum Portfolio: https://stephanieroemer.ch
 
-*Die fertige Portfolio-Website*
 ![Portfolio Screenshot](assets/img/PortfolioSeiteScreenshot.jpeg)
+*Die fertige Portfolio-Website*
