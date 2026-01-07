@@ -2,7 +2,7 @@
 Mein Portfolio stellt einige meiner Projekte vor und vermittelt einen ersten Eindruck, wie meine Arbeit als Designerin aussieht. Mir war es wichtig, durch das Design meine Persönlichkeit zu zeigen und gleichzeitig meine Fähigkeiten zu präsentieren. Das Portfolio enthält viele kleine Animationen und einige versteckte Interaktionsmöglichkeiten.
 
 ## Learnings
-Da mich interaktive Webelemente faszinieren, wollte ich unbedingt einmal ausprobieren, mit JavaScript selber solche Elemente zu coden. Mit Inspiration von anderen Portfolios und ChatGPT gelang es mir schliesslich, die UI-Komponente in der Hero-Section „draggable“ zu machen.
+Da mich interaktive Webelemente faszinieren, wollte ich unbedingt einmal ausprobieren, mit JavaScript selber solche Elemente zu coden. Mit Inspiration von anderen Portfolios und Claude Sonnet gelang es mir schliesslich, die UI-Komponente in der Hero-Section „draggable“ zu machen. Auch wollte ich zum ersten Mal bewusst auf Website Performance, Accessibility und SEO achten. Mithilfe von Chrome Lighthouse ist mir aufgefallen, dass meiner Seite einige Elemente wie zum Beispiel Meta-Keywords fehlten. Diese habe ich anschliessend im Projekt ergänzt. 
 
 ## Schwierigkeiten
 Meine grösste Challenge bei diesem Projekt war es, mich nicht zu sehr an meinem Figma-Design festzuhalten. Den Ordner mit den Tabs, in dem die Projekte zu sehen sind, hatte ich ursprünglich anders gestaltet. Da dies jedoch komplizierter zu coden war als gedacht, musste ich mich mit einer vereinfachten Version zufriedenstellen.
