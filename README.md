@@ -8,6 +8,7 @@ Da mich interaktive Webelemente faszinieren, wollte ich unbedingt einmal ausprob
 Meine grösste Challenge bei diesem Projekt war es, mich nicht zu sehr an meinem Figma-Design festzuhalten. Den Ordner mit den Tabs, in dem die Projekte zu sehen sind, hatte ich ursprünglich anders gestaltet. Da dies jedoch komplizierter zu coden war als gedacht, musste ich mich mit einer vereinfachten Version zufriedenstellen.
 
 ![Ursprüngliches Figma-Design des Ordners](assets/img/PortfolioFigmaOrdner.png)
+*Das ursprüngliche Design des Ordners*
 
 Herausfordernd war auch, das Portfolio responsive zu machen. Da die UI-Komponente in der Hero-Section pixel-spezifische Positionen haben, war es ein langes Ausprobieren, an welchen Stellen die Komponente auf Mobile sein sollten, bis es einigermassen sinnvoll aussah.
 
@@ -16,4 +17,5 @@ Inspiration für das Design holte ich mir vor allem bei anderen Portfolios, meis
 
 Link zum Portfolio: https://stephanieroemer.ch
 
+*Die fertige Portfolio-Website*
 ![Portfolio Screenshot](assets/img/PortfolioSeiteScreenshot.jpeg)
