@@ -1,0 +1,8 @@
+# robots.txt für stephanieroemer.ch
+
+User-agent: *
+Allow: /
+Disallow: /impressum.html
+
+# Sitemap
+Sitemap: https://stephanieroemer.ch/sitemap.xml

@@ -4,24 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Stephanie Römer - UX/UI Designerin & Frontend Developer | Portfolio</title>
+    <meta name="description" content="Portfolio von Stephanie Römer - UX/UI Designerin und Frontend Developerin aus der Schweiz. Spezialisiert auf User Experience, Interface Design und Web Development mit Figma und modernen Webtechnologien.">
+    <meta name="keywords" content="UX Designer Schweiz, UI Designer Schweiz, Frontend Developer, Portfolio, Stephanie Römer, Webdesign, App Design, Figma, Chur, Zürich">
+    <meta name="author" content="Stephanie Römer">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://stephanieroemer.ch/">
+    
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/main.css">
-    <title>stephanies portfolio</title>
 </head>
+
+<body>
+
+<header>
 <nav>
     <button><a href="#projects">projekte</a></button>
     <button><a href="#about">über mich</a></button>
     <button><a href="#contact">kontakt</a></button>
 </nav>
+</header>
 
 <button id="scroll-to-top"
     style="position: fixed; right: 2rem; bottom: 2rem; z-index: 3000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">
     <a href="#top">nach oben ↑</a>
 </button>
 
-<body>
-
-    <div class="hero-section">
+<main>
+    <div class="hero-section" id="top">
         <img src="assets/img/star_yellow.webp" class="drawn-img movable-img" alt="star yellow">
         <img src="assets/img/sketchbook.webp" class="drawn-img movable-img" alt="sketchbook">
         <img src="assets/img/wordle.webp" class="drawn-img movable-img" alt="wordle">
@@ -264,8 +276,7 @@
             </div>
         </div>
     </section>
-
-</body>
+</main>
 
 <footer
     style="display: flex; justify-content: center; align-items: center; gap: 2rem; padding: 3rem 0 5rem 0; margin-top: 4rem;">
@@ -277,4 +288,64 @@
 <script src="projects.js"></script>
 <script src="images.js"></script>
 
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Stephanie Römer",
+  "jobTitle": "UX/UI Designerin & Frontend Developer",
+  "url": "https://stephanieroemer.ch",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Chur",
+    "addressRegion": "Graubünden",
+    "addressCountry": "CH"
+  },
+  "email": "sroemer.work@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/stephanie-römer-b70280240/"
+  ],
+  "knowsAbout": [
+    "UX Design",
+    "UI Design",
+    "Frontend Development",
+    "Vue.js",
+    "Figma",
+    "Web Development",
+    "User Experience",
+    "Interface Design",
+    "Multimedia Production",
+    "Video Editing",
+    "Graphic Design",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "After Effects",
+    "Adobe Creative Suite",
+    "Responsive Design",
+    "Prototyping",
+    "User Research",
+    "Interaction Design"
+  ],
+  "alumniOf": "Multimedia Production"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Stephanie Römer Portfolio",
+  "url": "https://stephanieroemer.ch",
+  "description": "Portfolio von Stephanie Römer - UX/UI Designerin, Frontend Developerin und Multimedia Producerin aus der Schweiz",
+  "inLanguage": "de-CH",
+  "author": {
+    "@type": "Person",
+    "name": "Stephanie Römer"
+  }
+}
+</script>
+
+</body>
 </html>
