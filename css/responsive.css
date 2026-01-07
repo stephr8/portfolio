@@ -303,4 +303,8 @@
     .folder-tabs-new {
         margin-bottom: 0;
     }
+
+    footer button {
+        font-size: 0.875rem;
+    }
 }
