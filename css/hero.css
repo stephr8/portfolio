@@ -39,7 +39,7 @@
 }
 
 /* Desktop image positioning */
-.hero-section img[alt="star yellow"] {
+.hero-section img[alt="yellow star"] {
     left: 19.625%;
     top: 66%;
     width: 8.6875%;
@@ -51,13 +51,13 @@
     width: 36%;
 }
 
-.hero-section img[alt="wordle"] {
+.hero-section img[alt="wordle game screenshot"] {
     left: 39%;
     top: 41%;
     width: 36.9375%;
 }
 
-.hero-section img[alt="fangis card"] {
+.hero-section img[alt="fangis app card"] {
     left: 27.125%;
     top: 54.2%;
     width: 29%;
@@ -69,7 +69,7 @@
     width: 21.25%;
 }
 
-.hero-section img[alt="smiley"] {
+.hero-section img[alt="smiley face"] {
     left: 53.5%;
     top: 68.6%;
     width: 9.5%;
@@ -81,7 +81,7 @@
     width: 25.625%;
 }
 
-.hero-section img[alt="connect"] {
+.hero-section img[alt="connect screen"] {
     left: 26.5%;
     top: 28.2%;
     width: 24.9375%;
@@ -93,7 +93,7 @@
     width: 28.0625%;
 }
 
-.hero-section img[alt="favorites"] {
+.hero-section img[alt="favourites"] {
     left: 37.3125%;
     top: 51.6%;
     width: 4.5625%;
@@ -111,8 +111,26 @@
     width: 23.375%;
 }
 
-.hero-section img[alt="star pink"] {
+.hero-section img[alt="pink star"] {
     left: 47%;
     top: 23.8%;
     width: 7.9375%;
+}
+
+/* Hero language toggle — sits among the scattered images */
+#hero-lang-toggle {
+    position: absolute;
+    left: 19%;
+    top: 42%;
+    z-index: 2000;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    padding: 8px 16px;
+    animation: langToggleIn 0.8s ease-out 0.3s forwards;
+    opacity: 0;
+    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.12));
+}
+
+#hero-lang-toggle:hover {
+    border-color: var(--red_dark);
+    transform: rotate(8deg) scale(1.04);
 }

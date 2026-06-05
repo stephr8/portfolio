@@ -135,6 +135,15 @@ document.getElementById('next-projects').addEventListener('click', (e) => {
 window.addEventListener('resize', () => {
     currentProjectPage = 0;
     showProjectPage(currentProjectPage);
+    // Refresh toggle label in case breakpoint crossed
+    const heroToggle = document.getElementById('hero-lang-toggle');
+    if (heroToggle) {
+        const lang = document.documentElement.lang || 'en';
+        const isMobile = window.innerWidth <= 768;
+        heroToggle.textContent = lang === 'de'
+            ? (isMobile ? 'in english!' : 'please in english!')
+            : (isMobile ? 'auf deutsch!' : 'bitte auf deutsch!');
+    }
 });
 
 // Initialize first page
@@ -149,11 +158,18 @@ function openProjectDetail(projectCard) {
     const title = projectCard.dataset.title;
     const type = projectCard.dataset.type;
     const year = projectCard.dataset.year;
-    const description = projectCard.dataset.description;
-    const details = projectCard.dataset.details;
+    const lang = document.documentElement.lang || 'en';
+    const description = lang === 'de'
+        ? (projectCard.dataset.descriptionDe || projectCard.dataset.description)
+        : (projectCard.dataset.descriptionEn || projectCard.dataset.description);
+    const details = lang === 'de'
+        ? (projectCard.dataset.detailsDe || projectCard.dataset.details)
+        : (projectCard.dataset.detailsEn || projectCard.dataset.details);
     const link = projectCard.dataset.link;
     const images = projectCard.dataset.images.split(',');
-    const tags = projectCard.dataset.tags;
+    const tags = lang === 'de'
+        ? projectCard.dataset.tags
+        : (projectCard.dataset.tagsEn || projectCard.dataset.tags);
     
     // Populate detail view
     document.getElementById('detailTitle').textContent = title;
@@ -170,6 +186,7 @@ function openProjectDetail(projectCard) {
     // Update link button based on whether link is available
     const detailLink = document.getElementById('detailLink');
     const linkButton = detailLink.querySelector('button');
+    const viewText = lang === 'de' ? 'projekt ansehen →' : 'view project →';
     
     if (link === '#' || !link) {
         linkButton.textContent = 'coming soon';
@@ -177,7 +194,7 @@ function openProjectDetail(projectCard) {
         detailLink.style.opacity = '0.6';
         detailLink.style.cursor = 'default';
     } else {
-        linkButton.textContent = 'projekt ansehen →';
+        linkButton.textContent = viewText;
         detailLink.style.pointerEvents = 'auto';
         detailLink.style.opacity = '1';
         detailLink.style.cursor = 'pointer';
@@ -274,3 +291,53 @@ if (window.innerWidth <= 1024) {
         observer.observe(postit);
     });
 }
+
+// ── Language switcher ──────────────────────────────────────────────────────────
+
+(function () {
+    const STORAGE_KEY = 'preferred-lang';
+
+    function applyLang(lang) {
+        document.documentElement.lang = lang;
+
+        // Update all elements with data-de / data-en
+        document.querySelectorAll('[data-de][data-en]').forEach(el => {
+            el.textContent = lang === 'de' ? el.dataset.de : el.dataset.en;
+        });
+
+        // Update the hero toggle label
+        const heroToggle = document.getElementById('hero-lang-toggle');
+        if (heroToggle) {
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                heroToggle.textContent = lang === 'de' ? 'in english!' : 'auf deutsch!';
+            } else {
+                heroToggle.textContent = lang === 'de' ? 'please in english!' : 'bitte auf deutsch!';
+            }
+        }
+
+        // Persist
+        localStorage.setItem(STORAGE_KEY, lang);
+    }
+
+    function init() {
+        // Default to English on first visit (no stored preference)
+        const stored = localStorage.getItem(STORAGE_KEY);
+        const lang = stored || 'en';
+        applyLang(lang);
+
+        const heroToggle = document.getElementById('hero-lang-toggle');
+        if (heroToggle) {
+            heroToggle.addEventListener('click', () => {
+                const current = document.documentElement.lang || 'en';
+                applyLang(current === 'de' ? 'en' : 'de');
+            });
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();

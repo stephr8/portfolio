@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>Stephanie Römer - UX/UI Designerin & Frontend Developer | Portfolio</title>
-    <meta name="description" content="Portfolio von Stephanie Römer - UX/UI Designerin und Frontend Developerin aus der Schweiz. Spezialisiert auf User Experience, Interface Design und Web Development mit Figma und modernen Webtechnologien.">
-    <meta name="keywords" content="UX Designer Schweiz, UI Designer Schweiz, Frontend Developer, Portfolio, Stephanie Römer, Webdesign, App Design, Figma, Chur, Zürich">
+    <title>Stephanie Römer - Digital Designer & Frontend Developer | Portfolio</title>
+    <meta name="description" content="Portfolio of Stephanie Römer – UX/UI Designer and Frontend Developer from Switzerland. Specialising in User Experience, Interface Design, and Web Development with Figma and modern web technologies.">
+    <meta name="keywords" content="UX Designer Switzerland, UI Designer Switzerland, Frontend Developer, Digital Designer, Portfolio, Stephanie Römer, Web Design, App Design, Figma, Chur, Zürich">
     <meta name="author" content="Stephanie Römer">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://stephanieroemer.ch/">
@@ -21,42 +21,43 @@
 
 <header>
 <nav>
-    <button><a href="#projects">projekte</a></button>
-    <button><a href="#about">über mich</a></button>
-    <button><a href="#contact">kontakt</a></button>
+    <button><a href="#projects" data-de="projekte" data-en="projects">projects</a></button>
+    <button><a href="#about" data-de="über mich" data-en="about me">about me</a></button>
+    <button><a href="#contact" data-de="kontakt" data-en="contact">contact</a></button>
 </nav>
 </header>
 
 <button id="scroll-to-top"
     style="position: fixed; right: 2rem; bottom: 2rem; z-index: 3000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">
-    <a href="#top">nach oben ↑</a>
+    <a href="#top" data-de="nach oben ↑" data-en="back to top ↑">back to top ↑</a>
 </button>
 
 <main>
     <div class="hero-section" id="top">
-        <img src="assets/img/star_yellow.webp" class="drawn-img movable-img" alt="star yellow">
+        <img src="assets/img/star_yellow.webp" class="drawn-img movable-img" alt="yellow star">
         <img src="assets/img/sketchbook.webp" class="drawn-img movable-img" alt="sketchbook">
-        <img src="assets/img/wordle.webp" class="drawn-img movable-img" alt="wordle" loading="lazy">
-        <img src="assets/img/fangis_card.webp" class="drawn-img movable-img" alt="fangis card" loading="lazy">
+        <img src="assets/img/wordle.webp" class="drawn-img movable-img" alt="wordle game screenshot" loading="lazy">
+        <img src="assets/img/fangis_card.webp" class="drawn-img movable-img" alt="fangis app card" loading="lazy">
         <img src="assets/img/cards.webp" class="drawn-img movable-img" alt="cards" loading="lazy">
-        <img src="assets/img/smiley.webp" class="drawn-img movable-img" alt="smiley" loading="lazy">
+        <img src="assets/img/smiley.webp" class="drawn-img movable-img" alt="smiley face" loading="lazy">
         <img src="assets/img/game_title.webp" class="drawn-img movable-img" alt="game title" loading="lazy">
-        <img src="assets/img/connect.webp" class="drawn-img movable-img" alt="connect" loading="lazy">
+        <img src="assets/img/connect.webp" class="drawn-img movable-img" alt="connect screen" loading="lazy">
         <img src="assets/img/currently_playing.webp" class="drawn-img movable-img" alt="currently playing" loading="lazy">
-        <img src="assets/img/favorites.webp" class="drawn-img movable-img" alt="favorites" loading="lazy">
+        <img src="assets/img/favorites.webp" class="drawn-img movable-img" alt="favourites" loading="lazy">
         <img src="assets/img/watchlist.webp" class="drawn-img movable-img" alt="watchlist" loading="lazy">
         <img src="assets/img/laptop.webp" class="drawn-img movable-img" alt="laptop" loading="lazy">
-        <img src="assets/img/star_pink.webp" class="drawn-img movable-img" alt="star pink" loading="lazy">
+        <img src="assets/img/star_pink.webp" class="drawn-img movable-img" alt="pink star" loading="lazy">
         <h1>stephanie römer</h1>
-        <h1>ux/ui designerin</h1>
+        <h1 data-de="digital designerin" data-en="digital designer">digital designer</h1>
+        <button id="hero-lang-toggle" aria-label="Switch language">bitte auf deutsch!</button>
     </div>
 
     <section class="projects-folder" id="projects">
         <div class="folder-tabs-new">
-            <button class="tab-btn active" data-tab="projects">alle projekte</button>
-            <button class="tab-btn" data-tab="skills">design</button>
-            <button class="tab-btn" data-tab="about">code</button>
-            <button class="tab-btn" data-tab="contact">weiteres</button>
+            <button class="tab-btn active" data-tab="projects" data-de="alle projekte" data-en="all projects">all projects</button>
+            <button class="tab-btn" data-tab="skills" data-de="design" data-en="design">design</button>
+            <button class="tab-btn" data-tab="about" data-de="code" data-en="code">code</button>
+            <button class="tab-btn" data-tab="contact" data-de="film" data-en="film">film</button>
         </div>
         <div class="folder-content">
             <div class="tab-content active" data-content="projects">
@@ -73,85 +74,129 @@
                     </button>
                     <div class="projects-grid">
                         <div class="project-card" data-tags="ux/ui design|design,frontend development|code" data-title="fangis"
+                            data-type-de="multiplayer mobile app" data-type-en="multiplayer mobile app"
                             data-type="multiplayer mobile app"
                             data-year="2026"
-                            data-description="Eine interaktive Multiplayer-App, die klassisches Fangen mit moderner Technologie verbindet."
-                            data-details="• Konzeption der User Flows und zentralen Interaktionen
+                            data-description-de="Eine interaktive Multiplayer-App, die klassisches Fangen mit moderner Technologie verbindet."
+                            data-description-en="An interactive multiplayer app that combines classic tag with modern technology."
+                            data-description="An interactive multiplayer app that combines classic tag with modern technology."
+                            data-details-de="• Konzeption der User Flows und zentralen Interaktionen
 • Entwicklung des visuellen Konzepts und UI-Designs
 • Umsetzung des Frontends mit Vue in einer komponentenbasierten Struktur"
+                            data-details-en="• Concept development for user flows and core interactions
+• Development of the visual concept and UI design
+• Frontend implementation with Vue in a component-based structure"
+                            data-details="• Concept development for user flows and core interactions
+• Development of the visual concept and UI design
+• Frontend implementation with Vue in a component-based structure"
                             data-link="https://www.fangis.app/landing_page"
                             data-images="assets/projects/fangis1.webp,assets/projects/fangis2.webp,assets/projects/fangis3.webp">
                             <div class="project-image-stack">
-                                <img src="assets/projects/fangis3.webp" alt="fangis 3"
+                                <img src="assets/projects/fangis3.webp" alt="fangis app screen 3"
                                     class="project-image stack-image stack-right" loading="lazy">
-                                <img src="assets/projects/fangis2.webp" alt="fangis 2"
+                                <img src="assets/projects/fangis2.webp" alt="fangis app screen 2"
                                     class="project-image stack-image stack-left" loading="lazy">
-                                <img src="assets/projects/fangis1.webp" alt="fangis" class="project-image main-image" loading="lazy">
+                                <img src="assets/projects/fangis1.webp" alt="fangis app" class="project-image main-image" loading="lazy">
                             </div>
                             <div class="project-info">
                                 <h2 class="project-title">fangis</h2>
-                                <p class="project-type">multiplayer mobile app</p>
+                                <p class="project-type" data-de="multiplayer mobile app" data-en="multiplayer mobile app">multiplayer mobile app</p>
                                 <div class="project-chips">
                                     <span class="project-chip" data-type="design">design</span>
                                     <span class="project-chip" data-type="code">code</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="project-card" data-tags="idee & skript|weiteres,regie|weiteres,schnitt|weiteres" data-title="standort i"
+                        <div class="project-card" data-tags="idee & skript|weiteres,regie|weiteres,schnitt|weiteres"
+                            data-tags-en="concept & script|weiteres,direction|weiteres,editing|weiteres"
+                            data-title="standort i"
+                            data-type-de="mockumentary" data-type-en="mockumentary"
                             data-type="mockumentary"
                             data-year="2026"
-                            data-description="Der Alltag von Multimedia Production Studierenden erzählt im Mockumentary-Stil."
-                            data-details="• Entwicklung von Idee und Skript
+                            data-description-de="Der Alltag von Multimedia Production Studierenden erzählt im Mockumentary-Stil."
+                            data-description-en="The everyday life of Multimedia Production students told in mockumentary style."
+                            data-description="The everyday life of Multimedia Production students told in mockumentary style."
+                            data-details-de="• Entwicklung von Idee und Skript
 • Regie und Koordination der Produktionsabläufe
 • Schnitt und Musik-Komposition"
+                            data-details-en="• Development of the concept and script
+• Direction and coordination of production workflows
+• Editing and music composition"
+                            data-details="• Development of the concept and script
+• Direction and coordination of production workflows
+• Editing and music composition"
                             data-link="https://youtu.be/OjJlzBbxOEI"
                             data-images="assets/projects/standorti.webp">
-                            <img src="assets/projects/standorti.webp" alt="standort i" class="project-image" loading="lazy">
+                            <img src="assets/projects/standorti.webp" alt="standort i mockumentary still" class="project-image" loading="lazy">
                             <div class="project-info">
                                 <h2 class="project-title">standort i</h2>
-                                <p class="project-type">mockumentary</p>
+                                <p class="project-type" data-de="mockumentary" data-en="mockumentary">mockumentary</p>
                                 <div class="project-chips">
-                                    <span class="project-chip" data-type="weiteres">weiteres</span>
+                                    <span class="project-chip" data-type="weiteres" data-de="film" data-en="film">film</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="project-card" data-tags="filmproduktion|weiteres,postproduktion|weiteres" data-title="markthalle ix"
-                            data-type="kurzdoku"
+                        <div class="project-card" data-tags="filmproduktion|weiteres,postproduktion|weiteres"
+                            data-tags-en="film production|weiteres,post-production|weiteres"
+                            data-title="markthalle ix"
+                            data-type-de="kurzdoku" data-type-en="short documentary"
+                            data-type="short documentary"
                             data-year="2024"
-                            data-description="Eine Kurzdoku über die Markthalle Neun in Berlin-Kreuzberg." data-details="• Mitarbeit an der inhaltlichen Konzeption
-• Mitarbeit in sämtlichen Produktionsbereichen (Ton, Kamera, Licht) zur ganzheitlichen Projektumsetzung
+                            data-description-de="Eine Kurzdoku über die Markthalle Neun in Berlin-Kreuzberg."
+                            data-description-en="A short documentary about Markthalle Neun in Berlin-Kreuzberg."
+                            data-description="A short documentary about Markthalle Neun in Berlin-Kreuzberg."
+                            data-details-de="• Mitarbeit an der inhaltlichen Konzeption
+• Mitarbeit in sämtlichen Produktionsbereichen (Ton, Kamera, Licht)
 • Aufbau narrativer Struktur in der Postproduktion
-• Color Correction und Color Grading" data-link="https://youtu.be/hV32e24igqA"
+• Color Correction und Color Grading"
+                            data-details-en="• Contribution to content conception
+• Contribution across all production areas (sound, camera, lighting)
+• Building narrative structure in post-production
+• Colour correction and colour grading"
+                            data-details="• Contribution to content conception
+• Contribution across all production areas (sound, camera, lighting)
+• Building narrative structure in post-production
+• Colour correction and colour grading"
+                            data-link="https://youtu.be/hV32e24igqA"
                             data-images="assets/projects/markthalleix_static.webp">
                             <img src="assets/projects/markthalleix_static.webp"
                                 data-static="assets/projects/markthalleix_static.webp"
-                                data-animated="assets/projects/markthalleix.gif" alt="markthalle ix"
+                                data-animated="assets/projects/markthalleix.gif" alt="markthalle ix documentary still"
                                 class="project-image gif-image" loading="lazy">
                             <div class="project-info">
                                 <h2 class="project-title">markthalle ix</h2>
-                                <p class="project-type">kurzdoku</p>
-                                <span class="project-chip" data-type="weiteres">weiteres</span>
+                                <p class="project-type" data-de="kurzdoku" data-en="short documentary">short documentary</p>
+                                <span class="project-chip" data-type="weiteres" data-de="film" data-en="film">film</span>
                             </div>
                         </div>
                         <div class="project-card" data-tags="ux/ui design|design, development|code" data-title="slate"
-                            data-type="film und tv tracker"
+                            data-type-de="film und tv tracker" data-type-en="film & tv tracker"
+                            data-type="film & tv tracker"
                             data-year="2025"
-                            data-description="Ein persönlicher Film- und Serien-Tracker mit individuellen Tags und personalisierten Empfehlungen."
-                            data-details="• Konzeption und Design der Benutzeroberfläche
+                            data-description-de="Ein persönlicher Film- und Serien-Tracker mit individuellen Tags und personalisierten Empfehlungen."
+                            data-description-en="A personal film and series tracker with custom tags and personalised recommendations."
+                            data-description="A personal film and series tracker with custom tags and personalised recommendations."
+                            data-details-de="• Konzeption und Design der Benutzeroberfläche
 • Entwicklung des Tagging-Systems und der Empfehlungslogik
 • Integration einer Film-API und Aufbau der Datenstruktur"
+                            data-details-en="• Concept and design of the user interface
+• Development of the tagging system and recommendation logic
+• Integration of a film API and data structure setup"
+                            data-details="• Concept and design of the user interface
+• Development of the tagging system and recommendation logic
+• Integration of a film API and data structure setup"
                             data-link="https://slate.stephanieroemer.ch"
                             data-images="assets/projects/slate4.webp,assets/projects/slate2.webp,assets/projects/slate3.webp">
                             <div class="project-image-stack">
-                                <img src="assets/projects/slate3.webp" alt="slate 3"
+                                <img src="assets/projects/slate3.webp" alt="slate app screen 3"
                                     class="project-image stack-image stack-right" loading="lazy">
-                                <img src="assets/projects/slate2.webp" alt="slate 2"
+                                <img src="assets/projects/slate2.webp" alt="slate app screen 2"
                                     class="project-image stack-image stack-left" loading="lazy">
-                                <img src="assets/projects/slate4.webp" alt="slate" class="project-image main-image" loading="lazy">
+                                <img src="assets/projects/slate4.webp" alt="slate app" class="project-image main-image" loading="lazy">
                             </div>
                             <div class="project-info">
                                 <h2 class="project-title">slate</h2>
-                                <p class="project-type">film tracker</p>
+                                <p class="project-type" data-de="film und tv tracker" data-en="film & tv tracker">film & tv tracker</p>
                                 <div class="project-chips">
                                     <span class="project-chip" data-type="design">design</span>
                                     <span class="project-chip" data-type="code">code</span>
@@ -159,37 +204,57 @@
                             </div>
                         </div>
                         <div class="project-card" data-tags="code|code" data-title="wordle"
+                            data-type-de="desktop game" data-type-en="desktop game"
                             data-type="desktop game"
                             data-year="2024"
-                            data-description="Eine alternative Version des beliebten Worträtselspiels, wobei ein Synonym gesucht wird. Entwickelt als Desktop-Anwendung."
-                            data-details="• Integration zwei externer APIs
+                            data-description-de="Eine alternative Version des beliebten Worträtselspiels, wobei ein Synonym gesucht wird. Entwickelt als Desktop-Anwendung."
+                            data-description-en="An alternative version of the popular word puzzle game where the objective is to find a synonym. Built as a desktop application."
+                            data-description="An alternative version of the popular word puzzle game where the objective is to find a synonym. Built as a desktop application."
+                            data-details-de="• Integration zwei externer APIs
 • Erweiterung um eigene Features wie Dark Mode und visuelles Feedback (Konfetti)"
+                            data-details-en="• Integration of two external APIs
+• Added custom features such as dark mode and visual feedback (confetti)"
+                            data-details="• Integration of two external APIs
+• Added custom features such as dark mode and visual feedback (confetti)"
                             data-link="https://digezz.ch/projekte/wordle/" data-images="assets/projects/wordle.webp">
-                            <img src="assets/projects/wordle.webp" alt="wordle" class="project-image" loading="lazy">
+                            <img src="assets/projects/wordle.webp" alt="wordle game screenshot" class="project-image" loading="lazy">
                             <div class="project-info">
                                 <h2 class="project-title">wordle</h2>
-                                <p class="project-type">desktop game</p>
+                                <p class="project-type" data-de="desktop game" data-en="desktop game">desktop game</p>
                                 <span class="project-chip" data-type="code">code</span>
                             </div>
                         </div>
                         <div class="project-card" data-tags="ux/ui design|design" data-title="shuffle"
-                            data-type="mobile musik und workout app"
+                            data-type-de="mobile musik und workout app" data-type-en="mobile music & workout app"
+                            data-type="mobile music & workout app"
                             data-year="2023"
-                            data-description="Eine Musik- und Fitness-App mit Customization und Social Features." data-details="• UX-Research mit Erstellung von Personas, User Journeys und Competitor Analysis
+                            data-description-de="Eine Musik- und Fitness-App mit Customization und Social Features."
+                            data-description-en="A music and fitness app with customisation and social features."
+                            data-description="A music and fitness app with customisation and social features."
+                            data-details-de="• UX-Research mit Erstellung von Personas, User Journeys und Competitor Analysis
 • Konzeption der Informationsarchitektur
 • Aufbau eines konsistenten Design Systems
-• Gestaltung eines interaktiven, funktionsfähigen Prototypen in Figma" data-link="https://www.figma.com/proto/QMQ4dwb0HRrsAWxyGznvAQ/Shuffle?page-id=312%3A2815&node-id=69-627&p=f&viewport=483%2C256%2C0.06&t=Zw3EnHxa5Skpi8lB-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=69%3A627&show-proto-sidebar=1"
+• Gestaltung eines interaktiven, funktionsfähigen Prototypen in Figma"
+                            data-details-en="• UX research including personas, user journeys, and competitor analysis
+• Information architecture design
+• Building a consistent design system
+• Creating an interactive, functional prototype in Figma"
+                            data-details="• UX research including personas, user journeys, and competitor analysis
+• Information architecture design
+• Building a consistent design system
+• Creating an interactive, functional prototype in Figma"
+                            data-link="https://www.figma.com/proto/QMQ4dwb0HRrsAWxyGznvAQ/Shuffle?page-id=312%3A2815&node-id=69-627&p=f&viewport=483%2C256%2C0.06&t=Zw3EnHxa5Skpi8lB-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=69%3A627&show-proto-sidebar=1"
                             data-images="assets/projects/shuffle1.webp,assets/projects/shuffle2.webp,assets/projects/shuffle3.webp">
                             <div class="project-image-stack">
-                                <img src="assets/projects/shuffle3.webp" alt="shuffle 3"
+                                <img src="assets/projects/shuffle3.webp" alt="shuffle app screen 3"
                                     class="project-image stack-image stack-right" loading="lazy">
-                                <img src="assets/projects/shuffle2.webp" alt="shuffle 2"
+                                <img src="assets/projects/shuffle2.webp" alt="shuffle app screen 2"
                                     class="project-image stack-image stack-left" loading="lazy">
-                                <img src="assets/projects/shuffle1.webp" alt="shuffle" class="project-image main-image" loading="lazy">
+                                <img src="assets/projects/shuffle1.webp" alt="shuffle app" class="project-image main-image" loading="lazy">
                             </div>
                             <div class="project-info">
                                 <h2 class="project-title">shuffle</h2>
-                                <p class="project-type">mobile musik und workout app</p>
+                                <p class="project-type" data-de="mobile musik und workout app" data-en="mobile music & workout app">mobile music & workout app</p>
                                 <span class="project-chip" data-type="design">design</span>
                             </div>
                         </div>
@@ -210,7 +275,7 @@
                             <p class="detail-body" id="detailBody"></p>
                             <p class="detail-year" id="detailYear"></p>
                             <a href="#" class="detail-link" id="detailLink" target="_blank" rel="noopener noreferrer">
-                                <button>projekt ansehen →</button>
+                                <button data-de="projekt ansehen →" data-en="view project →">view project →</button>
                             </a>
                         </div>
                     </div>
@@ -228,12 +293,10 @@
             </div>
             <div class="postit postit-pink">
                 <h3 style="color: var(--red);">hi!</h3>
-                <p style="color: var(--red);">ich bin stephanie - eine ux/ui designerin, die sich für alles mögliche
-                    kreative begeistern kann. sei es design, videoschnitt oder web development - solange ich meinen
-                    laptop und meine playlist habe, läuft’s!</p>
+                <p style="color: var(--red);" data-de="ich bin stephanie, eine digital designerin, die sich für alles mögliche kreative begeistern kann. sei es design, videoschnitt oder web development - solange ich meinen laptop und meine playlist habe, läuft’s!" data-en="i’m stephanie, a digital designer with a passion for all things creative. whether it’s design, video editing, or web development – as long as i've got my laptop and my playlist, i’m set!">i’m stephanie – a ux/ui designer who gets excited about all things creative. whether it’s design, video editing, or web development – as long as i have my laptop and my playlist, i’m good!</p>
             </div>
             <div class="postit postit-yellow">
-                <p>software und technologien, mit denen ich arbeite:</p>
+                <p data-de="tools & software" data-en="tools & software">software and technologies i work with:</p>
                 <div class="skills-icons">
                     <img src="assets/skills/Figma.webp" alt="Figma" class="skill-icon" loading="lazy">
                     <img src="assets/skills/Ai.webp" alt="Illustrator" class="skill-icon" loading="lazy">
@@ -256,8 +319,7 @@
                     <p>let's get in touch!</p>
                 </div>
                 <div class="message message-me">
-                    <p>möchtest du zusammenarbeiten? nur hallo sagen? egal was es ist, schreib mir gerne ne mail oder
-                        auf linkedin :-)</p>
+                    <p data-de="möchtest du zusammenarbeiten? nur hallo sagen? egal was es ist, schreib mir gerne ne mail oder auf linkedin :-)" data-en="want to work together? just say hi? whatever it is, feel free to drop me a mail or reach out on linkedin :-)">want to work together? just say hi? whatever it is, feel free to drop me a mail or reach out on linkedin :-)</p>
                 </div>
             </div>
             <img src="assets/img/arrow.webp" alt="arrow" class="contact-arrow" loading="lazy">
@@ -280,9 +342,8 @@
 
 <footer
     style="display: flex; justify-content: center; align-items: center; gap: 2rem; padding: 3rem 0 5rem 0; margin-top: 4rem;">
-    <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="index.html">&copy; 2026 stephanie
-            römer</a></button>
-    <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="impressum.html">impressum</a></button>
+    <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="index.html">&copy; 2026 stephanie römer</a></button>
+    <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="impressum.html" data-de="impressum" data-en="imprint">imprint</a></button>
 </footer>
 
 <script src="projects.js"></script>
@@ -294,7 +355,7 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Stephanie Römer",
-  "jobTitle": "UX/UI Designerin & Frontend Developer",
+  "jobTitle": "UX/UI Designer & Frontend Developer",
   "url": "https://stephanieroemer.ch",
   "address": {
     "@type": "PostalAddress",
@@ -338,8 +399,8 @@
   "@type": "WebSite",
   "name": "Stephanie Römer Portfolio",
   "url": "https://stephanieroemer.ch",
-  "description": "Portfolio von Stephanie Römer - UX/UI Designerin, Frontend Developerin und Multimedia Producerin aus der Schweiz",
-  "inLanguage": "de-CH",
+  "description": "Portfolio of Stephanie Römer – UX/UI Designer, Frontend Developer and Multimedia Producer from Switzerland",
+  "inLanguage": ["en-GB", "de-CH"],
   "author": {
     "@type": "Person",
     "name": "Stephanie Römer"
