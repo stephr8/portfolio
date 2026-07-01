@@ -11,14 +11,21 @@
     overflow: visible;
 }
 
-.hero-section h1:first-of-type {
+.hero-section h1 {
     top: 4%;
     left: 3.75%;
     width: auto;
     max-width: min(313px, 19%);
 }
 
-.hero-section h1:last-of-type {
+.hero-section h2 {
+    font-family: 'Neue Regrade', sans-serif;
+    font-weight: 500;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    color: var(--blue);
+    line-height: 1.2;
+    margin: 0;
+    position: absolute;
     bottom: 4%;
     right: 3.75%;
     width: auto;

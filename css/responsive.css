@@ -147,13 +147,13 @@
         padding-bottom: 135%;
     }
     
-    .hero-section h1:first-of-type {
+    .hero-section h1 {
         top: 2%;
         left: 5%;
         max-width: 50%;
     }
     
-    .hero-section h1:last-of-type {
+    .hero-section h2 {
         bottom: 2%;
         right: 5%;
         max-width: 50%;
