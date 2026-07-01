@@ -307,11 +307,4 @@
     footer button {
         font-size: 0.875rem;
     }
-
-    #hero-lang-toggle {
-        font-size: 0.65rem;
-        padding: 3px 10px;
-        top: 34%;
-        left: 35%;
-    }
 }

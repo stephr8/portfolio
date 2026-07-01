@@ -48,8 +48,7 @@
         <img src="assets/img/laptop.webp" class="drawn-img movable-img" alt="laptop" loading="lazy">
         <img src="assets/img/star_pink.webp" class="drawn-img movable-img" alt="pink star" loading="lazy">
         <h1>stephanie römer</h1>
-        <h1 data-de="digital designerin" data-en="digital designer">digital designer</h1>
-        <button id="hero-lang-toggle" aria-label="Switch language">bitte auf deutsch!</button>
+        <h1 data-de="digital designer" data-en="digital designer">digital designer</h1>
     </div>
 
     <section class="projects-folder" id="projects">
@@ -341,11 +340,14 @@
 </main>
 
 <footer
-    style="display: flex; justify-content: center; align-items: center; gap: 2rem; padding: 3rem 0 5rem 0; margin-top: 4rem;">
-    <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="index.html">&copy; 2026 stephanie römer</a></button>
-    <button style="font-size: 1.125rem; padding: 6px 12px;"><a href="impressum.html" data-de="impressum" data-en="imprint">imprint</a></button>
+    style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem; padding: 3rem 1rem 5rem 1rem; margin-top: 4rem;">
+    <button><a href="index.html">&copy; 2026 stephanie römer</a></button>
+    <button><a href="impressum.html" data-de="impressum" data-en="imprint">imprint</a></button>
+    <button id="lang-toggle" aria-label="Switch language">EN</button>
 </footer>
 
+<!-- GSAP for hero image hover effect -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="projects.js"></script>
 <script src="images.js"></script>
 

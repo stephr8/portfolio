@@ -7,7 +7,7 @@ button {
     font-size: clamp(1rem, 2vw, 1.625rem);
     line-height: 1.5;
     background-color: var(--blue_light);
-    padding: 12px 20px;
+    padding: 6px 14px;
     box-sizing: border-box;
     border-radius: 1rem;
     border: 3px solid transparent;
@@ -22,4 +22,10 @@ button a {
 
 button:not(.tab-btn):hover {
     border-color: var(--red_dark);
+}
+
+/* Footer buttons — smaller, consistent text colour for both link and plain-text buttons */
+footer button {
+    font-size: clamp(0.8rem, 1.1vw, 1rem);
+    color: var(--red_dark);
 }

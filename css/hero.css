@@ -35,7 +35,8 @@
     animation: gentleSlideIn 0.8s ease-out forwards;
     filter: drop-shadow(0px 0px 36px rgba(0,0,0,0.15));
     z-index: 1000;
-    cursor: grab;
+    cursor: default;
+    will-change: transform;
 }
 
 /* Desktop image positioning */
@@ -117,20 +118,4 @@
     width: 7.9375%;
 }
 
-/* Hero language toggle — sits among the scattered images */
-#hero-lang-toggle {
-    position: absolute;
-    left: 19%;
-    top: 42%;
-    z-index: 2000;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
-    padding: 8px 16px;
-    animation: langToggleIn 0.8s ease-out 0.3s forwards;
-    opacity: 0;
-    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.12));
-}
 
-#hero-lang-toggle:hover {
-    border-color: var(--red_dark);
-    transform: rotate(8deg) scale(1.04);
-}

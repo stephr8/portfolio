@@ -135,15 +135,6 @@ document.getElementById('next-projects').addEventListener('click', (e) => {
 window.addEventListener('resize', () => {
     currentProjectPage = 0;
     showProjectPage(currentProjectPage);
-    // Refresh toggle label in case breakpoint crossed
-    const heroToggle = document.getElementById('hero-lang-toggle');
-    if (heroToggle) {
-        const lang = document.documentElement.lang || 'en';
-        const isMobile = window.innerWidth <= 768;
-        heroToggle.textContent = lang === 'de'
-            ? (isMobile ? 'in english!' : 'please in english!')
-            : (isMobile ? 'auf deutsch!' : 'bitte auf deutsch!');
-    }
 });
 
 // Initialize first page
@@ -262,6 +253,20 @@ document.querySelectorAll('.project-card').forEach(card => {
 // Back button
 backToProjectsBtn.addEventListener('click', closeProjectDetail);
 
+// Email button — reveal on scroll into view on all breakpoints
+const envelopeWrapper = document.querySelector('.envelope-wrapper');
+if (envelopeWrapper) {
+    const envelopeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                envelopeWrapper.classList.add('active');
+                envelopeObserver.unobserve(envelopeWrapper); // fire once
+            }
+        });
+    }, { threshold: 0.5 });
+    envelopeObserver.observe(envelopeWrapper);
+}
+
 // Scroll-triggered animations (only on tablet and mobile)
 if (window.innerWidth <= 1024) {
     const observerOptions = {
@@ -305,30 +310,25 @@ if (window.innerWidth <= 1024) {
             el.textContent = lang === 'de' ? el.dataset.de : el.dataset.en;
         });
 
-        // Update the hero toggle label
-        const heroToggle = document.getElementById('hero-lang-toggle');
-        if (heroToggle) {
-            const isMobile = window.innerWidth <= 768;
-            if (isMobile) {
-                heroToggle.textContent = lang === 'de' ? 'in english!' : 'auf deutsch!';
-            } else {
-                heroToggle.textContent = lang === 'de' ? 'please in english!' : 'bitte auf deutsch!';
-            }
+        // Update the footer language toggle label.
+        // UX norm: show the language you'll switch TO (i.e. the other one).
+        const toggle = document.getElementById('lang-toggle');
+        if (toggle) {
+            toggle.textContent = lang === 'de' ? 'EN' : 'DE';
+            toggle.setAttribute('aria-label', lang === 'de' ? 'Switch to English' : 'Auf Deutsch wechseln');
         }
 
-        // Persist
         localStorage.setItem(STORAGE_KEY, lang);
     }
 
     function init() {
-        // Default to English on first visit (no stored preference)
         const stored = localStorage.getItem(STORAGE_KEY);
         const lang = stored || 'en';
         applyLang(lang);
 
-        const heroToggle = document.getElementById('hero-lang-toggle');
-        if (heroToggle) {
-            heroToggle.addEventListener('click', () => {
+        const toggle = document.getElementById('lang-toggle');
+        if (toggle) {
+            toggle.addEventListener('click', () => {
                 const current = document.documentElement.lang || 'en';
                 applyLang(current === 'de' ? 'en' : 'de');
             });
