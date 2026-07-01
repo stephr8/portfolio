@@ -165,57 +165,57 @@
     
     /* Reposition images for vertical mobile layout */
     .hero-section img[alt="laptop"] {
-        left: 35%;
-        top: 16%;
+        left: 34%;
+        top: 26%;
         width: 32%;
     }
     
     .hero-section img[alt="pink star"] {
         left: 25%;
-        top: 20%;
+        top: 26%;
         width: 11%;
     }
     
     .hero-section img[alt="connect screen"] {
         left: 10%;
-        top: 24%;
+        top: 31%;
         width: 35%;
     }
     
     .hero-section img[alt="cards"] {
         left: 58%;
-        top: 25%;
-        width: 30%;
+        top: 31%;
+        width: 27%;
     }
     
     .hero-section img[alt="sketchbook"] {
         left: 5%;
-        top: 34%;
+        top: 39%;
         width: 55%;
     }
     
     .hero-section img[alt="wordle game screenshot"] {
-        left: 32%;
-        top: 42%;
+        left: 39%;
+        top: 45%;
         width: 52%;
     }
     
     .hero-section img[alt="favourites"] {
-        left: 20%;
-        top: 50%;
-        width: 7%;
-    }
-    
-    .hero-section img[alt="watchlist"] {
-        left: 54%;
+        left: 53%;
         top: 40%;
         width: 7%;
     }
     
+    .hero-section img[alt="watchlist"] {
+        left: 81%;
+        top: 43%;
+        width: 7%;
+    }
+    
     .hero-section img[alt="currently playing"] {
-        left: 55%;
-        top: 54%;
-        width: 40%;
+        left: 51%;
+        top: 52%;
+        width: 44%;
     }
     
     .hero-section img[alt="fangis app card"] {
@@ -226,19 +226,19 @@
     
     .hero-section img[alt="game title"] {
         left: 50%;
-        top: 64%;
+        top: 60%;
         width: 35%;
     }
     
     .hero-section img[alt="yellow star"] {
-        left: 15%;
-        top: 72%;
-        width: 12%;
+        left: 11%;
+        top: 66%;
+        width: 14%;
     }
     
     .hero-section img[alt="smiley face"] {
-        left: 48%;
-        top: 76%;
+        left: 57%;
+        top: 70%;
         width: 13%;
     }
     
