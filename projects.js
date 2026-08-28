@@ -1,343 +1,117 @@
-// Smooth scroll to center sections
-document.querySelectorAll('nav a[href^="#"], #scroll-to-top a').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        
-        if (targetId === 'top') {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-            return;
-        }
-        
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = elementPosition - (window.innerHeight / 2) + (targetElement.offsetHeight / 2);
-            
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
+// ============================================
+// index.html: folder tab filtering + pagination
+// ============================================
+// Which chip type each tab filters by. "projects" = show all.
+const TAB_FILTER = { projects: null, skills: 'design', about: 'code', contact: 'weiteres' };
+
+const grid = document.getElementById('projectsGrid');
+
+if (grid) {
+  const contentPanel = document.querySelector('.folder-content');
+  const allCards = Array.from(grid.querySelectorAll('.project-card'));
+
+  // give every card an explicit match state up front (matches current tab)
+  allCards.forEach(card => { card.dataset.match = 'true'; });
+
+  let currentPage = 0;
+  const MAX_PER_PAGE = 4; // hard cap — never show more than 4 project cards on one page
+  function projectsPerPage() { return Math.min(MAX_PER_PAGE, window.innerWidth <= 768 ? 3 : 4); }
+  function matchingCards() { return allCards.filter(c => c.dataset.match !== 'false'); }
+
+  function showPage(page) {
+    const perPage = projectsPerPage();
+    const matching = matchingCards();
+    const start = page * perPage, end = start + perPage;
+    allCards.forEach(c => {
+      if (c.dataset.match === 'false') { c.style.display = 'none'; return; }
+      const i = matching.indexOf(c);
+      c.style.display = (i >= start && i < end) ? 'grid' : 'none';
     });
-});
+    const totalPages = Math.ceil(matching.length / perPage) || 1;
+    document.getElementById('prev-projects').style.visibility = page === 0 ? 'hidden' : 'visible';
+    document.getElementById('next-projects').style.visibility = page >= totalPages - 1 ? 'hidden' : 'visible';
+  }
 
-// Show/hide scroll-to-top button
-const scrollToTopBtn = document.getElementById('scroll-to-top');
-window.addEventListener('scroll', () => {
-    const isMobile = window.innerWidth <= 768;
-    const projectsSection = document.getElementById('projects');
-    const footer = document.querySelector('footer');
-    
-    if (!projectsSection || !footer) return;
-    
-    const projectsTop = projectsSection.offsetTop;
-    const footerTop = footer.offsetTop;
-    const scrollPosition = window.pageYOffset + window.innerHeight;
-    const currentScroll = window.pageYOffset;
-    
-    if (isMobile) {
-        // On mobile/tablet: show after scrolling 400px, hide near footer
-        const shouldShow = currentScroll > 400;
-        const nearFooter = scrollPosition > footerTop - 150;
-        
-        if (shouldShow && !nearFooter) {
-            scrollToTopBtn.style.opacity = '1';
-            scrollToTopBtn.style.pointerEvents = 'auto';
-        } else {
-            scrollToTopBtn.style.opacity = '0';
-            scrollToTopBtn.style.pointerEvents = 'none';
-        }
-    } else {
-        // On desktop: show when reaching projects section, always visible (no hide at footer)
-        if (currentScroll >= projectsTop - 200) {
-            scrollToTopBtn.style.opacity = '1';
-            scrollToTopBtn.style.pointerEvents = 'auto';
-        } else {
-            scrollToTopBtn.style.opacity = '0';
-            scrollToTopBtn.style.pointerEvents = 'none';
-        }
-    }
-});
+  document.getElementById('prev-projects').addEventListener('click', () => {
+    if (currentPage > 0) { currentPage--; showPage(currentPage); }
+  });
+  document.getElementById('next-projects').addEventListener('click', () => {
+    const totalPages = Math.ceil(matchingCards().length / projectsPerPage()) || 1;
+    if (currentPage < totalPages - 1) { currentPage++; showPage(currentPage); }
+  });
+  window.addEventListener('resize', () => { currentPage = 0; showPage(currentPage); });
 
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const tab = btn.dataset.tab;
+      contentPanel.dataset.activeTab = tab;
 
-// Project navigation
-let currentProjectPage = 0;
-const projectGrid = document.querySelector('.projects-grid');
-const allProjects = Array.from(projectGrid.children);
+      const filter = TAB_FILTER[tab];
+      allCards.forEach(card => {
+        const chips = (card.dataset.chips || '').split(',').map(s => s.trim()).filter(Boolean);
+        const match = !filter || chips.includes(filter);
+        card.dataset.match = match ? 'true' : 'false';
+      });
 
-function getProjectsPerPage() {
-    // Show 3 projects on mobile/tablet, 4 on desktop
-    return window.innerWidth <= 768 ? 3 : 4;
+      currentPage = 0;
+      showPage(currentPage);
+    });
+  });
+
+  showPage(0);
 }
 
-function getVisibleProjects() {
-    // Get only projects that should be visible based on current filter
-    return allProjects.filter(project => {
-        const isVisible = project.getAttribute('data-visible');
-        return isVisible === null || isVisible === 'true';
+// ============================================
+// project detail pages: detail-note scroll-spy
+// ============================================
+// Highlights the detail note nav entry matching whichever section is
+// currently in view, so the "quick jump" list doubles as a reading-
+// progress cue.
+const overviewNoteLinks = document.querySelectorAll('.detail-postit-nav-list a, .overview-note-nav a');
+const detailSections = document.querySelectorAll('.detail-section');
+
+if (overviewNoteLinks.length && detailSections.length) {
+  const scrollSpyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const key = entry.target.id.replace('section-', '');
+      overviewNoteLinks.forEach(a => a.classList.toggle('active', a.dataset.key === key));
     });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  detailSections.forEach(s => scrollSpyObserver.observe(s));
+
+  overviewNoteLinks.forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById(a.getAttribute('href').slice(1))
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 }
 
-function showProjectPage(pageIndex) {
-    const projectsPerPage = getProjectsPerPage();
-    const visibleProjects = getVisibleProjects();
-    const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
-    const startIndex = pageIndex * projectsPerPage;
-    const endIndex = startIndex + projectsPerPage;
-    
-    // First, hide all projects
-    allProjects.forEach(project => {
-        project.style.display = 'none';
-    });
-    
-    // Then show only the visible projects for the current page
-    visibleProjects.forEach((project, index) => {
-        if (index >= startIndex && index < endIndex) {
-            project.style.display = 'grid';
-        }
-    });
-    
-    // Update button visibility
-    document.getElementById('prev-projects').style.visibility = pageIndex === 0 ? 'hidden' : 'visible';
-    document.getElementById('next-projects').style.visibility = pageIndex === totalPages - 1 || totalPages === 0 ? 'hidden' : 'visible';
+// ============================================
+// project detail pages: hamburger menu
+// ============================================
+const detailMenuBtn = document.querySelector('.detail-menu-btn');
+const detailSitenav = document.querySelector('.detail-sitenav');
+
+if (detailMenuBtn && detailSitenav) {
+  const closeDetailMenu = () => {
+    detailSitenav.classList.remove('open');
+    detailMenuBtn.setAttribute('aria-expanded', 'false');
+  };
+
+  detailMenuBtn.addEventListener('click', () => {
+    const open = detailSitenav.classList.toggle('open');
+    detailMenuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!detailSitenav.contains(e.target) && !detailMenuBtn.contains(e.target)) closeDetailMenu();
+  });
+
+  detailSitenav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDetailMenu));
 }
-
-// Expose reset function for tab filtering
-window.resetProjectPagination = function() {
-    currentProjectPage = 0;
-    showProjectPage(currentProjectPage);
-};
-
-document.getElementById('prev-projects').addEventListener('click', (e) => {
-    e.preventDefault();
-    if (currentProjectPage > 0) {
-        currentProjectPage--;
-        showProjectPage(currentProjectPage);
-    }
-});
-
-document.getElementById('next-projects').addEventListener('click', (e) => {
-    e.preventDefault();
-    const projectsPerPage = getProjectsPerPage();
-    const visibleProjects = getVisibleProjects();
-    const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
-    if (currentProjectPage < totalPages - 1) {
-        currentProjectPage++;
-        showProjectPage(currentProjectPage);
-    }
-});
-
-// Reset to first page on window resize
-window.addEventListener('resize', () => {
-    currentProjectPage = 0;
-    showProjectPage(currentProjectPage);
-});
-
-// Initialize first page
-showProjectPage(currentProjectPage);
-
-// Project Detail View (inside folder)
-const projectDetailContainer = document.getElementById('projectDetailContainer');
-const backToProjectsBtn = document.getElementById('backToProjects');
-const projectsWrapper = document.querySelector('.projects-wrapper');
-
-function openProjectDetail(projectCard) {
-    const title = projectCard.dataset.title;
-    const type = projectCard.dataset.type;
-    const year = projectCard.dataset.year;
-    const lang = document.documentElement.lang || 'en';
-    const description = lang === 'de'
-        ? (projectCard.dataset.descriptionDe || projectCard.dataset.description)
-        : (projectCard.dataset.descriptionEn || projectCard.dataset.description);
-    const details = lang === 'de'
-        ? (projectCard.dataset.detailsDe || projectCard.dataset.details)
-        : (projectCard.dataset.detailsEn || projectCard.dataset.details);
-    const link = projectCard.dataset.link;
-    const images = projectCard.dataset.images.split(',');
-    const tags = lang === 'de'
-        ? projectCard.dataset.tags
-        : (projectCard.dataset.tagsEn || projectCard.dataset.tags);
-    
-    // Populate detail view
-    document.getElementById('detailTitle').textContent = title;
-    document.getElementById('detailYear').textContent = year;
-    document.getElementById('detailDescription').textContent = description;
-    
-    // Format details with proper line breaks and bold titles
-    const detailBody = document.getElementById('detailBody');
-    let formattedDetails = details.replace(/\n/g, '<br>');
-    formattedDetails = formattedDetails.replace(/Verantwortung & Beitrag:/g, '<strong>Verantwortung & Beitrag:</strong>');
-    formattedDetails = formattedDetails.replace(/Fokus:/g, '<strong>Fokus:</strong>');
-    detailBody.innerHTML = formattedDetails;
-    
-    // Update link button based on whether link is available
-    const detailLink = document.getElementById('detailLink');
-    const linkButton = detailLink.querySelector('button');
-    const viewText = lang === 'de' ? 'projekt ansehen →' : 'view project →';
-    
-    if (link === '#' || !link) {
-        linkButton.textContent = 'coming soon';
-        detailLink.style.pointerEvents = 'none';
-        detailLink.style.opacity = '0.6';
-        detailLink.style.cursor = 'default';
-    } else {
-        linkButton.textContent = viewText;
-        detailLink.style.pointerEvents = 'auto';
-        detailLink.style.opacity = '1';
-        detailLink.style.cursor = 'pointer';
-        detailLink.href = link;
-    }
-    
-    // Add images with lazy loading and error handling
-    const imagesContainer = document.getElementById('detailImages');
-    imagesContainer.innerHTML = '';
-    
-    images.forEach(imgSrc => {
-        const img = document.createElement('img');
-        img.src = imgSrc.trim();
-        img.alt = title;
-        img.loading = 'lazy';
-        img.onerror = function() {
-            console.error('Failed to load image:', imgSrc);
-            this.style.display = 'none';
-        };
-        imagesContainer.appendChild(img);
-    });
-    
-    // Add chips - format: "label|color,label2|color2"
-    const chipsContainer = document.getElementById('detailChips');
-    chipsContainer.innerHTML = '';
-    
-    if (tags && tags.trim() !== '') {
-        const tagsList = tags.split(',');
-        
-        tagsList.forEach(tagData => {
-            const [label, colorType] = tagData.split('|');
-            if (label && colorType) {
-                const chip = document.createElement('span');
-                chip.className = 'project-chip';
-                chip.setAttribute('data-type', colorType.trim());
-                chip.textContent = label.trim();
-                chipsContainer.appendChild(chip);
-            }
-        });
-    }
-    
-    // Hide projects grid and show detail view
-    projectsWrapper.style.display = 'none';
-    projectDetailContainer.style.display = 'block';
-}
-
-function closeProjectDetail() {
-    projectsWrapper.style.display = 'block';
-    projectDetailContainer.style.display = 'none';
-    
-    // Clean up images to free memory on mobile
-    const imagesContainer = document.getElementById('detailImages');
-    if (imagesContainer && window.innerWidth <= 768) {
-        imagesContainer.innerHTML = '';
-    }
-}
-
-// Add click listeners to all project cards
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('click', () => {
-        openProjectDetail(card);
-    });
-});
-
-// Back button
-backToProjectsBtn.addEventListener('click', closeProjectDetail);
-
-// Email button — reveal on scroll into view on all breakpoints
-const envelopeWrapper = document.querySelector('.envelope-wrapper');
-if (envelopeWrapper) {
-    const envelopeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                envelopeWrapper.classList.add('active');
-                envelopeObserver.unobserve(envelopeWrapper); // fire once
-            }
-        });
-    }, { threshold: 0.5 });
-    envelopeObserver.observe(envelopeWrapper);
-}
-
-// Scroll-triggered animations (only on tablet and mobile)
-if (window.innerWidth <= 1024) {
-    const observerOptions = {
-        root: null,
-        rootMargin: '-20% 0px -20% 0px',
-        threshold: 0.5
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
-        });
-    }, observerOptions);
-
-    // Observe envelope wrapper
-    const envelopeWrapper = document.querySelector('.envelope-wrapper');
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-        observer.observe(card);
-    });
-
-    // Observe all postits
-    const postits = document.querySelectorAll('.postit');
-    postits.forEach(postit => {
-        observer.observe(postit);
-    });
-}
-
-// ── Language switcher ──────────────────────────────────────────────────────────
-
-(function () {
-    const STORAGE_KEY = 'preferred-lang';
-
-    function applyLang(lang) {
-        document.documentElement.lang = lang;
-
-        // Update all elements with data-de / data-en
-        document.querySelectorAll('[data-de][data-en]').forEach(el => {
-            el.textContent = lang === 'de' ? el.dataset.de : el.dataset.en;
-        });
-
-        // Update the footer language toggle label.
-        // UX norm: show the language you'll switch TO (i.e. the other one).
-        const toggle = document.getElementById('lang-toggle');
-        if (toggle) {
-            toggle.textContent = lang === 'de' ? 'EN' : 'DE';
-            toggle.setAttribute('aria-label', lang === 'de' ? 'Switch to English' : 'Auf Deutsch wechseln');
-        }
-
-        localStorage.setItem(STORAGE_KEY, lang);
-    }
-
-    function init() {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        const lang = stored || 'en';
-        applyLang(lang);
-
-        const toggle = document.getElementById('lang-toggle');
-        if (toggle) {
-            toggle.addEventListener('click', () => {
-                const current = document.documentElement.lang || 'en';
-                applyLang(current === 'de' ? 'en' : 'de');
-            });
-        }
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
-    }
-})();

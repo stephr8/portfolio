@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fangis — project</title>
+<link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<div class="detail-page">
+  <div class="detail-topbar">
+    <a class="detail-home" href="../index.html" aria-label="back to start">
+      <img src="/favicon.svg" alt="">
+    </a>
+    <div class="detail-menu">
+      <button class="detail-menu-btn" type="button" aria-label="menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="detail-sitenav">
+        <a href="../index.html">projects</a>
+        <a href="#">about me</a>
+        <a href="#">contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="detail-hero-image" style="background:#DCE7FB;">fangis</div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-row">
+      <div>
+        <p class="detail-eyebrow">multiplayer mobile app</p>
+        <h1 class="detail-hero-title">fangis</h1>
+        <div class="detail-hero-chips">
+          <span class="project-chip" data-type="design">design</span>
+          <span class="project-chip" data-type="code">code</span>
+        </div>
+        <p class="detail-hero-desc">An interactive multiplayer app that combines classic tag with modern technology.</p>
+      </div>
+      <div class="detail-postit">
+        <p class="detail-postit-title">overview</p>
+        <div class="detail-postit-overview">
+          <p><strong>context:</strong> uni project</p>
+          <p><strong>timeline:</strong> 8 months</p>
+          <p><strong>role:</strong> UX/UI design, frontend development</p>
+          <p><strong>tools:</strong> Figma, Nuxt.js, Vue.js</p>
+        </div>
+        <a class="detail-postit-link" href="https://www.fangis.app/landing_page" target="_blank" rel="noopener noreferrer">view project →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-sections">
+    <section class="detail-section" id="section-problem">
+      <p class="detail-section-label">01 — the problem</p>
+      <h2 class="detail-section-heading">The Problem</h2>
+      <div class="detail-section-body"><p>Tag is simple and social, but hard to organise at scale — no one keeps track of who's out, distances get argued over, and games fizzle out. The goal was to keep the physical, spontaneous feel of the game while removing the bookkeeping friction that kills it.</p><ul><li>How do you show real-time distance without turning the game into a maps app?</li><li>How do you make "you're caught" feel fair and immediate?</li></ul></div>
+    </section>
+    <section class="detail-section" id="section-process">
+      <p class="detail-section-label">02 — the process</p>
+      <h2 class="detail-section-heading">The Process</h2>
+      <div class="detail-section-body"><p>Started with quick paper flows for the core loop (join → catch/run → round end), then moved into low-fidelity wireframes to test the catcher/runner split before touching visual design.</p><div class="detail-img-row"><div class="detail-img" style="background:#DCE7FB;">early user flow</div><div class="detail-img" style="background:#E4E9F5;">lo-fi wireframes</div></div></div>
+    </section>
+    <section class="detail-section" id="section-solution">
+      <p class="detail-section-label">03 — the solution</p>
+      <h2 class="detail-section-heading">The Solution</h2>
+      <div class="detail-section-body"><p>The final UI keeps the map secondary to the action — big, glanceable status cards for "catcher" and "runner" roles, a simple distance readout instead of a full map by default, and a single primary action per screen.</p><div class="detail-img-row"><div class="detail-img" style="background:#DCE7FB;">catcher screen</div><div class="detail-img" style="background:#E4E9F5;">runner screen</div></div></div>
+    </section>
+    <section class="detail-section" id="section-reflection">
+      <p class="detail-section-label">04 — reflection</p>
+      <h2 class="detail-section-heading">Reflection & Takeaways</h2>
+      <div class="detail-section-body"><p>Being both designer and frontend dev on this one meant design decisions got reality-checked fast — some "clever" interactions got simplified once they were actually built. Next time I'd prototype the GPS-distance interaction earlier, since it ended up shaping the whole layout.</p></div>
+    </section>
+  </div>
+
+  <div class="detail-footer">
+    <div class="detail-project-nav">
+      <a href="standort-i.html">← previous project</a>
+      <a href="wordle.html">next project →</a>
+    </div>
+  </div>
+</div>
+
+<script src="../projects.js"></script>
+</body>
+</html>

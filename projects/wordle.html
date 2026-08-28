@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>wordle — project</title>
+<link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<div class="detail-page">
+  <div class="detail-topbar">
+    <a class="detail-home" href="../index.html" aria-label="back to start">
+      <img src="/favicon.svg" alt="">
+    </a>
+    <div class="detail-menu">
+      <button class="detail-menu-btn" type="button" aria-label="menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="detail-sitenav">
+        <a href="../index.html">projects</a>
+        <a href="#">about me</a>
+        <a href="#">contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="detail-hero-image" style="background:#E4E9F5;">wordle</div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-row">
+      <div>
+        <p class="detail-eyebrow">desktop game</p>
+        <h1 class="detail-hero-title">wordle</h1>
+        <div class="detail-hero-chips">
+          <span class="project-chip" data-type="code">code</span>
+        </div>
+        <p class="detail-hero-desc">An alternative version of the popular word puzzle game where the objective is to find a synonym. Built as a desktop application.</p>
+      </div>
+      <div class="detail-postit">
+        <p class="detail-postit-title">overview</p>
+        <div class="detail-postit-overview">
+          <p><strong>context:</strong> uni project</p>
+          <p><strong>timeline:</strong> 2 weeks</p>
+          <p><strong>role:</strong> ui design, development</p>
+          <p><strong>techstack:</strong> JavaScript, two external APIs</p>
+        </div>
+        <a class="detail-postit-link" href="https://digezz.ch/projekte/wordle/" target="_blank" rel="noopener noreferrer">view project →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-sections">
+    <section class="detail-section" id="section-challenge">
+      <p class="detail-section-label">01 — the challenge</p>
+      <h2 class="detail-section-heading">The Challenge</h2>
+      <div class="detail-section-body"><p>The core challenge wasn't the Wordle mechanic itself (that part's well-documented) — it was sourcing a reliable synonym relationship and definition on the fly, from two separate APIs that don't agree on data shape.</p><ul><li>Normalising two different API response formats into one internal model</li><li>Handling API failures gracefully mid-game without breaking the guess flow</li></ul></div>
+    </section>
+    <section class="detail-section" id="section-approach">
+      <p class="detail-section-label">02 — the approach</p>
+      <h2 class="detail-section-heading">The Approach</h2>
+      <div class="detail-section-body"><p>Kept state management deliberately simple — a single game-state object updated per guess, re-rendered declaratively rather than manipulating the DOM piecemeal. API calls are cached per session so repeated guesses of the same word don't re-fetch.</p></div>
+    </section>
+    <section class="detail-section" id="section-build">
+      <p class="detail-section-label">03 — the build</p>
+      <h2 class="detail-section-heading">The Build</h2>
+      <div class="detail-section-body"><p>Beyond the core loop, added a few things purely because they made testing the game more fun: a dark mode toggle, and a small confetti burst on a correct guess as visual feedback.</p><div class="detail-img-row"><div class="detail-img" style="background:#E4E9F5;">dark mode</div></div></div>
+    </section>
+    <section class="detail-section" id="section-reflection">
+      <p class="detail-section-label">04 — reflection</p>
+      <h2 class="detail-section-heading">Reflection & Next Steps</h2>
+      <div class="detail-section-body"><p>Learned the hard way that "just use two APIs" front-loads a lot of defensive coding. If I rebuilt this, I'd add a small local fallback word list so the game degrades gracefully instead of breaking when an API is slow or down.</p></div>
+    </section>
+  </div>
+
+  <div class="detail-footer">
+    <div class="detail-project-nav">
+      <a href="fangis.html">← previous project</a>
+      <a href="markthalle-ix.html">next project →</a>
+    </div>
+  </div>
+</div>
+
+<script src="../projects.js"></script>
+</body>
+</html>

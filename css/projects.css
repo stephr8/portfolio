@@ -1,427 +1,641 @@
+:root {
+  --blue_light: #DEE4F1;
+  --blue: #4A5FA8;
+  --pink: #F4C9DA;
+  --green: #C9D97E;
+  --yellow: #F1E7B8;
+  --red_dark: #4A1620;
+  --white: #ffffff;
+  --backbar: #AAB5CD;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #FBF7EF;
+  font-family: 'Inclusive Sans', -apple-system, sans-serif;
+  color: var(--red_dark);
+}
+
+/* Cross-document View Transitions: gives real page navigations (index ->
+   project page, project -> next project) a soft crossfade in browsers that
+   support it (Chrome/Edge 126+), and falls back to an instant normal
+   navigation everywhere else — no JS required for this part. */
+@view-transition {
+  navigation: auto;
+}
+
 /* ============================================
-   Folder Tabs System
+   Folder wrapper (index.html)
    ============================================ */
 .projects-folder {
-    max-width: min(90vw, 1200px);
-    margin: 8rem auto 4rem;
-    padding: 0 1rem;
+  max-width: min(92vw, 1200px);
+  margin: 4rem auto;
+  padding: 0 1rem;
 }
 
+/* ============================================
+   Folder shell = the "back of folder" piece.
+   Its aspect-ratio matches folder_back.svg's own
+   viewBox (1510 x 103.86) so the corner curve
+   scales exactly like the Figma export, never
+   distorted, at any folder width.
+   ============================================ */
+.folder-shell {
+  position: relative;
+  background: var(--backbar);
+  aspect-ratio: 1510 / 103.86;
+  width: 100%;
+  /* radius stays modest and fixed — small enough that the curve has
+     fully resolved to a straight vertical edge well before it reaches
+     the bottom, so it lines up flush with the paper's square corner
+     below instead of still being mid-curve there. */
+  border-radius: clamp(0.85rem, 2vw, 1.5rem) clamp(0.85rem, 2vw, 1.5rem) 0 0;
+  overflow: visible;
+}
+
+/* Tab row sits at the BOTTOM of the backbar (glued to the paper's top
+   edge), at 80/103.86 ≈ 77% of the backbar's height — the same ratio
+   as the two Figma exports (folder_index.svg is 80 tall, folder_back.svg
+   is 103.86 tall) — so the grey backbar peeks out above the tabs by
+   exactly the amount it does in the reference, at any screen size. */
 .folder-tabs-new {
-    display: flex;
-    gap: 0;
-    margin-bottom: -2px;
-    position: relative;
-    z-index: 10;
-    flex-wrap: wrap;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 77%;
+  display: flex;
+  align-items: flex-end;
+  --tab-overlap: clamp(4rem, 8vw, 6.5rem);
 }
 
+/* Equal-share flex-basis, inflated by the total overlap amount so that
+   after the negative margins pull tabs into each other, the row still
+   spans exactly 100% of the folder width — overlap and full-width-span
+   both hold at once instead of trading off against each other. */
 .tab-btn {
-    font-family: 'Inclusive Sans', sans-serif;
-    font-weight: 700;
-    font-size: clamp(0.875rem, 1.8vw, 1.5rem);
-    padding: clamp(0.5rem, 1.5vw, 1rem) clamp(0.75rem, 2vw, 2rem);
-    color: var(--red_dark);
-    border: clamp(4px, 0.8vw, 8px) solid;
-    border-bottom: none;
-    border-radius: 1.5rem 1.5rem 0 0;
-    cursor: pointer;
-    transition: border-color 0.2s;
-    position: relative;
-    margin-left: -1.5rem;
-    filter: drop-shadow(0px -2px 8px rgba(0,0,0,0.1));
-    white-space: nowrap;
+  position: relative;
+  flex: 1 1 calc((100% + 3 * var(--tab-overlap)) / 4);
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* no padding here — the SVG is absolutely inset:0 and must
+                 align to the true border-box edge, or it leaves a gap
+                 between the tab shape and the paper below */
+  margin-left: calc(-1 * var(--tab-overlap));
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.9rem, 1.6vw, 1.5rem);
+  color: var(--red_dark);
 }
+.tab-btn:first-child { margin-left: 0; }
 
-.tab-btn:first-child {
-    margin-left: 0;
-}
-
+/* Stacking order: active tab always on top; otherwise left tab sits
+   on top of the ones to its right, like a real fanned folder tab. */
 .tab-btn:nth-child(1) { z-index: 4; }
 .tab-btn:nth-child(2) { z-index: 3; }
 .tab-btn:nth-child(3) { z-index: 2; }
 .tab-btn:nth-child(4) { z-index: 1; }
+.tab-btn.active { z-index: 10; }
 
-.tab-btn[data-tab="projects"] {
-    background: var(--blue_light);
-    border-color: var(--blue_light);
+.tab-btn svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.tab-btn svg path { fill: var(--tab-color); }
+
+.tab-btn[data-tab="projects"] { --tab-color: var(--blue_light); }
+.tab-btn[data-tab="skills"]   { --tab-color: var(--pink); }
+.tab-btn[data-tab="about"]    { --tab-color: var(--green); }
+.tab-btn[data-tab="contact"]  { --tab-color: var(--yellow); }
+
+.tab-label {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+  color: var(--red_dark);
+  padding: 0 clamp(1rem, 2.8vw, 2.25rem);
+  /* nudges the label down slightly from dead-center, without touching
+     the svg's own box */
+  margin-top: clamp(0.35rem, 1vw, 0.6rem);
 }
 
-.tab-btn[data-tab="skills"] {
-    background: var(--pink);
-    border-color: var(--pink);
-}
-
-.tab-btn[data-tab="about"] {
-    background: var(--green);
-    border-color: var(--green);
-}
-
-.tab-btn[data-tab="contact"] {
-    background: var(--yellow);
-    border-color: var(--yellow);
-}
-
-.tab-btn[data-tab="projects"]:hover {
-    background: var(--blue_light);
-    border-color: var(--blue_light);
-}
-
-.tab-btn[data-tab="skills"]:hover {
-    background: var(--pink);
-    border-color: var(--pink);
-}
-
-.tab-btn[data-tab="about"]:hover {
-    background: var(--green);
-    border-color: var(--green);
-}
-
-.tab-btn[data-tab="contact"]:hover {
-    background: var(--yellow);
-    border-color: var(--yellow);
-}
-
-.tab-btn.active {
-    z-index: 10;
-}
-
-.tab-btn[data-tab="projects"].active {
-    background: var(--blue_light);
-    border-color: var(--blue_light);
-    border-bottom-color: var(--white);
-}
-
-.tab-btn[data-tab="skills"].active {
-    background: var(--pink);
-    border-color: var(--pink);
-    border-bottom-color: var(--white);
-}
-
-.tab-btn[data-tab="about"].active {
-    background: var(--green);
-    border-color: var(--green);
-    border-bottom-color: var(--white);
-}
-
-.tab-btn[data-tab="contact"].active {
-    background: var(--yellow);
-    border-color: var(--yellow);
-    border-bottom-color: var(--white);
-}
-
+/* ============================================
+   Content panel — two layers so the border and
+   the fill can have different top-right corners:
+   the border stays square on both top corners
+   (flush against the backbar above), while the
+   fill still rounds at top-right underneath it.
+   ============================================ */
 .folder-content {
-    background: #F1F2F5;
-    border: 8px solid var(--blue_light);
-    border-radius: 0 1rem 1rem 1rem;
-    padding: clamp(2rem, 4vw, 3.5rem);
-    transition: border-color 0.3s;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr); /* prevents "grid blowout" — without
+    this, the implicit auto column sizes to the content's unconstrained
+    max-content width instead of the real available width, which then
+    inflates .folder-content-fill's aspect-ratio sizing and cascades to
+    everything inside it */
+  border: clamp(6px, 0.8vw, 8px) solid var(--blue_light);
+  border-radius: 0 0 clamp(0.85rem, 2vw, 1.5rem) clamp(0.85rem, 2vw, 1.5rem);
+  margin-top: -2px;
+  transition: border-color 0.3s ease;
 }
-
-.folder-content[data-active-tab="skills"] {
-    border-color: var(--pink);
+.folder-content-fill {
+  width: 100%;
+  background: #F1F2F5;
+  border-radius: 0 clamp(1.5rem, 3.5vw, 2.75rem) clamp(0.85rem, 2vw, 1.5rem) clamp(0.85rem, 2vw, 1.5rem);
+  padding: clamp(2rem, 4vw, 3.5rem);
+  aspect-ratio: 1440 / 777; /* folder_paper.svg's own proportions */
 }
-
-.folder-content[data-active-tab="about"] {
-    border-color: var(--green);
-}
-
-.folder-content[data-active-tab="contact"] {
-    border-color: var(--yellow);
-}
-
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-    animation: fadeIn 0.3s;
-}
+.folder-content[data-active-tab="skills"]  { border-color: var(--pink); }
+.folder-content[data-active-tab="about"]   { border-color: var(--green); }
+.folder-content[data-active-tab="contact"] { border-color: var(--yellow); }
 
 /* ============================================
-   Projects Grid & Cards
+   Projects grid
    ============================================ */
+.projects-wrapper { position: relative; padding: 0 3rem; }
+
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--blue);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.nav-arrow:hover { opacity: 1; }
+#prev-projects { left: 0; }
+#next-projects { right: 0; }
+
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-    width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .project-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(1rem, 2vw, 1.5rem);
-    align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
-.project-image-stack {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
+.project-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.75rem;
+  overflow: visible;
+  filter: drop-shadow(0px 2px 8px rgba(0,0,0,0.12));
 }
 
-.project-image {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: contain;
-    border-radius: 0.5rem;
-    filter: drop-shadow(0px 2px 8px rgba(0,0,0,0.1));
+.project-thumb-main {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  z-index: 2;
 }
 
-.project-image-stack .project-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+.project-thumb-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  transform: scale(0.9);
+  transform-origin: center;
 }
 
-.project-image-stack .main-image {
-    position: relative;
-    z-index: 3;
+.project-thumb-hover-media {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 
-.stack-image {
-    opacity: 0;
-    z-index: 1;
-    transform: translate(0, 0) rotate(0deg) scale(0.85);
+.project-thumb-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.35s ease, opacity 0.3s ease;
+  will-change: transform, opacity;
+  transform-origin: center;
 }
 
-.project-card.active .stack-image {
-    transition-delay: 0.4s;
+.project-thumb--fangis .back-1 { transform: scale(0.88) rotate(0deg); }
+.project-thumb--fangis .back-2 { transform: scale(0.88) rotate(0deg); }
+
+.project-thumb--shuffle .back-1 { transform: scale(0.88) rotate(0deg); }
+.project-thumb--shuffle .back-2 { transform: scale(0.88) rotate(0deg); }
+
+.project-thumb--slate .back-1 { transform: scale(0.88) rotate(0deg); }
+.project-thumb--slate .back-2 { transform: scale(0.88) rotate(0deg); }
+
+.project-card:is(:hover, :focus-visible) .project-thumb--markthalle .project-thumb-hover-media {
+  opacity: 1;
 }
 
-.stack-left {
-    z-index: 2;
+.project-card:is(:hover, :focus-visible) .project-thumb--fangis .back-1 {
+  opacity: 1;
+  transform: translateX(-12%) scale(0.88) rotate(-8deg);
 }
 
-.stack-right {
-    z-index: 1;
+.project-card:is(:hover, :focus-visible) .project-thumb--fangis .back-2 {
+  opacity: 1;
+  transform: translateX(10%) scale(0.88) rotate(7deg);
 }
 
-.project-card:hover .stack-left,
-.project-card.active .stack-left {
-    opacity: 1;
-    transform: translate(-15%, 5%) rotate(-8deg) scale(0.85);
+.project-card:is(:hover, :focus-visible) .project-thumb--shuffle .back-1 {
+  opacity: 1;
+  transform: translateX(-12%) scale(0.88) rotate(-9deg);
 }
 
-.project-card:hover .stack-right,
-.project-card.active .stack-right {
-    opacity: 1;
-    transform: translate(15%, 5%) rotate(8deg) scale(0.85);
+.project-card:is(:hover, :focus-visible) .project-thumb--shuffle .back-2 {
+  opacity: 1;
+  transform: translateX(13%) scale(0.88) rotate(9deg);
 }
 
-.project-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    justify-content: flex-start;
+.project-card:is(:hover, :focus-visible) .project-thumb--slate .back-1 {
+  opacity: 1;
+  transform: translateX(-10%) scale(0.88) rotate(-8deg);
 }
 
-.project-title {
-    font-family: 'Neue Regrade', sans-serif;
-    font-weight: 600;
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
-    color: var(--red_dark);
-    margin: 0;
-    line-height: 1.3;
+.project-card:is(:hover, :focus-visible) .project-thumb--slate .back-2 {
+  opacity: 1;
+  transform: translateX(10%) scale(0.88) rotate(8deg);
 }
 
-.project-type {
-    font-family: 'Inclusive Sans', sans-serif;
-    font-weight: 400;
-    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
-    color: var(--red_dark);
-    margin: 0;
-    line-height: 1.4;
-}
-
-.project-chips {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-top: 0.25rem;
-}
-
+.project-info { display: flex; flex-direction: column; gap: 0.4rem; }
+.project-title { font-family: 'Neue Regrade', sans-serif; font-size: clamp(1.2rem, 2vw, 1.6rem); margin: 0; font-weight: 600; }
+.project-type { margin: 0; font-size: clamp(0.85rem, 1.4vw, 1rem); }
+.project-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.2rem; }
 .project-chip {
-    font-family: 'Inclusive Sans', sans-serif;
-    font-weight: 600;
-    font-size: clamp(0.75rem, 1.2vw, 1rem);
-    color: var(--red_dark);
-    padding: 0.4rem 1rem;
-    border-radius: 0.75rem;
-    display: inline-block;
-    width: fit-content;
-    margin-top: 0.25rem;
+  font-weight: 600; font-size: 0.8rem;
+  padding: 0.3rem 0.8rem; border-radius: 0.6rem;
 }
-
-.project-chip[data-type="design"] {
-    background: var(--pink);
-}
-
-.project-chip[data-type="code"] {
-    background: var(--green);
-}
-
-.project-chip[data-type="weiteres"] {
-    background: var(--yellow);
-}
+.project-chip[data-type="design"] { background: var(--pink); }
+.project-chip[data-type="code"]   { background: var(--green); }
+.project-chip[data-type="weiteres"] { background: var(--yellow); }
 
 /* ============================================
-   Project Detail View (Inside Folder)
+   Detail page (each project's own .html file).
+   Paper/scrapbook theme: post-it with a paperclip
+   doubles as the overview + quick-nav, torn-edge
+   section dividers.
    ============================================ */
-.project-detail-container {
-    position: relative;
-    padding: 2rem 0;
+.detail-page {
+  min-height: 100vh;
+  background: #FBF7EF;
 }
 
-.detail-back-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: var(--red_dark);
-    color: var(--white);
-    border: none;
-    border-radius: 50%;
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
+/* persistent top bar: back-to-folder + the site's normal nav, so a
+   visitor reading a case study isn't stranded away from the rest of
+   the site */
+.detail-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 4vw, 3rem);
+  backdrop-filter: blur(6px);
+}
+.detail-home {
+  display: inline-flex;
+  align-items: center;
+}
+.detail-home img {
+  display: block;
+  width: clamp(2.8rem, 4vw, 3rem);
+  height: auto;
+  border-radius: 0.75rem;
 }
 
-.detail-back-btn:hover {
-    transform: scale(1.1);
-    background: var(--blue);
+.detail-menu { position: relative; }
+
+.detail-menu-btn {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 9px 10px;
+  box-sizing: border-box;
+  border-radius: 0.75rem;
+}
+.detail-menu-btn span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--red_dark);
 }
 
-.detail-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 3rem;
+.detail-sitenav {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  z-index: 60;
+  display: none;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 11rem;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+}
+.detail-sitenav.open { display: flex; }
+.detail-sitenav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.625rem);
+  line-height: 1.5;
+  background-color: var(--blue_light);
+  color: var(--red_dark);
+  padding: 6px 14px;
+  box-sizing: border-box;
+  min-height: 44px;
+  border-radius: 0.75rem;
+  border: 3px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+.detail-sitenav a:hover { border-color: var(--red_dark); }
+
+/* full-bleed-ish hero image banner at the very top of the page */
+.detail-hero-image {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  aspect-ratio: 21/9;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  object-fit: cover;
 }
 
-.detail-images {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    position: relative;
+.detail-hero {
+  max-width: min(94vw, 1100px);
+  margin: 0 auto;
+  padding: 2.5rem clamp(1rem, 4vw, 2rem) 0;
+}
+.detail-hero-row {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
 }
 
-.detail-image-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 80%;
-    overflow: visible;
+.detail-eyebrow {
+  font-family: 'Inclusive Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0 0 0.4rem;
+}
+.detail-hero-title {
+  /* Resets the site's global h1 rule (used for the homepage hero's
+     absolutely-positioned text overlay) from leaking in here. Without
+     this, this element never declares its own `position`, so the
+     lower-specificity `h1 { position: absolute; ... }` rule still wins
+     for that one property — even though this class beats it on every
+     property it DOES declare — and the title renders on top of the
+     row below instead of in normal document flow. */
+  position: static;
+  inset: auto;
+  font-family: 'Neue Regrade', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5.5vw, 4rem);
+  margin: 0;
+  line-height: 1.05;
+}
+.detail-hero-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
+.detail-hero-desc {
+  font-weight: 600;
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  margin: 0.5rem 0 0;
 }
 
-.detail-image-container img {
-    position: absolute;
-    max-width: 50%;
-    max-height: 90%;
-    height: auto;
-    width: auto;
-    border-radius: 1rem;
-    border: none;
-    transition: transform 0.3s ease;
-    object-fit: contain;
+/* ---- Sections (full width, single column) ---- */
+.detail-sections {
+  max-width: min(94vw, 1100px);
+  margin: 1rem auto 0;
+  padding: 0 clamp(1rem, 4vw, 2rem);
 }
 
-.detail-image-container img:first-child {
-    left: 5%;
-    top: 0%;
-    z-index: 1;
+.detail-section {
+  padding: 2.25rem 0;
+  border-top: 2px dashed rgba(74, 22, 32, 0.15);
 }
 
-.detail-image-container img:nth-child(2) {
-    left: 25%;
-    top: 10%;
-    z-index: 2;
+.detail-section-label {
+  font-family: 'Inclusive Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin: 0 0 0.4rem;
+}
+.detail-section-heading {
+  position: static;
+  inset: auto;
+  font-family: 'Neue Regrade', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  margin: 0 0 1rem;
+}
+.detail-section-body {
+  font-weight: 400;
+  line-height: 1.75;
+  font-size: clamp(1rem, 1.4vw, 1.05rem);
+}
+.detail-section-body p { margin: 0 0 1rem; }
+.detail-section-body ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+.detail-section-body li { margin-bottom: 0.4rem; }
+
+/* simple supporting images inside sections */
+.detail-img-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0 0.5rem;
+}
+.detail-img {
+  border-radius: 0.65rem;
+  width: clamp(10rem, 26vw, 16rem);
+  aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+  object-fit: cover;
 }
 
-.detail-image-container img:nth-child(3) {
-    left: 45%;
-    top: 20%;
-    z-index: 3;
+/* ---- Overview note: overview + link + quick-jump, sits beside the
+   hero description instead of floating down the page. Named
+   "overview-note" (not "postit") on purpose — the site already has an
+   unrelated .postit / .postits-container feature elsewhere, and reusing
+   that class name would mean a future edit to one silently breaks
+   the other. ---- */
+.overview-note,
+.detail-page .detail-postit {
+  background: var(--yellow);
+  width: 100%;
+  max-width: 260px;
+  padding: 1.6rem 1.25rem 1.4rem;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.15);
+  transform: rotate(2.5deg);
+  position: relative;
+  font-family: 'Neue Regrade', sans-serif;
+  opacity: 0;
+  animation: overview-note-flutter-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
 }
+@keyframes overview-note-flutter-in {
+  0%   { opacity: 0; transform: rotate(-14deg) translateY(-18px) scale(0.9); }
+  60%  { opacity: 1; transform: rotate(4deg) translateY(2px) scale(1.02); }
+  100% { opacity: 1; transform: rotate(2.5deg) translateY(0) scale(1); }
+}
+.overview-note-clip,
+.detail-page .detail-postit-clip {
+  position: absolute;
+  top: -1.6rem;
+  left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  width: 2.4rem;
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,0.25));
+}
+.overview-note-title,
+.detail-page .detail-postit-title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0 0 0.6rem;
+}
+.overview-note-text,
+.detail-page .detail-postit-overview {
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+}
+.overview-note-text p,
+.detail-page .detail-postit-overview p { margin: 0 0 0.6rem; }
+.overview-note-text p:last-child,
+.detail-page .detail-postit-overview p:last-child { margin-bottom: 0; }
+.overview-note-link,
+.detail-page .detail-postit-link {
+  display: inline-block;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--red_dark);
+  background: rgba(255,255,255,0.55);
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  max-width: 8rem;
+}
+.overview-note-link:hover,
+.detail-page .detail-postit-link:hover { background: rgba(255,255,255,0.8); }
+.detail-page .detail-postit {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 1 / 1;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.detail-page .detail-postit-overview p { margin: 0 0 0.45rem; }
+.detail-page .detail-postit-overview p:last-child { margin-bottom: 0; }
+.detail-page .detail-postit-link { margin-top: auto; }
+.overview-note-divider,
+.detail-page .detail-postit-divider {
+  border: none;
+  border-top: 1px dashed rgba(74, 22, 32, 0.3);
+  margin: 0 0 1rem;
+}
+.overview-note-nav,
+.detail-page .detail-postit-nav-list { list-style: none; margin: 0; padding: 0; }
+.overview-note-nav li,
+.detail-page .detail-postit-nav-list li { margin-bottom: 0.5rem; }
+.overview-note-nav a,
+.detail-page .detail-postit-nav-list a {
+  color: var(--red_dark);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-family: 'Inclusive Sans', sans-serif;
+}
+.overview-note-nav a::before,
+.detail-page .detail-postit-nav-list a::before { content: "☐"; font-size: 0.8rem; opacity: 0.6; }
+.overview-note-nav a:hover,
+.detail-page .detail-postit-nav-list a:hover { text-decoration: underline; }
+.overview-note-nav a.active::before,
+.detail-page .detail-postit-nav-list a.active::before { content: "☑"; opacity: 1; }
 
-.detail-image-container img:only-child {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 80%;
-    max-height: 100%;
-    z-index: 1;
+/* ---- Footer: prev/next project ---- */
+.detail-footer {
+  max-width: min(94vw, 1100px);
+  margin: 0 auto 5rem;
+  padding: 2rem clamp(1rem, 4vw, 2rem) 0;
+  border-top: 2px dashed rgba(74, 22, 32, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
+.detail-project-nav { display: flex; gap: 0.75rem; }
+.detail-project-nav a {
+  background: none;
+  border: 2px solid var(--red_dark);
+  border-radius: 0.75rem;
+  padding: 0.6rem 1.1rem;
+  font-family: 'Inclusive Sans', sans-serif;
+  font-weight: 700;
+  color: var(--red_dark);
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-block;
+}
+.detail-project-nav a:hover { background: var(--blue_light); }
 
-.detail-info {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.detail-title {
-    font-family: 'Neue Regrade', sans-serif;
-    font-weight: 700;
-    font-size: clamp(2rem, 4vw, 3rem);
-    color: var(--red_dark);
-    margin: 0;
-}
-
-.detail-chips {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.detail-description {
-    font-family: 'Inclusive Sans', sans-serif;
-    font-weight: 600;
-    font-size: clamp(1.125rem, 2vw, 1.375rem);
-    line-height: 1.5;
-    color: var(--red_dark);
-    margin: 1rem 0;
-}
-
-.detail-body {
-    font-family: 'Inclusive Sans', sans-serif;
-    font-weight: 400;
-    font-size: clamp(1rem, 2vw, 1.125rem);
-    line-height: 1.6;
-    color: var(--red_dark);
-    margin: 0;
-}
-
-.detail-year {
-    font-family: 'Inclusive Sans', sans-serif;
-    font-weight: 500;
-    font-size: 1rem;
-    color: var(--red_dark);
-    margin: 1rem 0 0 0;
-}
-
-.detail-body strong {
-    font-weight: 700;
-}
-
-.detail-link {
-    margin-top: 1.5rem;
-    text-decoration: none;
-}
-
-.detail-link button {
-    width: 100%;
-    font-size: clamp(1rem, 2vw, 1.25rem);
-}
-
-.project-card {
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
+/* Responsive rules for everything above live in responsive.css,
+   at the site's standard 768px / 480px breakpoints. */

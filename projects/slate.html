@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>slate — project</title>
+<link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<div class="detail-page">
+  <div class="detail-topbar">
+    <a class="detail-home" href="../index.html" aria-label="back to start">
+      <img src="/favicon.svg" alt="">
+    </a>
+    <div class="detail-menu">
+      <button class="detail-menu-btn" type="button" aria-label="menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="detail-sitenav">
+        <a href="../index.html">projects</a>
+        <a href="#">about me</a>
+        <a href="#">contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="detail-hero-image" style="background:#EFE3F5;">slate</div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-row">
+      <div>
+        <p class="detail-eyebrow">film & tv tracker</p>
+        <h1 class="detail-hero-title">slate</h1>
+        <div class="detail-hero-chips">
+          <span class="project-chip" data-type="design">design</span>
+          <span class="project-chip" data-type="code">code</span>
+        </div>
+        <p class="detail-hero-desc">A personal film and series tracker with custom tags and personalised recommendations.</p>
+      </div>
+      <div class="detail-postit">
+        <p class="detail-postit-title">overview</p>
+        <div class="detail-postit-overview">
+          <p><strong>context:</strong> personal project</p>
+          <p><strong>timeline:</strong> 20 weeks</p>
+          <p><strong>role:</strong> UX/UI design, full-stack development</p>
+          <p><strong>techstack:</strong> Figma, JavaScript, TMDB API</p>
+        </div>
+        <a class="detail-postit-link" href="https://slate.stephanieroemer.ch" target="_blank" rel="noopener noreferrer">view project →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-sections">
+    <section class="detail-section" id="section-problem">
+      <p class="detail-section-label">01 — the problem</p>
+      <h2 class="detail-section-heading">The Problem</h2>
+      <div class="detail-section-body"><p>Existing trackers (Letterboxd, IMDb) optimise for a public rating and review. slate is deliberately private-first and built around a custom tagging vocabulary — so recommendations come from your own tags, not a global algorithm.</p></div>
+    </section>
+    <section class="detail-section" id="section-process">
+      <p class="detail-section-label">02 — the process</p>
+      <h2 class="detail-section-heading">The Process</h2>
+      <div class="detail-section-body"><p>Designed the tagging system first as a data model exercise before it was ever a UI — what needs to be many-to-many, what needs to be searchable, what needs to feed the recommendation logic. UI design followed once that structure held up.</p><div class="detail-img-row"><div class="detail-img" style="background:#EFE3F5;">tag data model</div><div class="detail-img" style="background:#F1E7B8;">tracker UI</div></div></div>
+    </section>
+    <section class="detail-section" id="section-solution">
+      <p class="detail-section-label">03 — the solution</p>
+      <h2 class="detail-section-heading">The Solution</h2>
+      <div class="detail-section-body"><p>A working app: a film API for metadata/posters, a custom tagging layer on top, and simple recommendation logic that surfaces titles sharing tags with what you've rated highly.</p></div>
+    </section>
+    <section class="detail-section" id="section-reflection">
+      <p class="detail-section-label">04 — reflection</p>
+      <h2 class="detail-section-heading">Reflection & Takeaways</h2>
+      <div class="detail-section-body"><p>Doing the data modelling before the UI was the right call — it meant the interface didn't have to work around structural decisions made too early. The recommendation logic is intentionally simple right now; a natural next step would be weighting tags by recency.</p></div>
+    </section>
+  </div>
+
+  <div class="detail-footer">
+    <div class="detail-project-nav">
+      <a href="shuffle.html">← previous project</a>
+      <a href="standort-i.html">next project →</a>
+    </div>
+  </div>
+</div>
+
+<script src="../projects.js"></script>
+</body>
+</html>

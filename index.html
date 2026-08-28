@@ -72,239 +72,141 @@
         <h2 data-de="digital designer" data-en="digital designer">digital designer</h2>
     </div>
 
-    <section class="projects-folder" id="projects">
-        <div class="folder-tabs-new">
-            <button class="tab-btn active" data-tab="projects" data-de="alle projekte" data-en="all projects">all projects</button>
-            <button class="tab-btn" data-tab="skills" data-de="design" data-en="design">design</button>
-            <button class="tab-btn" data-tab="about" data-de="code" data-en="code">code</button>
-            <button class="tab-btn" data-tab="contact" data-de="film" data-en="film">film</button>
-        </div>
-        <div class="folder-content">
-            <div class="tab-content active" data-content="projects">
-                <div class="projects-wrapper" style="position: relative; padding: 0 3rem;">
-                    <button id="prev-projects"
-                        style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 100; opacity: 0.6; transition: opacity 0.3s; background: transparent; border: none; font-size: 2rem; padding: 0.5rem;"
-                        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
-                        <a href="#" onclick="event.preventDefault();" style="color: var(--blue);">←</a>
-                    </button>
-                    <button id="next-projects"
-                        style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 100; opacity: 0.6; transition: opacity 0.3s; background: transparent; border: none; font-size: 2rem; padding: 0.5rem;"
-                        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
-                        <a href="#" onclick="event.preventDefault();" style="color: var(--blue);">→</a>
-                    </button>
-                    <div class="projects-grid">
-                        <div class="project-card" data-tags="ux/ui design|design,frontend development|code" data-title="fangis"
-                            data-type-de="multiplayer mobile app" data-type-en="multiplayer mobile app"
-                            data-type="multiplayer mobile app"
-                            data-year="2026"
-                            data-description-de="Eine interaktive Multiplayer-App, die klassisches Fangen mit moderner Technologie verbindet."
-                            data-description-en="An interactive multiplayer app that combines classic tag with modern technology."
-                            data-description="An interactive multiplayer app that combines classic tag with modern technology."
-                            data-details-de="• Konzeption der User Flows und zentralen Interaktionen
-• Entwicklung des visuellen Konzepts und UI-Designs
-• Umsetzung des Frontends mit Vue in einer komponentenbasierten Struktur"
-                            data-details-en="• Concept development for user flows and core interactions
-• Development of the visual concept and UI design
-• Frontend implementation with Vue in a component-based structure"
-                            data-details="• Concept development for user flows and core interactions
-• Development of the visual concept and UI design
-• Frontend implementation with Vue in a component-based structure"
-                            data-link="https://www.fangis.app/landing_page"
-                            data-images="assets/projects/fangis1.webp,assets/projects/fangis2.webp,assets/projects/fangis3.webp">
-                            <div class="project-image-stack">
-                                <img src="assets/projects/fangis3.webp" alt="fangis app screen 3"
-                                    class="project-image stack-image stack-right" loading="lazy">
-                                <img src="assets/projects/fangis2.webp" alt="fangis app screen 2"
-                                    class="project-image stack-image stack-left" loading="lazy">
-                                <img src="assets/projects/fangis1.webp" alt="fangis app" class="project-image main-image" loading="lazy">
-                            </div>
-                            <div class="project-info">
-                                <h2 class="project-title">fangis</h2>
-                                <p class="project-type" data-de="multiplayer mobile app" data-en="multiplayer mobile app">multiplayer mobile app</p>
-                                <div class="project-chips">
-                                    <span class="project-chip" data-type="design">design</span>
-                                    <span class="project-chip" data-type="code">code</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-card" data-tags="idee & skript|weiteres,regie|weiteres,schnitt|weiteres"
-                            data-tags-en="concept & script|weiteres,direction|weiteres,editing|weiteres"
-                            data-title="standort i"
-                            data-type-de="mockumentary" data-type-en="mockumentary"
-                            data-type="mockumentary"
-                            data-year="2026"
-                            data-description-de="Der Alltag von Multimedia Production Studierenden erzählt im Mockumentary-Stil."
-                            data-description-en="The everyday life of Multimedia Production students told in mockumentary style."
-                            data-description="The everyday life of Multimedia Production students told in mockumentary style."
-                            data-details-de="• Entwicklung von Idee und Skript
-• Regie und Koordination der Produktionsabläufe
-• Schnitt und Musik-Komposition"
-                            data-details-en="• Development of the concept and script
-• Direction and coordination of production workflows
-• Editing and music composition"
-                            data-details="• Development of the concept and script
-• Direction and coordination of production workflows
-• Editing and music composition"
-                            data-link="https://youtu.be/OjJlzBbxOEI"
-                            data-images="assets/projects/standorti.webp">
-                            <img src="assets/projects/standorti.webp" alt="standort i mockumentary still" class="project-image" loading="lazy">
-                            <div class="project-info">
-                                <h2 class="project-title">standort i</h2>
-                                <p class="project-type" data-de="mockumentary" data-en="mockumentary">mockumentary</p>
-                                <div class="project-chips">
-                                    <span class="project-chip" data-type="weiteres" data-de="film" data-en="film">film</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-card" data-tags="filmproduktion|weiteres,postproduktion|weiteres"
-                            data-tags-en="film production|weiteres,post-production|weiteres"
-                            data-title="markthalle ix"
-                            data-type-de="kurzdoku" data-type-en="short documentary"
-                            data-type="short documentary"
-                            data-year="2024"
-                            data-description-de="Eine Kurzdoku über die Markthalle Neun in Berlin-Kreuzberg."
-                            data-description-en="A short documentary about Markthalle Neun in Berlin-Kreuzberg."
-                            data-description="A short documentary about Markthalle Neun in Berlin-Kreuzberg."
-                            data-details-de="• Mitarbeit an der inhaltlichen Konzeption
-• Mitarbeit in sämtlichen Produktionsbereichen (Ton, Kamera, Licht)
-• Aufbau narrativer Struktur in der Postproduktion
-• Color Correction und Color Grading"
-                            data-details-en="• Contribution to content conception
-• Contribution across all production areas (sound, camera, lighting)
-• Building narrative structure in post-production
-• Colour correction and colour grading"
-                            data-details="• Contribution to content conception
-• Contribution across all production areas (sound, camera, lighting)
-• Building narrative structure in post-production
-• Colour correction and colour grading"
-                            data-link="https://youtu.be/hV32e24igqA"
-                            data-images="assets/projects/markthalleix_static.webp">
-                            <img src="assets/projects/markthalleix_static.webp"
-                                data-static="assets/projects/markthalleix_static.webp"
-                                data-animated="assets/projects/markthalleix.gif" alt="markthalle ix documentary still"
-                                class="project-image gif-image" loading="lazy">
-                            <div class="project-info">
-                                <h2 class="project-title">markthalle ix</h2>
-                                <p class="project-type" data-de="kurzdoku" data-en="short documentary">short documentary</p>
-                                <span class="project-chip" data-type="weiteres" data-de="film" data-en="film">film</span>
-                            </div>
-                        </div>
-                        <div class="project-card" data-tags="ux/ui design|design, development|code" data-title="slate"
-                            data-type-de="film und tv tracker" data-type-en="film & tv tracker"
-                            data-type="film & tv tracker"
-                            data-year="2025"
-                            data-description-de="Ein persönlicher Film- und Serien-Tracker mit individuellen Tags und personalisierten Empfehlungen."
-                            data-description-en="A personal film and series tracker with custom tags and personalised recommendations."
-                            data-description="A personal film and series tracker with custom tags and personalised recommendations."
-                            data-details-de="• Konzeption und Design der Benutzeroberfläche
-• Entwicklung des Tagging-Systems und der Empfehlungslogik
-• Integration einer Film-API und Aufbau der Datenstruktur"
-                            data-details-en="• Concept and design of the user interface
-• Development of the tagging system and recommendation logic
-• Integration of a film API and data structure setup"
-                            data-details="• Concept and design of the user interface
-• Development of the tagging system and recommendation logic
-• Integration of a film API and data structure setup"
-                            data-link="https://slate.stephanieroemer.ch"
-                            data-images="assets/projects/slate4.webp,assets/projects/slate2.webp,assets/projects/slate3.webp">
-                            <div class="project-image-stack">
-                                <img src="assets/projects/slate3.webp" alt="slate app screen 3"
-                                    class="project-image stack-image stack-right" loading="lazy">
-                                <img src="assets/projects/slate2.webp" alt="slate app screen 2"
-                                    class="project-image stack-image stack-left" loading="lazy">
-                                <img src="assets/projects/slate4.webp" alt="slate app" class="project-image main-image" loading="lazy">
-                            </div>
-                            <div class="project-info">
-                                <h2 class="project-title">slate</h2>
-                                <p class="project-type" data-de="film und tv tracker" data-en="film & tv tracker">film & tv tracker</p>
-                                <div class="project-chips">
-                                    <span class="project-chip" data-type="design">design</span>
-                                    <span class="project-chip" data-type="code">code</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-card" data-tags="code|code" data-title="wordle"
-                            data-type-de="desktop game" data-type-en="desktop game"
-                            data-type="desktop game"
-                            data-year="2024"
-                            data-description-de="Eine alternative Version des beliebten Worträtselspiels, wobei ein Synonym gesucht wird. Entwickelt als Desktop-Anwendung."
-                            data-description-en="An alternative version of the popular word puzzle game where the objective is to find a synonym. Built as a desktop application."
-                            data-description="An alternative version of the popular word puzzle game where the objective is to find a synonym. Built as a desktop application."
-                            data-details-de="• Integration zwei externer APIs
-• Erweiterung um eigene Features wie Dark Mode und visuelles Feedback (Konfetti)"
-                            data-details-en="• Integration of two external APIs
-• Added custom features such as dark mode and visual feedback (confetti)"
-                            data-details="• Integration of two external APIs
-• Added custom features such as dark mode and visual feedback (confetti)"
-                            data-link="https://digezz.ch/projekte/wordle/" data-images="assets/projects/wordle.webp">
-                            <img src="assets/projects/wordle.webp" alt="wordle game screenshot" class="project-image" loading="lazy">
-                            <div class="project-info">
-                                <h2 class="project-title">wordle</h2>
-                                <p class="project-type" data-de="desktop game" data-en="desktop game">desktop game</p>
-                                <span class="project-chip" data-type="code">code</span>
-                            </div>
-                        </div>
-                        <div class="project-card" data-tags="ux/ui design|design" data-title="shuffle"
-                            data-type-de="mobile musik und workout app" data-type-en="mobile music & workout app"
-                            data-type="mobile music & workout app"
-                            data-year="2023"
-                            data-description-de="Eine Musik- und Fitness-App mit Customization und Social Features."
-                            data-description-en="A music and fitness app with customisation and social features."
-                            data-description="A music and fitness app with customisation and social features."
-                            data-details-de="• UX-Research mit Erstellung von Personas, User Journeys und Competitor Analysis
-• Konzeption der Informationsarchitektur
-• Aufbau eines konsistenten Design Systems
-• Gestaltung eines interaktiven, funktionsfähigen Prototypen in Figma"
-                            data-details-en="• UX research including personas, user journeys, and competitor analysis
-• Information architecture design
-• Building a consistent design system
-• Creating an interactive, functional prototype in Figma"
-                            data-details="• UX research including personas, user journeys, and competitor analysis
-• Information architecture design
-• Building a consistent design system
-• Creating an interactive, functional prototype in Figma"
-                            data-link="https://www.figma.com/proto/QMQ4dwb0HRrsAWxyGznvAQ/Shuffle?page-id=312%3A2815&node-id=69-627&p=f&viewport=483%2C256%2C0.06&t=Zw3EnHxa5Skpi8lB-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=69%3A627&show-proto-sidebar=1"
-                            data-images="assets/projects/shuffle1.webp,assets/projects/shuffle2.webp,assets/projects/shuffle3.webp">
-                            <div class="project-image-stack">
-                                <img src="assets/projects/shuffle3.webp" alt="shuffle app screen 3"
-                                    class="project-image stack-image stack-right" loading="lazy">
-                                <img src="assets/projects/shuffle2.webp" alt="shuffle app screen 2"
-                                    class="project-image stack-image stack-left" loading="lazy">
-                                <img src="assets/projects/shuffle1.webp" alt="shuffle app" class="project-image main-image" loading="lazy">
-                            </div>
-                            <div class="project-info">
-                                <h2 class="project-title">shuffle</h2>
-                                <p class="project-type" data-de="mobile musik und workout app" data-en="mobile music & workout app">mobile music & workout app</p>
-                                <span class="project-chip" data-type="design">design</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    
+<section class="projects-folder" id="projects">
+  <div class="folder-shell">
+    <div class="folder-tabs-new">
+      <button class="tab-btn active" data-tab="projects">
+        <svg viewBox="0 0 509 80" preserveAspectRatio="none"><path d="M356.161 6.27654e-05C371.996 6.27654e-05 405.164 2.7171 427.069 38.2848C449.885 75.3345 474.507 79.5798 496.301 79.9657H509C504.905 79.9657 500.659 80.0429 496.301 79.9657L12.6994 79.9656C8.34081 80.0428 4.0953 79.9656 0 79.9656H12.6994C34.4928 79.5797 59.1146 75.3344 81.9315 38.2847C103.836 2.71704 138.818 0.000200931 152.839 0L356.161 6.27654e-05Z"/></svg>
+        <span class="tab-label">all projects</span>
+      </button>
+      <button class="tab-btn" data-tab="skills">
+        <svg viewBox="0 0 509 80" preserveAspectRatio="none"><path d="M356.161 6.27654e-05C371.996 6.27654e-05 405.164 2.7171 427.069 38.2848C449.885 75.3345 474.507 79.5798 496.301 79.9657H509C504.905 79.9657 500.659 80.0429 496.301 79.9657L12.6994 79.9656C8.34081 80.0428 4.0953 79.9656 0 79.9656H12.6994C34.4928 79.5797 59.1146 75.3344 81.9315 38.2847C103.836 2.71704 138.818 0.000200931 152.839 0L356.161 6.27654e-05Z"/></svg>
+        <span class="tab-label">design</span>
+      </button>
+      <button class="tab-btn" data-tab="about">
+        <svg viewBox="0 0 509 80" preserveAspectRatio="none"><path d="M356.161 6.27654e-05C371.996 6.27654e-05 405.164 2.7171 427.069 38.2848C449.885 75.3345 474.507 79.5798 496.301 79.9657H509C504.905 79.9657 500.659 80.0429 496.301 79.9657L12.6994 79.9656C8.34081 80.0428 4.0953 79.9656 0 79.9656H12.6994C34.4928 79.5797 59.1146 75.3344 81.9315 38.2847C103.836 2.71704 138.818 0.000200931 152.839 0L356.161 6.27654e-05Z"/></svg>
+        <span class="tab-label">code</span>
+      </button>
+      <button class="tab-btn" data-tab="contact">
+        <svg viewBox="0 0 509 80" preserveAspectRatio="none"><path d="M356.161 6.27654e-05C371.996 6.27654e-05 405.164 2.7171 427.069 38.2848C449.885 75.3345 474.507 79.5798 496.301 79.9657H509C504.905 79.9657 500.659 80.0429 496.301 79.9657L12.6994 79.9656C8.34081 80.0428 4.0953 79.9656 0 79.9656H12.6994C34.4928 79.5797 59.1146 75.3344 81.9315 38.2847C103.836 2.71704 138.818 0.000200931 152.839 0L356.161 6.27654e-05Z"/></svg>
+        <span class="tab-label">film</span>
+      </button>
+    </div>
+  </div>
+ 
+  <div class="folder-content" data-active-tab="projects">
+   <div class="folder-content-fill">
+    <div class="projects-wrapper">
+      <button id="prev-projects" class="nav-arrow">←</button>
+      <button id="next-projects" class="nav-arrow">→</button>
+ 
+      <div class="projects-grid" id="projectsGrid">
+ 
+        <a class="project-card" href="projects/fangis.html" data-chips="design,code">
+          <div class="project-thumb project-thumb--image project-thumb--fangis">
+            <img class="project-thumb-back back-1" src="assets/projects/fangis2.webp" alt="fangis detail preview" loading="lazy">
+            <img class="project-thumb-back back-2" src="assets/projects/fangis3.webp" alt="fangis detail preview" loading="lazy">
+            <div class="project-thumb-main">
+              <img class="project-thumb-image" src="assets/projects/fangis1.webp" alt="fangis project preview" loading="lazy">
+            </div>
+          </div>
+          <div class="project-info">
+            <h2 class="project-title">fangis</h2>
+            <p class="project-type">multiplayer mobile app</p>
+            <div class="project-chips">
+              <span class="project-chip" data-type="design">design</span>
+              <span class="project-chip" data-type="code">code</span>
+            </div>
+          </div>
+        </a>
+ 
+        <a class="project-card" href="projects/standort-i.html" data-chips="weiteres">
+          <div class="project-thumb project-thumb--image">
+            <div class="project-thumb-main">
+              <img class="project-thumb-image" src="assets/projects/standorti.webp" alt="standort i project preview" loading="lazy">
+            </div>
+          </div>
+          <div class="project-info">
+            <h2 class="project-title">standort i</h2>
+            <p class="project-type">mockumentary</p>
+            <div class="project-chips">
+              <span class="project-chip" data-type="weiteres">film</span>
+            </div>
+          </div>
+        </a>
 
-                <!-- Project Detail View inside folder -->
-                <div class="project-detail-container" id="projectDetailContainer" style="display: none;">
-                    <button class="detail-back-btn" id="backToProjects">✕</button>
-                    <div class="detail-grid">
-                        <div class="detail-images">
-                            <div class="detail-image-container" id="detailImages"></div>
-                        </div>
-                        <div class="detail-info">
-                            <h2 class="detail-title" id="detailTitle"></h2>
-                            <div class="detail-chips" id="detailChips"></div>
-                            <p class="detail-description" id="detailDescription"></p>
-                            <p class="detail-body" id="detailBody"></p>
-                            <p class="detail-year" id="detailYear"></p>
-                            <a href="#" class="detail-link" id="detailLink" target="_blank" rel="noopener noreferrer">
-                                <button data-de="projekt ansehen →" data-en="view project →">view project →</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <a class="project-card" href="projects/markthalle-ix.html" data-chips="weiteres">
+          <div class="project-thumb project-thumb--image project-thumb--markthalle">
+            <div class="project-thumb-main">
+              <img class="project-thumb-image" src="assets/projects/markthalleix_static.webp" alt="markthalle ix project preview" loading="lazy">
+              <img class="project-thumb-image project-thumb-hover-media" src="assets/projects/markthalleix.gif" alt="markthalle ix animated preview" loading="lazy">
             </div>
-            <div class="tab-content" data-content="skills">
+          </div>
+          <div class="project-info">
+            <h2 class="project-title">markthalle ix</h2>
+            <p class="project-type">short documentary</p>
+            <div class="project-chips">
+              <span class="project-chip" data-type="weiteres">film</span>
             </div>
-        </div>
-    </section>
+          </div>
+        </a>
+
+        <a class="project-card" href="projects/slate.html" data-chips="design,code">
+          <div class="project-thumb project-thumb--image project-thumb--slate">
+            <img class="project-thumb-back back-1" src="assets/projects/slate3.webp" alt="slate detail preview" loading="lazy">
+            <img class="project-thumb-back back-2" src="assets/projects/slate4.webp" alt="slate detail preview" loading="lazy">
+            <div class="project-thumb-main">
+              <img class="project-thumb-image" src="assets/projects/slate2.webp" alt="slate project preview" loading="lazy">
+            </div>
+          </div>
+          <div class="project-info">
+            <h2 class="project-title">slate</h2>
+            <p class="project-type">film & tv tracker</p>
+            <div class="project-chips">
+              <span class="project-chip" data-type="design">design</span>
+              <span class="project-chip" data-type="code">code</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card" href="projects/wordle.html" data-chips="code">
+          <div class="project-thumb project-thumb--image">
+            <div class="project-thumb-main">
+              <img class="project-thumb-image" src="assets/projects/wordle.webp" alt="wordle project preview" loading="lazy">
+            </div>
+          </div>
+          <div class="project-info">
+            <h2 class="project-title">wordle</h2>
+            <p class="project-type">desktop game</p>
+            <div class="project-chips">
+              <span class="project-chip" data-type="code">code</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card" href="projects/shuffle.html" data-chips="design">
+          <div class="project-thumb project-thumb--image project-thumb--shuffle">
+            <img class="project-thumb-back back-1" src="assets/projects/shuffle2.webp" alt="shuffle detail preview" loading="lazy">
+            <img class="project-thumb-back back-2" src="assets/projects/shuffle3.webp" alt="shuffle detail preview" loading="lazy">
+            <div class="project-thumb-main">
+              <img class="project-thumb-image" src="assets/projects/shuffle1.webp" alt="shuffle project preview" loading="lazy">
+            </div>
+          </div>
+          <div class="project-info">
+            <h2 class="project-title">shuffle</h2>
+            <p class="project-type">mobile music & workout app</p>
+            <div class="project-chips">
+              <span class="project-chip" data-type="design">design</span>
+            </div>
+          </div>
+        </a>
+ 
+      </div>
+    </div>
+   </div>
+  </div>
+</section>
 
     <section class="about-section" id="about">
         <div class="postits-container">
