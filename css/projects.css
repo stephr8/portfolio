@@ -153,7 +153,7 @@ body {
 .folder-content-fill {
   width: 100%;
   background: #F1F2F5;
-  border-radius: 0 clamp(1.5rem, 3.5vw, 2.75rem) clamp(0.85rem, 2vw, 1.5rem) clamp(0.85rem, 2vw, 1.5rem);
+  border-radius: 0 clamp(0rem, 0vw, 2.75rem) clamp(0.85rem, 2vw, 1rem) clamp(0.85rem, 2vw, 1rem);
   padding: clamp(2rem, 4vw, 3.5rem);
   aspect-ratio: 1440 / 777; /* folder_paper.svg's own proportions */
 }
@@ -252,9 +252,6 @@ body {
 .project-thumb--fangis .back-1 { transform: scale(0.88) rotate(0deg); }
 .project-thumb--fangis .back-2 { transform: scale(0.88) rotate(0deg); }
 
-.project-thumb--shuffle .back-1 { transform: scale(0.88) rotate(0deg); }
-.project-thumb--shuffle .back-2 { transform: scale(0.88) rotate(0deg); }
-
 .project-thumb--slate .back-1 { transform: scale(0.88) rotate(0deg); }
 .project-thumb--slate .back-2 { transform: scale(0.88) rotate(0deg); }
 
@@ -293,7 +290,7 @@ body {
 }
 
 .project-info { display: flex; flex-direction: column; gap: 0.4rem; }
-.project-title { font-family: 'Neue Regrade', sans-serif; font-size: clamp(1.2rem, 2vw, 1.6rem); margin: 0; font-weight: 600; }
+.project-title { font-family: 'Neue Regrade', sans-serif; font-size: 2rem; margin: 0; font-weight: 600; margin-bottom: -0.75rem;}
 .project-type { margin: 0; font-size: clamp(0.85rem, 1.4vw, 1rem); }
 .project-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.2rem; }
 .project-chip {
