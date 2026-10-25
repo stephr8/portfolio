@@ -417,15 +417,6 @@ body {
   align-items: start;
 }
 
-.detail-eyebrow {
-  font-family: 'Inclusive Sans', sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  opacity: 0.6;
-  margin: 0 0 0.4rem;
-}
 .detail-hero-title {
   /* Resets the site's global h1 rule (used for the homepage hero's
      absolutely-positioned text overlay) from leaking in here. Without
@@ -441,6 +432,7 @@ body {
   font-size: clamp(2.2rem, 5.5vw, 4rem);
   margin: 0;
   line-height: 1.05;
+  color: var(--red_dark);
 }
 .detail-hero-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
 .detail-hero-desc {
@@ -461,22 +453,13 @@ body {
   border-top: 2px dashed rgba(74, 22, 32, 0.15);
 }
 
-.detail-section-label {
-  font-family: 'Inclusive Sans', sans-serif;
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  opacity: 0.5;
-  margin: 0 0 0.4rem;
-}
 .detail-section-heading {
   position: static;
   inset: auto;
   font-family: 'Neue Regrade', sans-serif;
   font-weight: 700;
   font-size: clamp(1.4rem, 2.6vw, 1.9rem);
-  margin: 0 0 1rem;
+  margin: 0 0 0.5rem;
 }
 .detail-section-body {
   font-weight: 400;

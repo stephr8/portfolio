@@ -30,7 +30,6 @@
   <div class="detail-hero">
     <div class="detail-hero-row">
       <div>
-        <p class="detail-eyebrow">desktop game</p>
         <h1 class="detail-hero-title">wordle</h1>
         <div class="detail-hero-chips">
           <span class="project-chip" data-type="code">code</span>
@@ -52,22 +51,18 @@
 
   <div class="detail-sections">
     <section class="detail-section" id="section-challenge">
-      <p class="detail-section-label">01 — the challenge</p>
       <h2 class="detail-section-heading">The Challenge</h2>
       <div class="detail-section-body"><p>The core challenge wasn't the Wordle mechanic itself (that part's well-documented) — it was sourcing a reliable synonym relationship and definition on the fly, from two separate APIs that don't agree on data shape.</p><ul><li>Normalising two different API response formats into one internal model</li><li>Handling API failures gracefully mid-game without breaking the guess flow</li></ul></div>
     </section>
     <section class="detail-section" id="section-approach">
-      <p class="detail-section-label">02 — the approach</p>
       <h2 class="detail-section-heading">The Approach</h2>
       <div class="detail-section-body"><p>Kept state management deliberately simple — a single game-state object updated per guess, re-rendered declaratively rather than manipulating the DOM piecemeal. API calls are cached per session so repeated guesses of the same word don't re-fetch.</p></div>
     </section>
     <section class="detail-section" id="section-build">
-      <p class="detail-section-label">03 — the build</p>
       <h2 class="detail-section-heading">The Build</h2>
       <div class="detail-section-body"><p>Beyond the core loop, added a few things purely because they made testing the game more fun: a dark mode toggle, and a small confetti burst on a correct guess as visual feedback.</p><div class="detail-img-row"><div class="detail-img" style="background:#E4E9F5;">dark mode</div></div></div>
     </section>
     <section class="detail-section" id="section-reflection">
-      <p class="detail-section-label">04 — reflection</p>
       <h2 class="detail-section-heading">Reflection & Next Steps</h2>
       <div class="detail-section-body"><p>Learned the hard way that "just use two APIs" front-loads a lot of defensive coding. If I rebuilt this, I'd add a small local fallback word list so the game degrades gracefully instead of breaking when an API is slow or down.</p></div>
     </section>
