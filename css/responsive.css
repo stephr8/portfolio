@@ -7,15 +7,8 @@
       source of truth at the site's real 768px/480px breakpoints instead
       of three different files disagreeing at three different widths.
 
-   2. Heads up on a naming collision: the new project-detail page's
-      "overview" note uses the class `.postit`, and this file already has
-      a `.postits-container` section using the same class name for what
-      looks like an unrelated 3-note feature elsewhere on the site. I've
-      scoped every new detail-page postit rule below to
-      `.detail-hero-row .postit` specifically, so it can't leak into your
-      existing `.postits-container` styling (or vice versa) — but the two
-      features sharing one class name is worth renaming one of them to
-      avoid surprises later (e.g. `.overview-postit` for the new one).
+   2. Project-detail notes are scoped in projects.css so they do not
+      affect the homepage about section.
    ============================================ */
 
 /* ============================================
@@ -37,30 +30,6 @@
         transform: scale(1.6);
     }
 
-    .contact-container {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-arrow {
-        display: block;
-        transform: rotate(90deg);
-        width: clamp(80px, 12vw, 120px);
-        margin: 2rem auto;
-    }
-
-    .message {
-        max-width: 90%;
-    }
-
-    .contact-icons {
-        flex-direction: row;
-        gap: 3rem;
-    }
-
-    .linkedin-icon {
-        width: clamp(100px, 16vw, 130px);
-    }
-
     #scroll-to-top {
         right: 1rem;
         bottom: 1rem;
@@ -68,31 +37,6 @@
         padding: 0.5rem 0.75rem;
     }
 
-    /* ---- Unrelated 3-postit feature (see note at top of file) ---- */
-    .postits-container {
-        grid-template-columns: 1fr;
-        padding: 0;
-        gap: 0;
-    }
-
-    .postits-container .postit {
-        max-width: 280px;
-        margin: -0.75rem auto;
-        transform: rotate(0deg);
-    }
-
-    .postits-container .postit:first-child {
-        margin-top: 0;
-        transform: rotate(-1.5deg);
-    }
-
-    .postits-container .postit:nth-child(2) {
-        transform: rotate(1deg);
-    }
-
-    .postits-container .postit:nth-child(3) {
-        transform: rotate(-0.8deg);
-    }
 }
 
 /* ============================================
@@ -204,25 +148,6 @@
         left: 57%;
         top: 70%;
         width: 13%;
-    }
-
-    /* ---- Unrelated 3-postit feature (see note at top of file) ---- */
-    .postits-container .postit {
-        padding: 1.25rem;
-        margin: -1rem auto;
-    }
-
-    .postits-container .postit:first-child {
-        margin-top: 0;
-        transform: rotate(-2deg);
-    }
-
-    .postits-container .postit:nth-child(2) {
-        transform: rotate(1.5deg);
-    }
-
-    .postits-container .postit:nth-child(3) {
-        transform: rotate(-1deg);
     }
 
     .footer button {

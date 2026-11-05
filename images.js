@@ -264,4 +264,147 @@ window.addEventListener('DOMContentLoaded', () => {
       card.addEventListener('mouseleave', () => { gifImage.src = staticSrc; });
     }
   });
+
+  const aboutRoles = [
+    {
+      name: 'ux/ui designer',
+      color: '#C5D77A',
+      description: 'From first sketches and user flows to prototypes and frontend builds: I design interfaces that make sense and look good.',
+      skills: ['user research', 'user flows', 'wireframes', 'prototyping', 'UI design'],
+      tools: ['Figma', 'HTML', 'CSS', 'JavaScript', 'Vue'],
+    },
+    {
+      name: 'graphic designer',
+      color: '#FDC8EE',
+      description: 'Layout, typography, colour and illustration that make a project feel like one world.',
+      skills: ['layout & typography', 'colour', 'illustration', 'visual identity'],
+      tools: ['Illustrator', 'InDesign', 'Figma'],
+    },
+    {
+      name: 'filmmaker',
+      color: '#F2E8BE',
+      description: 'From first idea to final cut: I direct and edit short films and series.',
+      skills: ['directing', 'editing', 'motion graphics', 'storytelling'],
+      tools: ['Premiere Pro', 'After Effects'],
+    },
+    {
+      name: 'multimedia producer',
+      color: '#DDE3F5',
+      description: 'Where it all comes together: planning, producing and managing digital content across video, web and social.',
+      skills: ['production assistance', 'content management', 'content planning', 'post-production'],
+      tools: ['Premiere Pro', 'Figma']
+    }
+  ];
+
+  const aboutSection = document.querySelector('.about-section');
+  if (aboutSection) {
+    const heading = aboutSection.querySelector('.about-heading');
+    const introduction = aboutSection.querySelector('.about-introduction');
+    const details = aboutSection.querySelector('.about-role-details');
+    const tools = aboutSection.querySelector('.about-tools');
+    const roleSelector = aboutSection.querySelector('.about-role-selector');
+    const photoCard = aboutSection.querySelector('.about-photo-card');
+    const toolItems = aboutSection.querySelectorAll('.tool-item[data-tool]');
+    const roleButtons = aboutSection.querySelectorAll('[data-about-role]');
+    const headingText = aboutSection.querySelector('.about-heading-text');
+
+    let activeRoleIndex = -1;
+    let headingFrame = 0;
+
+    const animateHeading = (segments, preservePrefix = false) => {
+      cancelAnimationFrame(headingFrame);
+      if (preservePrefix) {
+        const roleSegment = headingText.querySelector('.about-heading-role');
+        const nextRole = segments.find(segment => segment.role);
+        if (roleSegment && nextRole) {
+          roleSegment.classList.remove('is-visible');
+          headingFrame = requestAnimationFrame(() => {
+            roleSegment.textContent = nextRole.text;
+            roleSegment.style.setProperty('--role-color', nextRole.color);
+            roleSegment.classList.add('is-visible');
+          });
+        }
+        return;
+      }
+
+      headingText.innerHTML = segments.map(segment =>
+        `<span class="about-heading-segment ${segment.role ? 'about-heading-role' : ''}"${segment.color ? ` style="--role-color:${segment.color}"` : ''}>${segment.text}</span>`
+      ).join('');
+      const headingSegments = headingText.querySelectorAll('.about-heading-segment');
+      void headingText.offsetWidth;
+      headingFrame = requestAnimationFrame(() => {
+        headingSegments.forEach(segment => {
+          segment.classList.add('is-visible');
+        });
+      });
+    };
+
+    const showAboutRole = (roleIndex) => {
+      const role = aboutRoles[roleIndex];
+      roleButtons.forEach(button => {
+        button.setAttribute('aria-pressed', button.dataset.aboutRole === String(roleIndex));
+      });
+
+      if (!role) {
+        animateHeading([
+          { text: 'hi, i’m ' },
+          { text: 'stephanie!' }
+        ]);
+        introduction.hidden = false;
+        details.classList.remove('is-visible');
+        tools.classList.remove('is-visible');
+        roleSelector.classList.remove('is-hidden');
+        photoCard.classList.add('is-me');
+        toolItems.forEach(item => { item.hidden = true; });
+        activeRoleIndex = -1;
+        return;
+      }
+
+      animateHeading([
+        { text: 'i’m a ' },
+        { text: role.name, role: true, color: role.color }
+      ], activeRoleIndex >= 0);
+      introduction.hidden = true;
+      roleSelector.classList.add('is-hidden');
+      details.innerHTML = `<p>${role.description}</p><span class="about-skills-label">skills</span><div class="about-role-skills">${role.skills
+        .map(skill => `<span class="about-role-skill">${skill}</span>`).join('')}</div>`;
+      details.classList.add('is-visible');
+      tools.classList.add('is-visible');
+      photoCard.classList.remove('is-me');
+      toolItems.forEach(item => { item.hidden = !role.tools.includes(item.dataset.tool); });
+      activeRoleIndex = roleIndex;
+    };
+
+    roleButtons.forEach(button => {
+      button.addEventListener('click', () => showAboutRole(Number(button.dataset.aboutRole)));
+    });
+    showAboutRole(-1);
+  }
+
+  const envelope = document.querySelector('.envelope-wrapper');
+  if (envelope) {
+    const openEnvelope = () => envelope.classList.add('is-open');
+    const envelopeObserver = 'IntersectionObserver' in window
+      ? new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            openEnvelope();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.6 })
+      : null;
+
+    envelopeObserver?.observe(envelope);
+    envelope.addEventListener('click', event => {
+      if (event.target.closest('.email-button')) return;
+      envelope.classList.toggle('is-open');
+    });
+    envelope.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        envelope.classList.toggle('is-open');
+      }
+    });
+  }
 });
