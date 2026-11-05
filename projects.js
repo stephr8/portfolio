@@ -1,5 +1,5 @@
 // ============================================
-// index.html: folder tab filtering + pagination
+// index.html: project filtering + pagination
 // ============================================
 // Which chip type each tab filters by. "projects" = show all.
 const TAB_FILTER = { projects: null, skills: 'design', about: 'code', contact: 'weiteres' };
@@ -7,7 +7,7 @@ const TAB_FILTER = { projects: null, skills: 'design', about: 'code', contact: '
 const grid = document.getElementById('projectsGrid');
 
 if (grid) {
-  const contentPanel = document.querySelector('.folder-content');
+  const contentPanel = document.querySelector('.projects-content');
   const allCards = Array.from(grid.querySelectorAll('.project-card'));
 
   // give every card an explicit match state up front (matches current tab)
@@ -15,7 +15,7 @@ if (grid) {
 
   let currentPage = 0;
   const MAX_PER_PAGE = 4; // hard cap — never show more than 4 project cards on one page
-  function projectsPerPage() { return Math.min(MAX_PER_PAGE, window.innerWidth <= 768 ? 3 : 4); }
+  function projectsPerPage() { return MAX_PER_PAGE; }
   function matchingCards() { return allCards.filter(c => c.dataset.match !== 'false'); }
 
   function showPage(page) {
@@ -25,7 +25,7 @@ if (grid) {
     allCards.forEach(c => {
       if (c.dataset.match === 'false') { c.style.display = 'none'; return; }
       const i = matching.indexOf(c);
-      c.style.display = (i >= start && i < end) ? 'grid' : 'none';
+      c.style.display = (i >= start && i < end) ? '' : 'none';
     });
     const totalPages = Math.ceil(matching.length / perPage) || 1;
     document.getElementById('prev-projects').style.visibility = page === 0 ? 'hidden' : 'visible';
@@ -115,3 +115,15 @@ if (detailMenuBtn && detailSitenav) {
 
   detailSitenav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDetailMenu));
 }
+
+// Desktop project previews follow the pointer like the reference index.
+document.querySelectorAll('.project-card').forEach(card => {
+  const preview = card.querySelector('.project-thumb');
+  if (!preview) return;
+
+  card.addEventListener('pointermove', (event) => {
+    if (window.matchMedia('(max-width: 768px)').matches) return;
+    preview.style.setProperty('--preview-x', `${event.clientX}px`);
+    preview.style.setProperty('--preview-y', `${event.clientY}px`);
+  });
+});

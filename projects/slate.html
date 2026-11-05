@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>slate — project</title>
-  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="../css/main.css">
 </head>
 
 <body>
 
-  <div class="detail-page">
+  <div class="detail-page detail-slate">
     <div class="detail-topbar">
       <a class="detail-home" href="../index.html" aria-label="back to start">
-        <img src="/favicon.svg" alt="">
+        <span class="detail-site-name">stephanie<br>römer</span>
       </a>
       <div class="detail-menu">
         <button class="detail-menu-btn" type="button" aria-label="menu" aria-expanded="false">
@@ -26,36 +26,33 @@
         </nav>
       </div>
     </div>
+    <a class="detail-back" href="../index.html#projects">← back to projects</a>
 
     <div class="detail-hero-image" style="background:#EFE3F5;">slate</div>
 
     <div class="detail-hero">
       <div class="detail-hero-row">
         <div>
+          <em class="detail-frame-label">Frame 00 · cover</em>
           <h1 class="detail-hero-title">slate</h1>
-          <div class="detail-hero-chips">
-            <span class="project-chip" data-type="design">design</span>
-            <span class="project-chip" data-type="code">code</span>
+          <div class="detail-hero-meta">
+            <p class="detail-hero-desc">A personal film and series tracker with custom tags and personalised
+              recommendations.</p>
+            <div class="detail-hero-chips">
+              <span class="project-chip" data-type="design">design</span>
+              <span class="project-chip" data-type="code">code</span>
+            </div>
           </div>
-          <p class="detail-hero-desc">A personal film and series tracker with custom tags and personalised
-            recommendations.</p>
-        </div>
-        <div class="detail-postit">
-          <p class="detail-postit-title">overview</p>
-          <div class="detail-postit-overview">
-            <p><strong>context:</strong> personal project</p>
-            <p><strong>timeline:</strong> 20 weeks</p>
-            <p><strong>role:</strong> UX/UI designer, full-stack developer</p>
-            <p><strong>techstack:</strong> Figma, JavaScript, TMDB API</p>
+          <div class="detail-hero-media">
+            <img src="../assets/projects/slate2.webp" alt="slate app interface">
           </div>
-          <a class="detail-postit-link" href="https://slate.stephanieroemer.ch" target="_blank"
-            rel="noopener noreferrer">view project →</a>
         </div>
       </div>
     </div>
 
     <div class="detail-sections">
       <section class="detail-section" id="section-problem">
+        <em class="detail-frame-label">Frame 01 · The Problem</em>
         <h2 class="detail-section-heading">The Problem</h2>
         <div class="detail-section-body">
           <p>Sometime in 2020 I started tracking the films and series I watched. Not on established platforms like Letterboxd though
@@ -63,19 +60,32 @@
           </p>
         </div>
       </section>
+      <div class="detail-postit">
+        <p class="detail-postit-title">overview</p>
+        <div class="detail-postit-overview">
+          <p><strong>context:</strong> personal project</p>
+          <p><strong>timeline:</strong> 20 weeks</p>
+          <p><strong>role:</strong> UX/UI designer, full-stack developer</p>
+          <p><strong>techstack:</strong> Figma, JavaScript, TMDB API</p>
+        </div>
+        <a class="detail-postit-link" href="https://slate.stephanieroemer.ch" target="_blank"
+          rel="noopener noreferrer">view project →</a>
+      </div>
       <section class="detail-section" id="section-process">
+        <em class="detail-frame-label">Frame 02 · The Process</em>
         <h2 class="detail-section-heading">The Process</h2>
         <div class="detail-section-body">
           <p>Designed the tagging system first as a data model exercise before it was ever a UI — what needs to be
             many-to-many, what needs to be searchable, what needs to feed the recommendation logic. UI design followed
             once that structure held up.</p>
           <div class="detail-img-row">
-            <div class="detail-img" style="background:#EFE3F5;">tag data model</div>
-            <div class="detail-img" style="background:#F1E7B8;">tracker UI</div>
+            <div class="detail-img"><img src="../assets/projects/slate3.webp" alt="slate tagging screen"></div>
+            <div class="detail-img"><img src="../assets/projects/slate4.webp" alt="slate tracker screen"></div>
           </div>
         </div>
       </section>
       <section class="detail-section" id="section-solution">
+        <em class="detail-frame-label">Frame 03 · The Solution</em>
         <h2 class="detail-section-heading">The Solution</h2>
         <div class="detail-section-body">
           <p>A working app: a film API for metadata/posters, a custom tagging layer on top, and simple recommendation
@@ -83,6 +93,7 @@
         </div>
       </section>
       <section class="detail-section" id="section-reflection">
+        <em class="detail-frame-label">Frame 04 · Reflection &amp; Takeaways</em>
         <h2 class="detail-section-heading">Reflection & Takeaways</h2>
         <div class="detail-section-body">
           <p>Doing the data modelling before the UI was the right call — it meant the interface didn't have to work
