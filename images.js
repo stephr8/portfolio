@@ -373,30 +373,45 @@ if (aboutSection) {
   window.addEventListener('resize', measureHeading);
 }
 
-  const envelope = document.querySelector('.envelope-wrapper');
-  if (envelope) {
-    const openEnvelope = () => envelope.classList.add('is-open');
-    const envelopeObserver = 'IntersectionObserver' in window
-      ? new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            openEnvelope();
-            observer.disconnect();
-          }
-        });
-      }, { threshold: 0.6 })
-      : null;
+ const envelope = document.querySelector('.envelope-wrapper');
+if (envelope) {
+  const copyLabel = envelope.querySelector('.envelope-copy');
+  const email = envelope.dataset.email;
+  let resetTimer;
 
-    envelopeObserver?.observe(envelope);
-    envelope.addEventListener('click', event => {
-      if (event.target.closest('.email-button')) return;
-      envelope.classList.toggle('is-open');
-    });
-    envelope.addEventListener('keydown', event => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        envelope.classList.toggle('is-open');
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = email;
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch {}
+      ta.remove();
+    }
+    copyLabel.textContent = 'copied ✓';
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(() => { copyLabel.textContent = 'click to copy'; }, 1800);
+  };
+
+  // Opens once when scrolled into view; clicking never toggles it
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    envelope.classList.add('is-open');
+  } else {
+    new IntersectionObserver((entries, obs) => {
+      if (entries.some(e => e.isIntersecting)) {
+        envelope.classList.add('is-open');
+        obs.disconnect();
       }
-    });
+    }, { threshold: 0.6 }).observe(envelope);
   }
+
+  envelope.addEventListener('click', copyEmail);
+  envelope.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyEmail(); }
+  });
+}
 });

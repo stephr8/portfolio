@@ -94,6 +94,12 @@
   transition: transform 0.3s ease;
 }
 
+.envelope-wrapper:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 6px;
+  border-radius: 8px;
+}
+
 .envelope {
   position: relative;
   width: 270px;
@@ -104,6 +110,7 @@
   perspective: 800px;
 }
 
+/* Paper: now lays out normally instead of absolutely-positioned pieces */
 .envelope-paper {
   position: absolute;
   inset: 12px 16px 18px;
@@ -111,22 +118,42 @@
   border-radius: 4px;
   background: var(--white);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-  transform: translateY(0);
-  transition: transform 0.55s cubic-bezier(.5, 0, .3, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
-  padding-top: 16px;
+  justify-content: flex-start;
+  gap: 6px;
+  padding: 16px 12px 0;
   color: var(--red-dark);
   text-align: center;
+  transform: translateY(0);
+  /* closing: paper drops first */
+  transition: transform 0.55s cubic-bezier(.5, 0, .3, 1);
 }
 
-.envelope-label { font: 13px 'Space Mono', monospace; }
+.envelope-label { font: 13px 'Space Mono', monospace; opacity: 0.8; }
+
 .envelope-address {
-  margin-top: 2px;
-  font-size: 13px;
-  word-break: break-word;
+  font-size: 14px;
+  line-height: 1.3;
+  word-break: break-all;
+}
+
+.envelope-copy {
+  margin-top: 6px;
+  padding: 3px 14px;
+  border: 1.5px solid var(--blue);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--blue);
+  font: 600 13px 'Inclusive Sans', sans-serif;
+  transition: background 0.2s, color 0.2s;
+}
+
+.envelope-wrapper:hover .envelope-copy,
+.envelope-wrapper:focus-visible .envelope-copy {
+  background: var(--blue);
+  color: var(--white);
 }
 
 .envelope-body {
@@ -150,50 +177,28 @@
   background: #a3b0de;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: 50% 0;
-  transition: transform 0.55s cubic-bezier(.5, 0, .3, 1), z-index 0s 0.28s;
+  /* closing: wait for the paper, then rotate; swap z-index at the 90° midpoint */
+  transition: transform 0.55s cubic-bezier(.5, 0, .3, 1) 0.5s,
+              z-index 0s 0.775s;
 }
 
+/* opening: flap goes first and drops behind the paper while edge-on (~0.275s) */
 .envelope-wrapper.is-open .envelope-flap {
   z-index: 0;
   transform: rotateX(180deg);
+  transition: transform 0.55s cubic-bezier(.5, 0, .3, 1),
+              z-index 0s 0.275s;
 }
 
+/* ...and only then does the paper slide out */
 .envelope-wrapper.is-open .envelope-paper {
-  transform: translateY(-96px);
+  transform: translateY(-110px);
+  transition: transform 0.7s cubic-bezier(.3, 1.2, .4, 1) 0.3s;
 }
 
 .envelope-wrapper:hover,
 .envelope-wrapper:focus-within {
   transform: translateY(-8px) rotate(-3deg);
-}
-
-.email-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: max-content;
-  max-width: calc(100% - 24px);
-  padding: 6px 12px;
-  border: 1.5px solid var(--blue);
-  border-radius: 999px;
-  background: var(--white);
-  color: var(--blue);
-  font: 600 13px 'Inclusive Sans', sans-serif;
-  opacity: 0;
-  text-decoration: none;
-  transform: translate(-50%, -50%) scale(0.7);
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.envelope-wrapper:hover .email-button,
-.envelope-wrapper:focus-within .email-button {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.envelope-wrapper.is-open .email-button {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
 }
 
 @media (max-width: 768px) {
