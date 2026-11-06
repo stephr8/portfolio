@@ -275,6 +275,21 @@
   border-color: rgba(74, 26, 31, .15);
 }
 
+/* going back to "me": label collapses first, then "hi, stephanie!" expands */
+.about-heading.is-default mark {
+  transition-delay: 0s;
+}
+.about-heading.is-default .about-hi,
+.about-heading.is-default .about-name {
+  transition: width .6s cubic-bezier(.65,0,.25,1) .45s,
+              opacity .4s .45s;
+}
+
+/* safety net on desktop: never wrap mid-transition */
+@media (min-width: 769px) {
+  .about-copy h2.about-heading { flex-wrap: nowrap; }
+}
+
 .about-role-text {
   display: inline-block;
   animation: fadeIn .4s;
