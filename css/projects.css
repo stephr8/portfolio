@@ -32,7 +32,7 @@ body {
   display: block;
   margin-bottom: 0.5rem;
   color: var(--blue);
-  font: 400 clamp(2.2rem, 4vw, 3rem) 'Neue Regrade', sans-serif;
+  font: 400 clamp(2rem, 4vw, 3rem) 'Neue Regrade', sans-serif;
 }
 
 .projects-wrapper { padding: 0; }
@@ -76,7 +76,7 @@ body {
 .project-title {
   margin: 0;
   color: var(--blue);
-  font: 400 clamp(54px, 8vw, 124px)/1 'Neue Regrade', sans-serif;
+  font: 400 clamp(48px, 8vw, 124px)/1 'Neue Regrade', sans-serif;
   letter-spacing: -0.02em;
   text-decoration: underline wavy transparent 5px;
   text-underline-offset: 0.1em;
@@ -434,7 +434,7 @@ body {
 .detail-postit-overview p:last-child { margin-bottom: 0; }
 .detail-postit-link {
   display: inline-block;
-  max-width: 8rem;
+  max-width: fit-content;
   margin-top: auto;
   padding: 0.5rem 0.8rem;
   border-radius: 0.5rem;
