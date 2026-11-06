@@ -297,89 +297,81 @@ window.addEventListener('DOMContentLoaded', () => {
   ];
 
   const aboutSection = document.querySelector('.about-section');
-  if (aboutSection) {
-    const heading = aboutSection.querySelector('.about-heading');
-    const introduction = aboutSection.querySelector('.about-introduction');
-    const details = aboutSection.querySelector('.about-role-details');
-    const tools = aboutSection.querySelector('.about-tools');
-    const roleSelector = aboutSection.querySelector('.about-role-selector');
-    const photoCard = aboutSection.querySelector('.about-photo-card');
-    const toolItems = aboutSection.querySelectorAll('.tool-item[data-tool]');
-    const roleButtons = aboutSection.querySelectorAll('[data-about-role]');
-    const headingText = aboutSection.querySelector('.about-heading-text');
+if (aboutSection) {
+  const heading = aboutSection.querySelector('.about-heading');
+  const roleMark = heading.querySelector('mark');
+  const roleText = heading.querySelector('.about-role-text');
+  const introduction = aboutSection.querySelector('.about-introduction');
+  const details = aboutSection.querySelector('.about-role-details');
+  const tools = aboutSection.querySelector('.about-tools');
+  const roleSelector = aboutSection.querySelector('.about-role-selector');
+  const photoCard = aboutSection.querySelector('.about-photo-card');
+  const toolItems = aboutSection.querySelectorAll('.tool-item[data-tool]');
+  const roleButtons = aboutSection.querySelectorAll('[data-about-role]');
 
-    let activeRoleIndex = -1;
-    let headingFrame = 0;
+  let activeRoleIndex = -1;
 
-    const animateHeading = (segments, preservePrefix = false) => {
-      cancelAnimationFrame(headingFrame);
-      if (preservePrefix) {
-        const roleSegment = headingText.querySelector('.about-heading-role');
-        const nextRole = segments.find(segment => segment.role);
-        if (roleSegment && nextRole) {
-          roleSegment.classList.remove('is-visible');
-          headingFrame = requestAnimationFrame(() => {
-            roleSegment.textContent = nextRole.text;
-            roleSegment.style.setProperty('--role-color', nextRole.color);
-            roleSegment.classList.add('is-visible');
-          });
-        }
-        return;
-      }
+  const setMarkWidth = () => {
+    if (activeRoleIndex >= 0) roleMark.style.setProperty('--mw', (roleText.offsetWidth + 22) + 'px');
+  };
 
-      headingText.innerHTML = segments.map(segment =>
-        `<span class="about-heading-segment ${segment.role ? 'about-heading-role' : ''}"${segment.color ? ` style="--role-color:${segment.color}"` : ''}>${segment.text}</span>`
-      ).join('');
-      const headingSegments = headingText.querySelectorAll('.about-heading-segment');
-      void headingText.offsetWidth;
-      headingFrame = requestAnimationFrame(() => {
-        headingSegments.forEach(segment => {
-          segment.classList.add('is-visible');
-        });
-      });
-    };
-
-    const showAboutRole = (roleIndex) => {
-      const role = aboutRoles[roleIndex];
-      roleButtons.forEach(button => {
-        button.setAttribute('aria-pressed', button.dataset.aboutRole === String(roleIndex));
-      });
-
-      if (!role) {
-        animateHeading([
-          { text: 'hi, i’m ' },
-          { text: 'stephanie!' }
-        ]);
-        introduction.hidden = false;
-        details.classList.remove('is-visible');
-        tools.classList.remove('is-visible');
-        roleSelector.classList.remove('is-hidden');
-        photoCard.classList.add('is-me');
-        toolItems.forEach(item => { item.hidden = true; });
-        activeRoleIndex = -1;
-        return;
-      }
-
-      animateHeading([
-        { text: 'i’m a ' },
-        { text: role.name, role: true, color: role.color }
-      ], activeRoleIndex >= 0);
-      introduction.hidden = true;
-      roleSelector.classList.add('is-hidden');
-      details.innerHTML = `<p>${role.description}</p><span class="about-skills-label">skills</span><div class="about-role-skills">${role.skills
-        .map(skill => `<span class="about-role-skill">${skill}</span>`).join('')}</div>`;
-      details.classList.add('is-visible');
-      tools.classList.add('is-visible');
-      photoCard.classList.remove('is-me');
-      toolItems.forEach(item => { item.hidden = !role.tools.includes(item.dataset.tool); });
-      activeRoleIndex = roleIndex;
-    };
-
-    roleButtons.forEach(button => {
-      button.addEventListener('click', () => showAboutRole(Number(button.dataset.aboutRole)));
+  // measure natural widths so CSS can transition to/from them
+  const measureHeading = () => {
+    heading.querySelectorAll('.about-x').forEach(el => {
+      el.style.transition = 'none';
+      el.style.width = 'auto';
+      const w = el.offsetWidth;
+      el.style.width = '';
+      void el.offsetWidth;
+      el.style.transition = '';
+      el.style.setProperty('--w', (w + 1) + 'px');
     });
-    showAboutRole(-1);
-  }
+    setMarkWidth();
+  };
+
+  const showAboutRole = (roleIndex) => {
+    const role = aboutRoles[roleIndex];
+    roleButtons.forEach(button => {
+      button.setAttribute('aria-pressed', button.dataset.aboutRole === String(roleIndex));
+    });
+
+    if (!role) {
+      heading.classList.add('is-default');
+      introduction.hidden = false;
+      details.classList.remove('is-visible');
+      tools.classList.remove('is-visible');
+      roleSelector.classList.remove('is-hidden');
+      photoCard.classList.add('is-me');
+      toolItems.forEach(item => { item.hidden = true; });
+      activeRoleIndex = -1;
+      return;
+    }
+
+    roleText.textContent = role.name;
+    roleMark.style.setProperty('--role-color', role.color);
+    roleText.style.animation = 'none'; void roleText.offsetWidth; roleText.style.animation = '';
+    activeRoleIndex = roleIndex;
+    setMarkWidth();
+    heading.classList.remove('is-default');
+
+    introduction.hidden = true;
+    roleSelector.classList.add('is-hidden');
+    details.innerHTML = `<div><p>${role.description}</p><span class="about-skills-label">skills</span><div class="about-role-skills">${role.skills
+      .map(skill => `<span class="about-role-skill">${skill}</span>`).join('')}</div></div>`;
+    details.classList.add('is-visible');
+    tools.classList.add('is-visible');
+    photoCard.classList.remove('is-me');
+    toolItems.forEach(item => { item.hidden = !role.tools.includes(item.dataset.tool); });
+  };
+
+  roleButtons.forEach(button => {
+    button.addEventListener('click', () => showAboutRole(Number(button.dataset.aboutRole)));
+  });
+  showAboutRole(-1);
+  measureHeading();
+  document.fonts?.ready.then(measureHeading);
+  window.addEventListener('resize', measureHeading);
+}
 
   const envelope = document.querySelector('.envelope-wrapper');
   if (envelope) {
