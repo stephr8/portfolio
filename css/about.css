@@ -35,16 +35,11 @@
   background: var(--yellow);
 }
 
-.about-photo-card[data-role="3"] {
-  background: var(--blue-light);
-}
-
 .about-photo-window {
   overflow: hidden;
   border-radius: 8px;
   background: var(--white);
 }
-
 
 .about-window-bar span {
   width: 9px;
@@ -94,14 +89,8 @@
   border-color: var(--red-dark);
 }
 
-.about-photo {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-}
-
 .about-photo-strip {
+  position: relative;
   display: flex;
   gap: 6px;
   padding: 8px;
@@ -142,10 +131,6 @@
   background: var(--yellow);
 }
 
-.about-thumbnail[data-about-role="3"] span {
-  background: var(--blue-light);
-}
-
 .about-thumbnail:hover,
 .about-thumbnail[aria-pressed="true"] {
   border-color: var(--red-dark);
@@ -159,7 +144,6 @@
   width: 92px;
   height: 92px;
   padding: 16px;
-  font-size: 15px;
   transform: rotate(-10deg);
   pointer-events: none;
   place-items: center;
@@ -170,8 +154,8 @@
   clip-path: polygon(50% 0, 61% 14%, 79% 8%, 80% 27%, 98% 33%, 88% 50%, 98% 67%, 80% 73%, 79% 92%, 61% 86%, 50% 100%, 39% 86%, 21% 92%, 20% 73%, 2% 67%, 12% 50%, 2% 33%, 20% 27%, 21% 8%, 39% 14%);
 }
 
-.about-photo-strip {
-  position: relative;
+.about-photo-card:not(.is-me) .about-note {
+  display: none;
 }
 
 .about-progress {
@@ -205,12 +189,9 @@
 
 .about-progress.is-paused::after { animation-play-state: paused; }
 
-.about-photo-card:not(.is-me) .about-note {
-  display: none;
-}
-
 .about-copy {
   grid-column: 6 / 13;
+  min-height: 420px;
   padding: 8px 0 0 20px;
 }
 
@@ -344,7 +325,7 @@
   transition: background .25s, border-color .25s;
 }
 
-/* .about-roles prefix is needed to beat button:not(.tab-btn):hover in buttons.css */
+/* .about-roles prefix is needed to beat button:hover in buttons.css */
 .about-roles .about-role:hover,
 .about-roles .about-role:focus-visible,
 .about-roles .about-role:active {
@@ -367,13 +348,6 @@
 
 .about-role-blue {
   --role-background: var(--blue-light);
-}
-
-.about-role:hover,
-.about-role:focus-visible,
-.about-role[aria-pressed="true"] {
-  border-color: var(--red-dark);
-  box-shadow: 0 3px 0 var(--red-dark);
 }
 
 .about-role-details {
@@ -453,25 +427,6 @@
   transition: transform 0.2s ease;
 }
 
-.about-window-bar .about-autoplay {
-  min-height: 0;
-  padding: 1px 8px;
-  border: 1px solid rgba(74, 26, 31, 0.3);
-  border-radius: 999px;
-  background: #ddd;
-  color: var(--red-dark);
-  font: 10px 'Space Mono', monospace;
-  line-height: 1.6;
-}
-
-.about-window-bar .about-autoplay:hover {
-  border-color: var(--red-dark);
-}
-
-.about-copy {
-  min-height: 420px;
-}
-
 .about-photo-stage {
   position: relative;
   aspect-ratio: 16 / 10;
@@ -497,10 +452,6 @@
   object-fit: cover;
 }
 
-.about-slide[data-slide="-1"] {
-  background: var(--blue-light);
-}
-
 .about-slide[data-slide="0"] {
   background: var(--green);
 }
@@ -511,10 +462,6 @@
 
 .about-slide[data-slide="2"] {
   background: var(--yellow);
-}
-
-.about-slide[data-slide="3"] {
-  background: var(--blue-light);
 }
 
 @media (max-width: 768px) {
@@ -543,6 +490,7 @@
   }
 
   .about-copy {
+    min-height: 0;
     padding: 0;
   }
 
@@ -552,9 +500,5 @@
 
   .about-copy p {
     font-size: 16px;
-  }
-
-  .about-copy {
-    min-height: 0;
   }
 }

@@ -1,19 +1,20 @@
 
 window.addEventListener('DOMContentLoaded', () => {
 
-  // ── Hero image — tutorial000-style inertia hover effect ──────────────────
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // lang.js runs before this file and has already set <html lang>
+  const isGerman = document.documentElement.lang.toLowerCase().startsWith('de');
+
+  // ── Hero images — magnetic hover + idle wobble ───────────────────────────
   //
-  // Replicates the MadeWithGSAP tutorial000 effect without InertiaPlugin:
+  //  • Desktop: while the mouse moves over an opaque pixel of an image, the
+  //    image is pushed away from the cursor (x/y) and tilted (rotation) via
+  //    gsap.quickTo. The strength scales with the recent mouse speed. When the
+  //    cursor leaves (or hits a transparent pixel) it returns to its origin.
+  //  • Small images additionally wobble on their own (idle loop), on desktop
+  //    and mobile.
   //
-  //  • deltaX/deltaY track how fast the mouse is moving across the hero section
-  //  • On mouseenter over an opaque pixel, a GSAP timeline fires:
-  //      1. Fly: image displaces in the direction of mouse travel, distance
-  //         proportional to speed (mimics inertia velocity * 40)
-  //      2. Snap: image springs back to its CSS-defined origin (x:0, y:0)
-  //      3. Rotate yoyo: image tilts a random amount and snaps back
-  //         (runs simultaneously with the fly/snap, same as the tutorial)
-  //
-  //  The CSS-defined left/top/width/rotation of each image is NEVER touched —
+  //  The CSS-defined left/top/width of each image is NEVER touched —
   //  GSAP only ever writes x/y/rotation offsets on top of those values.
 
   const heroSection = document.querySelector('.hero-section');
@@ -55,9 +56,6 @@ window.addEventListener('DOMContentLoaded', () => {
     // mousemove frame so it's reliable regardless of how the mouse enters.
     // Amplitude scales with windowed velocity: slow hover → gentle tilt,
     // fast swipe → bigger recoil. Returns to origin on mouseleave.
-    //
-    // quickTo(target, prop, options) returns a function you call with the
-    // destination value; GSAP interpolates to it on every call.
     function attachHover(img) {
       const quickX = gsap.quickTo(img, 'x', { duration: 0.4, ease: 'power2.out' });
       const quickY = gsap.quickTo(img, 'y', { duration: 0.4, ease: 'power2.out' });
@@ -113,7 +111,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // The 5 smallest images by CSS width — these are the only ones that
-    // auto-animate (intro hint + mobile idle).
+    // auto-animate (idle wobble on desktop and mobile).
     const SMALL_IMG_ALTS = new Set([
       'favourites', 'watchlist', 'pink star', 'yellow star', 'smiley face'
     ]);
@@ -207,12 +205,11 @@ window.addEventListener('DOMContentLoaded', () => {
         img.style.opacity = '1';
         gsap.set(img, { x: 0, y: 0, rotation: 0, scale: 1, transformOrigin: '50% 50%' });
 
-        // Count how many images have handed off; when all are done, fire
-        // the intro hint (desktop) or start the mobile loop.
+        // Count how many images have handed off; when all are done, start
+        // the idle loop (each image gets a random initial offset so they
+        // don't all fire at the same time).
         heroSection._gsapReadyCount = (heroSection._gsapReadyCount || 0) + 1;
         if (heroSection._gsapReadyCount === allImgs.length) {
-          // Start idle loop for all breakpoints — each image gets a random
-          // initial offset so they don't all fire at the same time
           smallImgs.forEach(si => {
             setTimeout(() => scheduleSingleImg(si), 500 + Math.random() * 2000);
           });
@@ -227,55 +224,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── Simplified project tabs ───────────────────────────────────────────────
-  const newTabs = document.querySelectorAll('.tab-btn');
-  const projectsContent = document.querySelector('.projects-content');
-  const projectCards = document.querySelectorAll('.project-card');
-
-  newTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const tabName = tab.getAttribute('data-tab');
-      newTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      if (projectsContent) projectsContent.setAttribute('data-active-tab', tabName);
-
-      if (tabName === 'projects') {
-        projectCards.forEach(card => card.setAttribute('data-visible', 'true'));
-      } else {
-        const filterMap = { skills: 'design', about: 'code', contact: 'weiteres' };
-        const filterType = filterMap[tabName];
-        projectCards.forEach(card => {
-          const tags = card.getAttribute('data-tags');
-          card.setAttribute('data-visible', tags && tags.includes(filterType) ? 'true' : 'false');
-        });
-      }
-
-      if (window.resetProjectPagination) window.resetProjectPagination();
-    });
-  });
-
-  // ── GIF hover on project cards ────────────────────────────────────────────
-  document.querySelectorAll('.project-card').forEach(card => {
-    const gifImage = card.querySelector('.gif-image');
-    if (gifImage) {
-      const staticSrc = gifImage.dataset.static;
-      const animatedSrc = gifImage.dataset.animated;
-      card.addEventListener('mouseenter', () => { gifImage.src = animatedSrc; });
-      card.addEventListener('mouseleave', () => { gifImage.src = staticSrc; });
-    }
-  });
-
-  const pageLanguage = (() => {
-    const path = window.location.pathname.toLowerCase();
-    const language = (document.documentElement.lang || document.body?.lang || '').toLowerCase();
-    // The English page can use a German default html[lang] value, so let an
-    // explicit language marker in its URL take precedence.
-    if (/(?:^|[\/_-])(en|english)(?:[\/.?_-]|$)/.test(path)) return 'en';
-    if (/(?:^|[\/_-])(de|german|deutsch)(?:[\/.?_-]|$)/.test(path)) return 'de';
-    return language.startsWith('de') ? 'de' : 'en';
-  })();
-  const isGerman = pageLanguage === 'de';
-
+  // ── About section ─────────────────────────────────────────────────────────
   const aboutRoles = [
     {
       name: isGerman ? 'ux/ui designerin' : 'ux/ui designer',
@@ -342,7 +291,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const body = aboutSection.querySelector('.about-body');
     const slides = Array.from(aboutSection.querySelectorAll('.about-slide'));
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let ready = false;
     let swapTimer;
 
@@ -423,19 +371,13 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     };
 
-    roleButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const target = Number(button.dataset.aboutRole);
-        showAboutRole(target, target < activeRoleIndex ? -1 : 1);
-      });
-    });
     showAboutRole(-1);
     ready = true;   // from here on, changes animate
 
-    showAboutRole(-1);
     measureHeading();
     document.fonts?.ready.then(measureHeading);
     window.addEventListener('resize', measureHeading);
+
     // ── Auto-cycle through roles ──────────────────────────────────────────
     const AUTO_DELAY = 5500;
     const ROLE_ORDER = [-1, 0, 1, 2, 3];
@@ -444,7 +386,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const progress = aboutSection.querySelector('.about-progress');
     progress.style.setProperty('--auto-ms', AUTO_DELAY + 'ms');
 
-    let userPaused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let userPaused = reduceMotion;
     let hoverPaused = false;
     let focusPaused = false;
     let inView = false;
@@ -498,12 +440,16 @@ window.addEventListener('DOMContentLoaded', () => {
       resetCycle();
     };
 
-    // manual choice: new role shown, so start a fresh (paused) cycle
-    roleButtons.forEach(b => b.addEventListener('click', () => {
-      userPaused = true;
-      updateAutoBtn();
-      resetCycle();
-    }));
+    // manual choice: show the role, stop auto-play and start a fresh (paused) cycle
+    roleButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const target = Number(button.dataset.aboutRole);
+        showAboutRole(target, target < activeRoleIndex ? -1 : 1);
+        userPaused = true;
+        updateAutoBtn();
+        resetCycle();
+      });
+    });
 
     autoBtn.addEventListener('click', () => {
       userPaused = !userPaused;
@@ -543,6 +489,7 @@ window.addEventListener('DOMContentLoaded', () => {
     resetCycle();
   }
 
+  // ── Contact envelope ──────────────────────────────────────────────────────
   const envelope = document.querySelector('.envelope-wrapper');
   if (envelope) {
     const copyLabel = envelope.querySelector('.envelope-copy');
@@ -569,7 +516,6 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     // Opens once when scrolled into view; clicking never toggles it
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion || !('IntersectionObserver' in window)) {
       envelope.classList.add('is-open');
     } else {
