@@ -449,25 +449,49 @@ window.addEventListener('DOMContentLoaded', () => {
         userPaused ? 'Play automatic slideshow' : 'Pause automatic slideshow');
     };
 
-   const scheduleAuto = () => {
-  clearTimeout(autoTimer);
-  // restart the progress line in sync with the timer; empty when paused
-  progress.classList.remove('is-running');
-  if (!autoRunning()) return;
-  void progress.offsetWidth;
-  progress.classList.add('is-running');
-  autoTimer = setTimeout(() => {
-    const i = ROLE_ORDER.indexOf(activeRoleIndex);
-    showAboutRole(ROLE_ORDER[(i + 1) % ROLE_ORDER.length]);
-    scheduleAuto();
-  }, AUTO_DELAY);
-};
+    let remaining = AUTO_DELAY;   // ms left in the current cycle
+    let startedAt = 0;            // when the current run segment began
+    let running = false;
 
-    // manual choice = user wants to read → pause until they press play
+    // Pause/resume in place. Does NOT reset the cycle.
+    const scheduleAuto = () => {
+      const shouldRun = autoRunning();
+
+      if (shouldRun && !running) {
+        running = true;
+        startedAt = performance.now();
+        progress.classList.remove('is-paused');
+        autoTimer = setTimeout(advance, remaining);
+      } else if (!shouldRun && running) {
+        running = false;
+        clearTimeout(autoTimer);
+        remaining -= performance.now() - startedAt;   // remember where we stopped
+        progress.classList.add('is-paused');
+      }
+    };
+
+    // Start a fresh cycle (new role shown): empty bar, full time
+    const resetCycle = () => {
+      clearTimeout(autoTimer);
+      running = false;
+      remaining = AUTO_DELAY;
+      progress.classList.remove('is-running');
+      void progress.offsetWidth;                      // restart the CSS animation
+      progress.classList.add('is-running', 'is-paused');
+      scheduleAuto();                                 // starts it if conditions allow
+    };
+
+    const advance = () => {
+      const i = ROLE_ORDER.indexOf(activeRoleIndex);
+      showAboutRole(ROLE_ORDER[(i + 1) % ROLE_ORDER.length]);
+      resetCycle();
+    };
+
+    // manual choice: new role shown, so start a fresh (paused) cycle
     roleButtons.forEach(b => b.addEventListener('click', () => {
       userPaused = true;
       updateAutoBtn();
-      scheduleAuto();
+      resetCycle();
     }));
 
     autoBtn.addEventListener('click', () => {
@@ -478,15 +502,15 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     // hover only pauses on real mouse movement, not on content scrolling under the cursor
-layout.addEventListener('pointermove', e => {
-  if (e.pointerType !== 'mouse' || (!e.movementX && !e.movementY)) return;
-  if (!hoverPaused) { hoverPaused = true; scheduleAuto(); }
-});
+    layout.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse' || (!e.movementX && !e.movementY)) return;
+      if (!hoverPaused) { hoverPaused = true; scheduleAuto(); }
+    });
 
-// scrolling = navigating, not reading: release the hover-pause
-addEventListener('scroll', () => {
-  if (hoverPaused) { hoverPaused = false; scheduleAuto(); }
-}, { passive: true });
+    // scrolling = navigating, not reading: release the hover-pause
+    addEventListener('scroll', () => {
+      if (hoverPaused) { hoverPaused = false; scheduleAuto(); }
+    }, { passive: true });
     layout.addEventListener('pointerleave', () => {
       hoverPaused = false;
       hoverOverride = false;
@@ -505,6 +529,7 @@ addEventListener('scroll', () => {
     }, { threshold: 0.35 }).observe(aboutSection);
 
     updateAutoBtn();
+    resetCycle();
   }
 
   const envelope = document.querySelector('.envelope-wrapper');

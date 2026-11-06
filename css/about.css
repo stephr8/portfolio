@@ -203,6 +203,8 @@
   }
 }
 
+.about-progress.is-paused::after { animation-play-state: paused; }
+
 .about-photo-card:not(.is-me) .about-note {
   display: none;
 }
