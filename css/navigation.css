@@ -24,3 +24,4 @@ nav {
     padding: 8px 16px;
 }
 
+#scroll-to-top.is-visible { opacity: 1; pointer-events: auto; }

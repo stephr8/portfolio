@@ -35,3 +35,11 @@ document.querySelectorAll('.project-card').forEach(card => {
     preview.style.setProperty('--preview-y', `${event.clientY}px`);
   });
 });
+
+//scroll to top button
+const toTop = document.getElementById('scroll-to-top');
+if (toTop) {
+  const toggle = () => toTop.classList.toggle('is-visible', window.scrollY > 600);
+  addEventListener('scroll', toggle, { passive: true });
+  toggle();
+}
