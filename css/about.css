@@ -472,12 +472,6 @@
   min-height: 420px;
 }
 
-/* add to the existing .about-copy rule */
-
-.skill-icon:hover {
-  transform: scale(1.1);
-}
-
 .about-photo-stage {
   position: relative;
   aspect-ratio: 16 / 10;
