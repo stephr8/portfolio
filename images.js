@@ -265,30 +265,41 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const pageLanguage = (() => {
+    const path = window.location.pathname.toLowerCase();
+    const language = (document.documentElement.lang || document.body?.lang || '').toLowerCase();
+    // The English page can use a German default html[lang] value, so let an
+    // explicit language marker in its URL take precedence.
+    if (/(?:^|[\/_-])(en|english)(?:[\/.?_-]|$)/.test(path)) return 'en';
+    if (/(?:^|[\/_-])(de|german|deutsch)(?:[\/.?_-]|$)/.test(path)) return 'de';
+    return language.startsWith('de') ? 'de' : 'en';
+  })();
+  const isGerman = pageLanguage === 'de';
+
   const aboutRoles = [
     {
-      name: 'ux/ui designer',
+      name: isGerman ? 'ux/ui designerin' : 'ux/ui designer',
       color: '#C5D77A',
       description: 'From first sketches and user flows to prototypes and frontend builds: I design interfaces that make sense and look good.',
       skills: ['user research', 'user flows', 'wireframes', 'prototyping', 'UI design'],
       tools: ['Figma', 'HTML', 'CSS', 'JavaScript', 'Vue'],
     },
     {
-      name: 'graphic designer',
+      name: isGerman ? 'graphic designerin' : 'graphic designer',
       color: '#FDC8EE',
       description: 'Layout, typography, colour and illustration that make a project feel like one world.',
       skills: ['layout & typography', 'colour', 'illustration', 'visual identity'],
       tools: ['Illustrator', 'InDesign', 'Figma'],
     },
     {
-      name: 'filmmaker',
+      name: isGerman ? 'filmproduzentin' : 'filmmaker',
       color: '#F2E8BE',
       description: 'From first idea to final cut: I direct and edit short films and series.',
       skills: ['directing', 'editing', 'motion graphics', 'storytelling'],
       tools: ['Premiere Pro', 'After Effects'],
     },
     {
-      name: 'multimedia producer',
+      name: isGerman ? 'multimedia produzentin' : 'multimedia producer',
       color: '#DDE3F5',
       description: 'Where it all comes together: planning, producing and managing digital content across video, web and social.',
       skills: ['production assistance', 'content management', 'content planning', 'post-production'],
@@ -550,9 +561,11 @@ window.addEventListener('DOMContentLoaded', () => {
         try { document.execCommand('copy'); } catch { }
         ta.remove();
       }
-      copyLabel.textContent = 'copied ✓';
+      copyLabel.textContent = isGerman ? 'kopiert ✓' : 'copied ✓';
       clearTimeout(resetTimer);
-      resetTimer = setTimeout(() => { copyLabel.textContent = 'click to copy'; }, 1800);
+      resetTimer = setTimeout(() => {
+        copyLabel.textContent = isGerman ? 'email-adresse kopieren' : 'click to copy';
+      }, 1800);
     };
 
     // Opens once when scrolled into view; clicking never toggles it

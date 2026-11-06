@@ -81,7 +81,7 @@
 
       <div class="projects-content" data-active-tab="projects">
         <div class="projects-content-fill">
-          <h2 class="projects-heading">projects</h2>
+          <h2 data-de="projekte" data-en="projects" class="projects-heading">projects</h2>
           <div class="projects-wrapper">
             <button id="prev-projects" class="nav-arrow">←</button>
             <button id="next-projects" class="nav-arrow">→</button>
@@ -151,7 +151,7 @@
                     <span class="project-arrow" aria-hidden="true">↗</span>
                   </div>
                   <div class="project-meta">
-                    <p class="project-type">video series for RTR</p>
+                    <p data-de="videoreihe für RTR" data-en="video series for RTR" class="project-type">video series for RTR</p>
                     <div class="project-chips">
                       <span class="project-chip" data-type="weiteres">film</span>
                     </div>
@@ -233,8 +233,8 @@
         </div>
         <div class="about-copy">
           <h2 class="about-heading is-default">
-            <span class="about-x about-hi">hi, </span><span class="about-static">i’m </span><span
-              class="about-x about-name">stephanie!</span><span class="about-x about-a">a </span><mark
+            <span class="about-x about-hi">hi, </span><span data-en="i’m " data-de="ich bin " class="about-static">i’m </span><span
+              class="about-x about-name">stephanie!</span><span data-en="a " data-de="" class="about-x about-a">a </span><mark
               class="about-heading-role"><span class="about-role-text"></span></mark>
           </h2>
           <div class="about-body">
@@ -245,11 +245,11 @@
                 video editing, or web development – as long as i have my laptop and my playlist, i’m good!</p>
             </div>
             <div class="about-role-selector">
-              <span class="about-label">what i do</span>
+              <span data-de="meine tätigkeitsbereiche" data-en="what i do" class="about-label">what i do</span>
               <div class="about-roles">
                 <button class="about-role about-role-green" data-about-role="0">ux/ui design</button>
                 <button class="about-role about-role-pink" data-about-role="1">graphic design</button>
-                <button class="about-role about-role-yellow" data-about-role="2">filmmaking</button>
+                <button data-de="filmproduktion" data-en="filmmaking" class="about-role about-role-yellow" data-about-role="2">filmmaking</button>
                 <button class="about-role about-role-blue" data-about-role="3">multimedia production</button>
               </div>
             </div>
@@ -301,9 +301,9 @@
             data-email="sroemer.work@gmail.com">
             <div class="envelope">
               <div class="envelope-paper">
-                <span class="envelope-label">write to me</span>
+                <span data-de="schreibe mir" data-en="write to me" class="envelope-label">write to me</span>
                 <strong class="envelope-address">sroemer.work@gmail.com</strong>
-                <span class="envelope-copy">click to copy</span>
+                <span data-de="email-adresse kopieren" data-en="click to copy" class="envelope-copy">click to copy</span>
               </div>
               <div class="envelope-body"></div>
               <div class="envelope-flap"></div>
@@ -325,6 +325,7 @@
 
   <!-- GSAP for hero image hover effect -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="lang.js"></script>
   <script src="projects.js"></script>
   <script src="images.js"></script>
 
