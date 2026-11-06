@@ -30,8 +30,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     heroSection.addEventListener('mousemove', (e) => {
       const now = performance.now();
-      const dx  = e.clientX - lastMX;
-      const dy  = e.clientY - lastMY;
+      const dx = e.clientX - lastMX;
+      const dy = e.clientY - lastMY;
       lastMX = e.clientX;
       lastMY = e.clientY;
 
@@ -59,13 +59,13 @@ window.addEventListener('DOMContentLoaded', () => {
     // quickTo(target, prop, options) returns a function you call with the
     // destination value; GSAP interpolates to it on every call.
     function attachHover(img) {
-      const quickX   = gsap.quickTo(img, 'x',        { duration: 0.4, ease: 'power2.out' });
-      const quickY   = gsap.quickTo(img, 'y',        { duration: 0.4, ease: 'power2.out' });
+      const quickX = gsap.quickTo(img, 'x', { duration: 0.4, ease: 'power2.out' });
+      const quickY = gsap.quickTo(img, 'y', { duration: 0.4, ease: 'power2.out' });
       const quickRot = gsap.quickTo(img, 'rotation', { duration: 0.4, ease: 'power2.out' });
 
       // Reusable canvas for hit-testing — allocated once per image
       const hitCanvas = document.createElement('canvas');
-      const hitCtx    = hitCanvas.getContext('2d');
+      const hitCtx = hitCanvas.getContext('2d');
       function opaque(e) {
         const rect = img.getBoundingClientRect();
         const x = e.clientX - rect.left, y = e.clientY - rect.top;
@@ -94,12 +94,12 @@ window.addEventListener('DOMContentLoaded', () => {
         if (img._tl) { img._tl.kill(); delete img._tl; }
 
         // speed / 15 → full strength at a comfortable 15px/80ms swipe
-        const speed    = Math.sqrt(velX * velX + velY * velY);
+        const speed = Math.sqrt(velX * velX + velY * velY);
         const strength = Math.min(1, Math.max(0.3, speed / 15));
 
         const rect = img.getBoundingClientRect();
-        const nx   = ((e.clientX - rect.left) / rect.width  - 0.5) * 2;  // -1…1
-        const ny   = ((e.clientY - rect.top)  / rect.height - 0.5) * 2;
+        const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;  // -1…1
+        const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
 
         quickX(-nx * 40 * strength);
         quickY(-ny * 40 * strength);
@@ -124,14 +124,14 @@ window.addEventListener('DOMContentLoaded', () => {
       if (img._tl) img._tl.kill();
 
       // Very subtle drift: 1–5px only
-      const angle  = Math.random() * Math.PI * 2;
-      const dist   = 1 + Math.random() * 4;
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 1 + Math.random() * 4;
       const driftX = Math.cos(angle) * dist;
       const driftY = Math.sin(angle) * dist;
 
       // Rotation: ±12–20° on desktop, ±8–15° on mobile
-      const range  = isMobile() ? [8, 7] : [12, 8];
-      const rot    = (Math.random() < 0.5 ? -1 : 1) * (range[0] + Math.random() * range[1]);
+      const range = isMobile() ? [8, 7] : [12, 8];
+      const rot = (Math.random() < 0.5 ? -1 : 1) * (range[0] + Math.random() * range[1]);
 
       const tl = gsap.timeline({
         onComplete: () => { tl.kill(); delete img._tl; }
@@ -152,7 +152,7 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    const allImgs   = Array.from(heroSection.querySelectorAll('img.drawn-img'));
+    const allImgs = Array.from(heroSection.querySelectorAll('img.drawn-img'));
     const smallImgs = allImgs.filter(img => SMALL_IMG_ALTS.has(img.alt));
 
     // ── Idle loop — runs on both desktop and mobile ─────────────────────────
@@ -204,7 +204,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (img._gsapReady) return;
         img._gsapReady = true;
         img.style.animation = 'none';
-        img.style.opacity   = '1';
+        img.style.opacity = '1';
         gsap.set(img, { x: 0, y: 0, rotation: 0, scale: 1, transformOrigin: '50% 50%' });
 
         // Count how many images have handed off; when all are done, fire
@@ -228,9 +228,9 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── Simplified project tabs ───────────────────────────────────────────────
-  const newTabs      = document.querySelectorAll('.tab-btn');
+  const newTabs = document.querySelectorAll('.tab-btn');
   const projectsContent = document.querySelector('.projects-content');
-  const projectCards  = document.querySelectorAll('.project-card');
+  const projectCards = document.querySelectorAll('.project-card');
 
   newTabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -258,7 +258,7 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.project-card').forEach(card => {
     const gifImage = card.querySelector('.gif-image');
     if (gifImage) {
-      const staticSrc   = gifImage.dataset.static;
+      const staticSrc = gifImage.dataset.static;
       const animatedSrc = gifImage.dataset.animated;
       card.addEventListener('mouseenter', () => { gifImage.src = animatedSrc; });
       card.addEventListener('mouseleave', () => { gifImage.src = staticSrc; });
@@ -297,242 +297,255 @@ window.addEventListener('DOMContentLoaded', () => {
   ];
 
   const aboutSection = document.querySelector('.about-section');
-if (aboutSection) {
-  const heading = aboutSection.querySelector('.about-heading');
-  const roleMark = heading.querySelector('mark');
-  const roleText = heading.querySelector('.about-role-text');
-  const introduction = aboutSection.querySelector('.about-introduction');
-  const details = aboutSection.querySelector('.about-role-details');
-  const tools = aboutSection.querySelector('.about-tools');
-  const roleSelector = aboutSection.querySelector('.about-role-selector');
-  const photoCard = aboutSection.querySelector('.about-photo-card');
-  const toolItems = aboutSection.querySelectorAll('.tool-item[data-tool]');
-  const roleButtons = aboutSection.querySelectorAll('[data-about-role]');
+  if (aboutSection) {
+    const heading = aboutSection.querySelector('.about-heading');
+    const roleMark = heading.querySelector('mark');
+    const roleText = heading.querySelector('.about-role-text');
+    const introduction = aboutSection.querySelector('.about-introduction');
+    const details = aboutSection.querySelector('.about-role-details');
+    const tools = aboutSection.querySelector('.about-tools');
+    const roleSelector = aboutSection.querySelector('.about-role-selector');
+    const photoCard = aboutSection.querySelector('.about-photo-card');
+    const toolItems = aboutSection.querySelectorAll('.tool-item[data-tool]');
+    const roleButtons = aboutSection.querySelectorAll('[data-about-role]');
 
-  let activeRoleIndex = -1;
+    let activeRoleIndex = -1;
 
-  const setMarkWidth = () => {
-    if (activeRoleIndex >= 0) roleMark.style.setProperty('--mw', (roleText.offsetWidth + 22) + 'px');
-  };
+    const setMarkWidth = () => {
+      if (activeRoleIndex >= 0) roleMark.style.setProperty('--mw', (roleText.offsetWidth + 22) + 'px');
+    };
 
-  // measure natural widths so CSS can transition to/from them
-  const measureHeading = () => {
-    heading.querySelectorAll('.about-x').forEach(el => {
-      el.style.transition = 'none';
-      el.style.width = 'auto';
-      const w = el.offsetWidth;
-      el.style.width = '';
-      void el.offsetWidth;
-      el.style.transition = '';
-      el.style.setProperty('--w', (w + 1) + 'px');
-    });
-    setMarkWidth();
-  };
+    // measure natural widths so CSS can transition to/from them
+    const measureHeading = () => {
+      heading.querySelectorAll('.about-x').forEach(el => {
+        el.style.transition = 'none';
+        el.style.width = 'auto';
+        const w = el.offsetWidth;
+        el.style.width = '';
+        void el.offsetWidth;
+        el.style.transition = '';
+        el.style.setProperty('--w', (w + 1) + 'px');
+      });
+      setMarkWidth();
+    };
 
     const body = aboutSection.querySelector('.about-body');
-  const slides = Array.from(aboutSection.querySelectorAll('.about-slide'));
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let ready = false;
-  let swapTimer;
+    const slides = Array.from(aboutSection.querySelectorAll('.about-slide'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let ready = false;
+    let swapTimer;
 
-  // image slider: new slide enters from the right (dir 1) or left (dir -1)
-  const slideTo = (roleIndex, dir = 1) => {
-    const next = slides.find(s => s.dataset.slide === String(roleIndex));
-    const prev = slides.find(s => s.classList.contains('is-active'));
-    if (!next || next === prev) return;
+    // image slider: new slide enters from the right (dir 1) or left (dir -1)
+    const slideTo = (roleIndex, dir = 1) => {
+      const next = slides.find(s => s.dataset.slide === String(roleIndex));
+      const prev = slides.find(s => s.classList.contains('is-active'));
+      if (!next || next === prev) return;
 
-    slides.forEach(s => {
-      s.getAnimations().forEach(a => a.cancel());
-      s.classList.remove('is-leaving');
-    });
-    prev.classList.remove('is-active');
-    prev.classList.add('is-leaving');
-    next.classList.add('is-active');
-    if (reduceMotion || !ready) { prev.classList.remove('is-leaving'); return; }
-
-    const opts = { duration: 600, easing: 'cubic-bezier(.65,0,.25,1)', fill: 'both' };
-    next.animate(
-      [{ transform: `translateX(${dir * 100}%)` }, { transform: 'translateX(0)' }], opts);
-    const out = prev.animate(
-      [{ transform: 'translateX(0)' }, { transform: `translateX(${-dir * 100}%)` }], opts);
-    out.finished
-      .then(() => { prev.classList.remove('is-leaving'); out.cancel(); })
-      .catch(() => {});   // cancelled by a newer change
-  };
-
-  // text area: fade out → swap content → fade in
-  const swapContent = fn => {
-    clearTimeout(swapTimer);
-    if (!ready || reduceMotion) { fn(); return; }
-    body.classList.add('is-swapping');
-    swapTimer = setTimeout(() => {
-      fn();
-      body.classList.remove('is-swapping');
-    }, 200);
-  };
-
-  const showAboutRole = (roleIndex, dir = 1) => {
-    const role = aboutRoles[roleIndex];
-    roleButtons.forEach(button => {
-      button.setAttribute('aria-pressed', button.dataset.aboutRole === String(roleIndex));
-    });
-    slideTo(roleIndex, dir);
-
-    if (!role) {
-      heading.classList.add('is-default');
-      photoCard.classList.add('is-me');
-      activeRoleIndex = -1;
-      swapContent(() => {
-        introduction.hidden = false;
-        details.classList.remove('is-visible');
-        tools.classList.remove('is-visible');
-        roleSelector.classList.remove('is-hidden');
-        toolItems.forEach(item => { item.hidden = true; });
+      slides.forEach(s => {
+        s.getAnimations().forEach(a => a.cancel());
+        s.classList.remove('is-leaving');
       });
-      return;
-    }
+      prev.classList.remove('is-active');
+      prev.classList.add('is-leaving');
+      next.classList.add('is-active');
+      if (reduceMotion || !ready) { prev.classList.remove('is-leaving'); return; }
 
-    roleText.textContent = role.name;
-    roleMark.style.setProperty('--role-color', role.color);
-    roleText.style.animation = 'none'; void roleText.offsetWidth; roleText.style.animation = '';
-    activeRoleIndex = roleIndex;
-    setMarkWidth();
-    heading.classList.remove('is-default');
-    photoCard.classList.remove('is-me');
+      const opts = { duration: 600, easing: 'cubic-bezier(.65,0,.25,1)', fill: 'both' };
+      next.animate(
+        [{ transform: `translateX(${dir * 100}%)` }, { transform: 'translateX(0)' }], opts);
+      const out = prev.animate(
+        [{ transform: 'translateX(0)' }, { transform: `translateX(${-dir * 100}%)` }], opts);
+      out.finished
+        .then(() => { prev.classList.remove('is-leaving'); out.cancel(); })
+        .catch(() => { });   // cancelled by a newer change
+    };
 
-    swapContent(() => {
-      introduction.hidden = true;
-      roleSelector.classList.add('is-hidden');
-      details.innerHTML = `<div><p>${role.description}</p><span class="about-skills-label">skills</span><div class="about-role-skills">${role.skills
-        .map(skill => `<span class="about-role-skill">${skill}</span>`).join('')}</div></div>`;
-      details.classList.add('is-visible');
-      tools.classList.add('is-visible');
-      toolItems.forEach(item => { item.hidden = !role.tools.includes(item.dataset.tool); });
-    });
-  };
+    // text area: fade out → swap content → fade in
+    const swapContent = fn => {
+      clearTimeout(swapTimer);
+      if (!ready || reduceMotion) { fn(); return; }
+      body.classList.add('is-swapping');
+      swapTimer = setTimeout(() => {
+        fn();
+        body.classList.remove('is-swapping');
+      }, 200);
+    };
 
-  roleButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const target = Number(button.dataset.aboutRole);
-      showAboutRole(target, target < activeRoleIndex ? -1 : 1);
-    });
-  });
-  showAboutRole(-1);
-  ready = true;   // from here on, changes animate
+    const showAboutRole = (roleIndex, dir = 1) => {
+      const role = aboutRoles[roleIndex];
+      roleButtons.forEach(button => {
+        button.setAttribute('aria-pressed', button.dataset.aboutRole === String(roleIndex));
+      });
+      slideTo(roleIndex, dir);
+      photoCard.dataset.role = roleIndex;
 
-  showAboutRole(-1);
-  measureHeading();
-  document.fonts?.ready.then(measureHeading);
-  window.addEventListener('resize', measureHeading);
-    // ── Auto-cycle through roles ──────────────────────────────────────────
-  const AUTO_DELAY = 5500;
-  const ROLE_ORDER = [-1, 0, 1, 2, 3];
-  const autoBtn = aboutSection.querySelector('.about-autoplay');
-  const layout = aboutSection.querySelector('.about-layout');
-
-  let userPaused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let hoverPaused = false;
-  let focusPaused = false;
-  let inView = false;
-  let autoTimer = null;
-  let hoverOverride = false;
-
- const autoRunning = () =>
-  !userPaused && (!hoverPaused || hoverOverride) && !focusPaused && inView && !document.hidden;
-
-  const updateAutoBtn = () => {
-    autoBtn.textContent = userPaused ? '▶ play' : '❚❚ pause';
-    autoBtn.setAttribute('aria-label',
-      userPaused ? 'Play automatic slideshow' : 'Pause automatic slideshow');
-  };
-
-  const scheduleAuto = () => {
-    clearTimeout(autoTimer);
-    if (!autoRunning()) return;
-    autoTimer = setTimeout(() => {
-      const i = ROLE_ORDER.indexOf(activeRoleIndex);
-      showAboutRole(ROLE_ORDER[(i + 1) % ROLE_ORDER.length]);
-      scheduleAuto();
-    }, AUTO_DELAY);
-  };
-
-  // manual choice = user wants to read → pause until they press play
-  roleButtons.forEach(b => b.addEventListener('click', () => {
-    userPaused = true;
-    updateAutoBtn();
-    scheduleAuto();
-  }));
-
-  autoBtn.addEventListener('click', () => {
-  userPaused = !userPaused;
-  if (!userPaused && hoverPaused) hoverOverride = true;   // explicit "play" beats hover
-  updateAutoBtn();
-  scheduleAuto();
-});
-
-  // temporary pauses (mouse only, so touch devices don't get stuck)
-  layout.addEventListener('pointerenter', e => {
-    if (e.pointerType === 'mouse') { hoverPaused = true; scheduleAuto(); }
-  });
-  layout.addEventListener('pointerleave', () => {
-  hoverPaused = false;
-  hoverOverride = false;
-  scheduleAuto();
-});
-  layout.addEventListener('focusin', e => {
-    focusPaused = !e.target.closest('.about-autoplay');
-    scheduleAuto();
-  });
-  layout.addEventListener('focusout', () => { focusPaused = false; scheduleAuto(); });
-
-  document.addEventListener('visibilitychange', scheduleAuto);
-  new IntersectionObserver(([entry]) => {
-    inView = entry.isIntersecting;
-    scheduleAuto();
-  }, { threshold: 0.35 }).observe(aboutSection);
-
-  updateAutoBtn();
-}
-
- const envelope = document.querySelector('.envelope-wrapper');
-if (envelope) {
-  const copyLabel = envelope.querySelector('.envelope-copy');
-  const email = envelope.dataset.email;
-  let resetTimer;
-
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(email);
-    } catch {
-      const ta = document.createElement('textarea');
-      ta.value = email;
-      ta.style.cssText = 'position:fixed;opacity:0';
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); } catch {}
-      ta.remove();
-    }
-    copyLabel.textContent = 'copied ✓';
-    clearTimeout(resetTimer);
-    resetTimer = setTimeout(() => { copyLabel.textContent = 'click to copy'; }, 1800);
-  };
-
-  // Opens once when scrolled into view; clicking never toggles it
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    envelope.classList.add('is-open');
-  } else {
-    new IntersectionObserver((entries, obs) => {
-      if (entries.some(e => e.isIntersecting)) {
-        envelope.classList.add('is-open');
-        obs.disconnect();
+      if (!role) {
+        heading.classList.add('is-default');
+        photoCard.classList.add('is-me');
+        activeRoleIndex = -1;
+        swapContent(() => {
+          introduction.hidden = false;
+          details.classList.remove('is-visible');
+          tools.classList.remove('is-visible');
+          roleSelector.classList.remove('is-hidden');
+          toolItems.forEach(item => { item.hidden = true; });
+        });
+        return;
       }
-    }, { threshold: 0.6 }).observe(envelope);
+
+      roleText.textContent = role.name;
+      roleMark.style.setProperty('--role-color', role.color);
+      roleText.style.animation = 'none'; void roleText.offsetWidth; roleText.style.animation = '';
+      activeRoleIndex = roleIndex;
+      setMarkWidth();
+      heading.classList.remove('is-default');
+      photoCard.classList.remove('is-me');
+
+      swapContent(() => {
+        introduction.hidden = true;
+        roleSelector.classList.add('is-hidden');
+        details.innerHTML = `<div><p>${role.description}</p><span class="about-skills-label">skills</span><div class="about-role-skills">${role.skills
+          .map(skill => `<span class="about-role-skill">${skill}</span>`).join('')}</div></div>`;
+        details.classList.add('is-visible');
+        tools.classList.add('is-visible');
+        toolItems.forEach(item => { item.hidden = !role.tools.includes(item.dataset.tool); });
+      });
+    };
+
+    roleButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const target = Number(button.dataset.aboutRole);
+        showAboutRole(target, target < activeRoleIndex ? -1 : 1);
+      });
+    });
+    showAboutRole(-1);
+    ready = true;   // from here on, changes animate
+
+    showAboutRole(-1);
+    measureHeading();
+    document.fonts?.ready.then(measureHeading);
+    window.addEventListener('resize', measureHeading);
+    // ── Auto-cycle through roles ──────────────────────────────────────────
+    const AUTO_DELAY = 5500;
+    const ROLE_ORDER = [-1, 0, 1, 2, 3];
+    const autoBtn = aboutSection.querySelector('.about-autoplay');
+    const layout = aboutSection.querySelector('.about-layout');
+    const progress = aboutSection.querySelector('.about-progress');
+    progress.style.setProperty('--auto-ms', AUTO_DELAY + 'ms');
+
+    let userPaused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let hoverPaused = false;
+    let focusPaused = false;
+    let inView = false;
+    let autoTimer = null;
+    let hoverOverride = false;
+
+    const autoRunning = () =>
+      !userPaused && (!hoverPaused || hoverOverride) && !focusPaused && inView && !document.hidden;
+
+    const updateAutoBtn = () => {
+      autoBtn.textContent = userPaused ? '▶ play' : '❚❚ pause';
+      autoBtn.setAttribute('aria-label',
+        userPaused ? 'Play automatic slideshow' : 'Pause automatic slideshow');
+    };
+
+   const scheduleAuto = () => {
+  clearTimeout(autoTimer);
+  // restart the progress line in sync with the timer; empty when paused
+  progress.classList.remove('is-running');
+  if (!autoRunning()) return;
+  void progress.offsetWidth;
+  progress.classList.add('is-running');
+  autoTimer = setTimeout(() => {
+    const i = ROLE_ORDER.indexOf(activeRoleIndex);
+    showAboutRole(ROLE_ORDER[(i + 1) % ROLE_ORDER.length]);
+    scheduleAuto();
+  }, AUTO_DELAY);
+};
+
+    // manual choice = user wants to read → pause until they press play
+    roleButtons.forEach(b => b.addEventListener('click', () => {
+      userPaused = true;
+      updateAutoBtn();
+      scheduleAuto();
+    }));
+
+    autoBtn.addEventListener('click', () => {
+      userPaused = !userPaused;
+      if (!userPaused && hoverPaused) hoverOverride = true;   // explicit "play" beats hover
+      updateAutoBtn();
+      scheduleAuto();
+    });
+
+    // hover only pauses on real mouse movement, not on content scrolling under the cursor
+layout.addEventListener('pointermove', e => {
+  if (e.pointerType !== 'mouse' || (!e.movementX && !e.movementY)) return;
+  if (!hoverPaused) { hoverPaused = true; scheduleAuto(); }
+});
+
+// scrolling = navigating, not reading: release the hover-pause
+addEventListener('scroll', () => {
+  if (hoverPaused) { hoverPaused = false; scheduleAuto(); }
+}, { passive: true });
+    layout.addEventListener('pointerleave', () => {
+      hoverPaused = false;
+      hoverOverride = false;
+      scheduleAuto();
+    });
+    layout.addEventListener('focusin', e => {
+      focusPaused = !e.target.closest('.about-autoplay');
+      scheduleAuto();
+    });
+    layout.addEventListener('focusout', () => { focusPaused = false; scheduleAuto(); });
+
+    document.addEventListener('visibilitychange', scheduleAuto);
+    new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      scheduleAuto();
+    }, { threshold: 0.35 }).observe(aboutSection);
+
+    updateAutoBtn();
   }
 
-  envelope.addEventListener('click', copyEmail);
-  envelope.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyEmail(); }
-  });
-}
+  const envelope = document.querySelector('.envelope-wrapper');
+  if (envelope) {
+    const copyLabel = envelope.querySelector('.envelope-copy');
+    const email = envelope.dataset.email;
+    let resetTimer;
+
+    const copyEmail = async () => {
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch {
+        const ta = document.createElement('textarea');
+        ta.value = email;
+        ta.style.cssText = 'position:fixed;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch { }
+        ta.remove();
+      }
+      copyLabel.textContent = 'copied ✓';
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => { copyLabel.textContent = 'click to copy'; }, 1800);
+    };
+
+    // Opens once when scrolled into view; clicking never toggles it
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      envelope.classList.add('is-open');
+    } else {
+      new IntersectionObserver((entries, obs) => {
+        if (entries.some(e => e.isIntersecting)) {
+          envelope.classList.add('is-open');
+          obs.disconnect();
+        }
+      }, { threshold: 0.6 }).observe(envelope);
+    }
+
+    envelope.addEventListener('click', copyEmail);
+    envelope.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyEmail(); }
+    });
+  }
 });
