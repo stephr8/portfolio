@@ -198,8 +198,25 @@
       <div class="about-layout">
         <div class="about-photo-card is-me">
           <div class="about-photo-window">
-            <div class="about-window-bar"><span></span><span></span><span></span><strong>Photo Booth</strong></div>
-            <img src="assets/img/photoboothimage.webp" alt="Stephanie Römer" class="about-photo" loading="lazy">
+            <div class="about-window-bar"><span></span><span></span><span></span><strong>Photo Booth</strong><button
+                class="about-autoplay" type="button" aria-label="Pause automatic slideshow">❚❚ pause</button></div>
+            <div class="about-photo-stage">
+              <div class="about-slide is-active" data-slide="-1">
+                <img src="assets/img/photoboothimage.webp" alt="Stephanie Römer" loading="lazy">
+              </div>
+              <div class="about-slide" data-slide="0">
+                <img src="assets/img/about-uxui.webp" alt="" loading="lazy" onerror="this.remove()">
+              </div>
+              <div class="about-slide" data-slide="1">
+                <img src="assets/img/about-graphic.webp" alt="" loading="lazy" onerror="this.remove()">
+              </div>
+              <div class="about-slide" data-slide="2">
+                <img src="assets/img/about-film.webp" alt="" loading="lazy" onerror="this.remove()">
+              </div>
+              <div class="about-slide" data-slide="3">
+                <img src="assets/img/about-producer.webp" alt="" loading="lazy" onerror="this.remove()">
+              </div>
+            </div>
             <div class="about-photo-strip">
               <button class="about-thumbnail" data-about-role="-1" aria-label="About me"><span>me</span></button>
               <button class="about-thumbnail" data-about-role="0"
@@ -219,43 +236,45 @@
               class="about-x about-name">stephanie!</span><span class="about-x about-a">a </span><mark
               class="about-heading-role"><span class="about-role-text"></span></mark>
           </h2>
-          <div class="about-introduction">
-            <p data-de="ich bin stephanie, eine digital designerin, die sich für alles mögliche kreative begeistern kann. sei es design, videoschnitt oder web development - solange ich meinen laptop und meine playlist habe, läuft’s!"
-              data-en="i’m stephanie – a digital designer who gets excited about all things creative. whether it’s design, video editing, or web development – as long as i have my laptop and my playlist, i’m good!">
-              i’m stephanie – a digital designer who gets excited about all things creative. whether it’s design,
-              video editing, or web development – as long as i have my laptop and my playlist, i’m good!</p>
-          </div>
-          <div class="about-role-selector">
-            <span class="about-label">what i do</span>
-            <div class="about-roles">
-              <button class="about-role about-role-green" data-about-role="0">ux/ui designer</button>
-              <button class="about-role about-role-pink" data-about-role="1">graphic designer</button>
-              <button class="about-role about-role-yellow" data-about-role="2">filmmaker</button>
-              <button class="about-role about-role-blue" data-about-role="3">multimedia producer</button>
+          <div class="about-body">
+            <div class="about-introduction">
+              <p data-de="ich bin stephanie, eine digital designerin, die sich für alles mögliche kreative begeistern kann. sei es design, videoschnitt oder web development - solange ich meinen laptop und meine playlist habe, läuft’s!"
+                data-en="i’m stephanie – a digital designer who gets excited about all things creative. whether it’s design, video editing, or web development – as long as i have my laptop and my playlist, i’m good!">
+                i’m stephanie – a digital designer who gets excited about all things creative. whether it’s design,
+                video editing, or web development – as long as i have my laptop and my playlist, i’m good!</p>
             </div>
-          </div>
-          <div class="about-role-details" aria-live="polite"></div>
-          <div class="about-tools">
-            <span class="about-label">tools</span>
-            <div class="skills-icons">
-              <span class="tool-item" data-tool="Figma"><img src="assets/skills/Figma.webp" alt="" class="skill-icon"
-                  loading="lazy"><span>Figma</span></span>
-              <span class="tool-item" data-tool="Illustrator"><img src="assets/skills/Ai.webp" alt="" class="skill-icon"
-                  loading="lazy"><span>Illustrator</span></span>
-              <span class="tool-item" data-tool="After Effects"><img src="assets/skills/Ae.webp" alt=""
-                  class="skill-icon" loading="lazy"><span>After Effects</span></span>
-              <span class="tool-item" data-tool="InDesign"><img src="assets/skills/Id.webp" alt="" class="skill-icon"
-                  loading="lazy"><span>InDesign</span></span>
-              <span class="tool-item" data-tool="Premiere Pro"><img src="assets/skills/Pr.webp" alt=""
-                  class="skill-icon" loading="lazy"><span>Premiere Pro</span></span>
-              <span class="tool-item" data-tool="HTML"><img src="assets/skills/html.webp" alt="" class="skill-icon"
-                  loading="lazy"><span>HTML</span></span>
-              <span class="tool-item" data-tool="CSS"><img src="assets/skills/css.webp" alt="" class="skill-icon"
-                  loading="lazy"><span>CSS</span></span>
-              <span class="tool-item" data-tool="JavaScript"><img src="assets/skills/js.webp" alt="" class="skill-icon"
-                  loading="lazy"><span>JavaScript</span></span>
-              <span class="tool-item" data-tool="Vue"><img src="assets/skills/vue.webp" alt="" class="skill-icon"
-                  loading="lazy"><span>Vue</span></span>
+            <div class="about-role-selector">
+              <span class="about-label">what i do</span>
+              <div class="about-roles">
+                <button class="about-role about-role-green" data-about-role="0">ux/ui designer</button>
+                <button class="about-role about-role-pink" data-about-role="1">graphic designer</button>
+                <button class="about-role about-role-yellow" data-about-role="2">filmmaker</button>
+                <button class="about-role about-role-blue" data-about-role="3">multimedia producer</button>
+              </div>
+            </div>
+            <div class="about-role-details" aria-live="polite"></div>
+            <div class="about-tools">
+              <span class="about-label">tools</span>
+              <div class="skills-icons">
+                <span class="tool-item" data-tool="Figma"><img src="assets/skills/Figma.webp" alt="" class="skill-icon"
+                    loading="lazy"><span>Figma</span></span>
+                <span class="tool-item" data-tool="Illustrator"><img src="assets/skills/Ai.webp" alt=""
+                    class="skill-icon" loading="lazy"><span>Illustrator</span></span>
+                <span class="tool-item" data-tool="After Effects"><img src="assets/skills/Ae.webp" alt=""
+                    class="skill-icon" loading="lazy"><span>After Effects</span></span>
+                <span class="tool-item" data-tool="InDesign"><img src="assets/skills/Id.webp" alt="" class="skill-icon"
+                    loading="lazy"><span>InDesign</span></span>
+                <span class="tool-item" data-tool="Premiere Pro"><img src="assets/skills/Pr.webp" alt=""
+                    class="skill-icon" loading="lazy"><span>Premiere Pro</span></span>
+                <span class="tool-item" data-tool="HTML"><img src="assets/skills/html.webp" alt="" class="skill-icon"
+                    loading="lazy"><span>HTML</span></span>
+                <span class="tool-item" data-tool="CSS"><img src="assets/skills/css.webp" alt="" class="skill-icon"
+                    loading="lazy"><span>CSS</span></span>
+                <span class="tool-item" data-tool="JavaScript"><img src="assets/skills/js.webp" alt=""
+                    class="skill-icon" loading="lazy"><span>JavaScript</span></span>
+                <span class="tool-item" data-tool="Vue"><img src="assets/skills/vue.webp" alt="" class="skill-icon"
+                    loading="lazy"><span>Vue</span></span>
+              </div>
             </div>
           </div>
         </div>

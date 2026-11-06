@@ -329,21 +329,66 @@ if (aboutSection) {
     setMarkWidth();
   };
 
-  const showAboutRole = (roleIndex) => {
+    const body = aboutSection.querySelector('.about-body');
+  const slides = Array.from(aboutSection.querySelectorAll('.about-slide'));
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let ready = false;
+  let swapTimer;
+
+  // image slider: new slide enters from the right (dir 1) or left (dir -1)
+  const slideTo = (roleIndex, dir = 1) => {
+    const next = slides.find(s => s.dataset.slide === String(roleIndex));
+    const prev = slides.find(s => s.classList.contains('is-active'));
+    if (!next || next === prev) return;
+
+    slides.forEach(s => {
+      s.getAnimations().forEach(a => a.cancel());
+      s.classList.remove('is-leaving');
+    });
+    prev.classList.remove('is-active');
+    prev.classList.add('is-leaving');
+    next.classList.add('is-active');
+    if (reduceMotion || !ready) { prev.classList.remove('is-leaving'); return; }
+
+    const opts = { duration: 600, easing: 'cubic-bezier(.65,0,.25,1)', fill: 'both' };
+    next.animate(
+      [{ transform: `translateX(${dir * 100}%)` }, { transform: 'translateX(0)' }], opts);
+    const out = prev.animate(
+      [{ transform: 'translateX(0)' }, { transform: `translateX(${-dir * 100}%)` }], opts);
+    out.finished
+      .then(() => { prev.classList.remove('is-leaving'); out.cancel(); })
+      .catch(() => {});   // cancelled by a newer change
+  };
+
+  // text area: fade out → swap content → fade in
+  const swapContent = fn => {
+    clearTimeout(swapTimer);
+    if (!ready || reduceMotion) { fn(); return; }
+    body.classList.add('is-swapping');
+    swapTimer = setTimeout(() => {
+      fn();
+      body.classList.remove('is-swapping');
+    }, 200);
+  };
+
+  const showAboutRole = (roleIndex, dir = 1) => {
     const role = aboutRoles[roleIndex];
     roleButtons.forEach(button => {
       button.setAttribute('aria-pressed', button.dataset.aboutRole === String(roleIndex));
     });
+    slideTo(roleIndex, dir);
 
     if (!role) {
       heading.classList.add('is-default');
-      introduction.hidden = false;
-      details.classList.remove('is-visible');
-      tools.classList.remove('is-visible');
-      roleSelector.classList.remove('is-hidden');
       photoCard.classList.add('is-me');
-      toolItems.forEach(item => { item.hidden = true; });
       activeRoleIndex = -1;
+      swapContent(() => {
+        introduction.hidden = false;
+        details.classList.remove('is-visible');
+        tools.classList.remove('is-visible');
+        roleSelector.classList.remove('is-hidden');
+        toolItems.forEach(item => { item.hidden = true; });
+      });
       return;
     }
 
@@ -353,24 +398,100 @@ if (aboutSection) {
     activeRoleIndex = roleIndex;
     setMarkWidth();
     heading.classList.remove('is-default');
-
-    introduction.hidden = true;
-    roleSelector.classList.add('is-hidden');
-    details.innerHTML = `<div><p>${role.description}</p><span class="about-skills-label">skills</span><div class="about-role-skills">${role.skills
-      .map(skill => `<span class="about-role-skill">${skill}</span>`).join('')}</div></div>`;
-    details.classList.add('is-visible');
-    tools.classList.add('is-visible');
     photoCard.classList.remove('is-me');
-    toolItems.forEach(item => { item.hidden = !role.tools.includes(item.dataset.tool); });
+
+    swapContent(() => {
+      introduction.hidden = true;
+      roleSelector.classList.add('is-hidden');
+      details.innerHTML = `<div><p>${role.description}</p><span class="about-skills-label">skills</span><div class="about-role-skills">${role.skills
+        .map(skill => `<span class="about-role-skill">${skill}</span>`).join('')}</div></div>`;
+      details.classList.add('is-visible');
+      tools.classList.add('is-visible');
+      toolItems.forEach(item => { item.hidden = !role.tools.includes(item.dataset.tool); });
+    });
   };
 
   roleButtons.forEach(button => {
-    button.addEventListener('click', () => showAboutRole(Number(button.dataset.aboutRole)));
+    button.addEventListener('click', () => {
+      const target = Number(button.dataset.aboutRole);
+      showAboutRole(target, target < activeRoleIndex ? -1 : 1);
+    });
   });
+  showAboutRole(-1);
+  ready = true;   // from here on, changes animate
+
   showAboutRole(-1);
   measureHeading();
   document.fonts?.ready.then(measureHeading);
   window.addEventListener('resize', measureHeading);
+    // ── Auto-cycle through roles ──────────────────────────────────────────
+  const AUTO_DELAY = 5500;
+  const ROLE_ORDER = [-1, 0, 1, 2, 3];
+  const autoBtn = aboutSection.querySelector('.about-autoplay');
+  const layout = aboutSection.querySelector('.about-layout');
+
+  let userPaused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let hoverPaused = false;
+  let focusPaused = false;
+  let inView = false;
+  let autoTimer = null;
+  let hoverOverride = false;
+
+ const autoRunning = () =>
+  !userPaused && (!hoverPaused || hoverOverride) && !focusPaused && inView && !document.hidden;
+
+  const updateAutoBtn = () => {
+    autoBtn.textContent = userPaused ? '▶ play' : '❚❚ pause';
+    autoBtn.setAttribute('aria-label',
+      userPaused ? 'Play automatic slideshow' : 'Pause automatic slideshow');
+  };
+
+  const scheduleAuto = () => {
+    clearTimeout(autoTimer);
+    if (!autoRunning()) return;
+    autoTimer = setTimeout(() => {
+      const i = ROLE_ORDER.indexOf(activeRoleIndex);
+      showAboutRole(ROLE_ORDER[(i + 1) % ROLE_ORDER.length]);
+      scheduleAuto();
+    }, AUTO_DELAY);
+  };
+
+  // manual choice = user wants to read → pause until they press play
+  roleButtons.forEach(b => b.addEventListener('click', () => {
+    userPaused = true;
+    updateAutoBtn();
+    scheduleAuto();
+  }));
+
+  autoBtn.addEventListener('click', () => {
+  userPaused = !userPaused;
+  if (!userPaused && hoverPaused) hoverOverride = true;   // explicit "play" beats hover
+  updateAutoBtn();
+  scheduleAuto();
+});
+
+  // temporary pauses (mouse only, so touch devices don't get stuck)
+  layout.addEventListener('pointerenter', e => {
+    if (e.pointerType === 'mouse') { hoverPaused = true; scheduleAuto(); }
+  });
+  layout.addEventListener('pointerleave', () => {
+  hoverPaused = false;
+  hoverOverride = false;
+  scheduleAuto();
+});
+  layout.addEventListener('focusin', e => {
+    focusPaused = !e.target.closest('.about-autoplay');
+    scheduleAuto();
+  });
+  layout.addEventListener('focusout', () => { focusPaused = false; scheduleAuto(); });
+
+  document.addEventListener('visibilitychange', scheduleAuto);
+  new IntersectionObserver(([entry]) => {
+    inView = entry.isIntersecting;
+    scheduleAuto();
+  }, { threshold: 0.35 }).observe(aboutSection);
+
+  updateAutoBtn();
 }
 
  const envelope = document.querySelector('.envelope-wrapper');
