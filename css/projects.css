@@ -8,7 +8,6 @@
   --white: #fff;
 }
 
-* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -24,10 +23,6 @@ body {
   padding: 0 20px 60px;
 }
 
-.tab-btn.active { background: var(--red-dark); }
-.tab-btn.active .tab-label { color: var(--white); }
-.tab-btn svg { display: none; }
-.tab-label { padding: 0; margin: 0; }
 .projects-heading {
   display: block;
   margin-bottom: 0.5rem;
@@ -36,7 +31,7 @@ body {
 }
 
 .projects-wrapper { padding: 0; }
-.nav-arrow { display: none; }
+
 .projects-grid {
   display: flex;
   flex-direction: column;
@@ -187,14 +182,12 @@ body {
 .detail-site-name {
   color: var(--blue);
   font: 700 34px/1 'Neue Regrade', sans-serif;
-  text-decoration: none !important;
 }
 .detail-home *,
 .detail-site-name,
 .detail-site-name:hover,
 .detail-site-name:focus,
 .detail-site-name:visited {
-  text-decoration: none !important;
   text-decoration-line: none !important;
   text-decoration-color: transparent !important;
   border: 0 !important;
@@ -248,7 +241,7 @@ body {
   color: var(--red-dark);
   font-size: 14px;
   font-weight: 600;
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
 /* Shared framed case-study canvas */
@@ -257,8 +250,6 @@ body {
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 0;
-  padding-right: 0;
   padding-bottom: 2rem;
 }
 .detail-hero {
@@ -266,7 +257,7 @@ body {
   padding-top: 2rem;
   background: radial-gradient(rgba(74,22,32,.22) 1.5px, transparent 1.5px) 0 0 / 26px 26px;
 }
-.detail-hero-image { display: none; }
+
 .detail-hero-row {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -468,7 +459,6 @@ body {
     margin: 3rem auto 2rem;
     padding: 0;
   }
-  .tab-btn { padding: 0.35rem 0.75rem; font-size: 0.8rem; }
   .projects-section .project-card {
     position: relative;
     display: grid;

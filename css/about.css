@@ -424,7 +424,6 @@
   border: 0;
   box-shadow: 0 6px 14px rgba(74, 26, 31, 0.12);
   object-fit: contain;
-  transition: transform 0.2s ease;
 }
 
 .about-photo-stage {
@@ -480,7 +479,6 @@
   .about-photo-card {
     width: calc(100% - 4px);
     padding: 12px 18px;
-    border-radius: 0;
     transform: none;
     border-radius: 6px;
   }

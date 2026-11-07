@@ -1,17 +1,4 @@
 /* ============================================
-   NOTE before anything else:
-
-   1. This file now owns ALL responsive behavior for the projects + project
-      detail pages — I removed the handful of one-off @media blocks that
-      had crept into style.css (640px/700px/860px) so there's a single
-      source of truth at the site's real 768px/480px breakpoints instead
-      of three different files disagreeing at three different widths.
-
-   2. Project-detail notes are scoped in projects.css so they do not
-      affect the homepage about section.
-   ============================================ */
-
-/* ============================================
    Media Queries - Tablet (768px)
    ============================================ */
 @media (max-width: 768px) {
@@ -24,10 +11,6 @@
     .hero-section {
         padding-bottom: 80%;
         overflow: hidden;
-    }
-
-    .hero-section .drawn-img {
-        transform: scale(1.6);
     }
 
     #scroll-to-top {
@@ -65,10 +48,6 @@
         bottom: 2%;
         right: 5%;
         max-width: 50%;
-    }
-
-    .hero-section .drawn-img {
-        transform: scale(1) translateY(0);
     }
 
     /* Reposition images for vertical mobile layout */
@@ -148,9 +127,5 @@
         left: 57%;
         top: 70%;
         width: 13%;
-    }
-
-    .footer button {
-        font-size: 0.875rem;
     }
 }

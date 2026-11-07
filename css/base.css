@@ -11,6 +11,8 @@ body {
     background-color: var(--white);
 }
 
+* { box-sizing: border-box; }
+
 h1 {
     font-family: 'Neue Regrade', sans-serif;
     font-weight: 500;

@@ -217,7 +217,6 @@
   }
 
   .message {
-    width: fit-content;
     max-width: 100%;
     font-size: 16px;
   }
@@ -226,10 +225,6 @@
     align-self: flex-end;
     width: 90%;
     max-width: 90%;
-  }
-
-  .linkedin-link {
-    margin: 20px auto 0;
   }
 
   .contact-arrow {
@@ -247,8 +242,7 @@
     margin-top: 30px;
   }
 
-  .envelope-wrapper,
-  .envelope-icon {
+  .envelope-wrapper {
     width: min(270px, 78vw);
     height: calc(min(270px, 78vw) * .63);
     }
