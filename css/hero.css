@@ -19,12 +19,8 @@
 }
 
 .hero-section h2 {
-    font-family: 'Neue Regrade', sans-serif;
-    font-weight: 500;
-    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-size: var(--fs-h1);
     color: var(--blue);
-    line-height: 1.2;
-    margin: 0;
     position: absolute;
     bottom: 4%;
     right: 3.75%;

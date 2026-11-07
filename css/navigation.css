@@ -6,7 +6,7 @@ nav {
     top: clamp(2rem, 4vw, 4rem);
     right: clamp(1.5rem, 5vw, 6rem);
     display: flex;
-    gap: clamp(0.75rem, 2vw, 2rem);
+    gap: clamp(0.75rem, 1vw, 2rem);
     z-index: 3500;
     flex-wrap: wrap;
     justify-content: flex-end;
@@ -20,8 +20,6 @@ nav {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
-    font-size: clamp(1rem, 1.2vw, 1.625rem);
-    padding: 8px 16px;
 }
 
 #scroll-to-top.is-visible { opacity: 1; pointer-events: auto; }

@@ -9,7 +9,6 @@
   display: block;
   margin-bottom: 0.5rem;
   color: var(--blue);
-  font: 400 clamp(2rem, 4vw, 3rem) 'Neue Regrade', sans-serif;
 }
 
 .projects-wrapper { padding: 0; }
@@ -40,7 +39,7 @@
   flex: 0 0 auto;
   margin-bottom: clamp(9px, 1.7vw, 20px);
   color: var(--red-dark);
-  font: 13px monospace;
+  font: var(--fs-label) var(--font-mono);
   opacity: 0.75;
 }
 .projects-grid:hover .project-card { opacity: 0.3; }
@@ -53,7 +52,8 @@
 .project-title {
   margin: 0;
   color: var(--blue);
-  font: 400 clamp(48px, 8vw, 124px)/1 'Neue Regrade', sans-serif;
+  font-size: var(--fs-display);
+  line-height: 1;
   letter-spacing: -0.02em;
   text-decoration: underline wavy transparent 5px;
   text-underline-offset: 0.1em;
@@ -67,7 +67,7 @@
 .project-type {
   margin: 0 0 clamp(4px, 1.7vw, 4px);
   color: var(--red-dark);
-  font-size: 16px;
+  font-size: var(--fs-body);
 }
 .project-chips {
   display: flex;
@@ -81,8 +81,8 @@
   border: 1.5px solid rgba(74, 26, 31, 0.15);
   border-radius: 1rem;
   color: var(--red-dark);
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
 }
 .project-chip[data-type="design"] { background: var(--pink); }
 .project-chip[data-type="code"] { background: var(--green); }
@@ -163,7 +163,10 @@
 }
 .detail-site-name {
   color: var(--blue);
-  font: 700 34px/1 'Neue Regrade', sans-serif;
+  font-family: var(--font-display);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-h2);
+  line-height: 1;
 }
 .detail-home *,
 .detail-site-name,
@@ -182,7 +185,7 @@
   height: 44px;
   padding: 9px 10px;
   border: 0;
-  border-radius: 0.75rem;
+  border-radius: var(--btn-radius);
   background: var(--blue-light);
 }
 .detail-menu-btn span {
@@ -192,6 +195,7 @@
   border-radius: 2px;
   background: var(--red-dark);
 }
+/* link buttons inside get their look from buttons.css */
 .detail-sitenav {
   position: static;
   display: flex;
@@ -200,29 +204,13 @@
   width: max-content;
   gap: 0.6rem;
 }
-.detail-sitenav a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 6px 14px;
-  border: 3px solid transparent;
-  border-radius: 0.75rem;
-  background: var(--blue-light);
-  color: var(--red-dark);
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.5;
-  text-decoration: none;
-}
-.detail-sitenav a:hover { border-color: var(--red-dark); }
 .detail-back {
   display: inline-block;
   margin: 18px max(5vw, calc((100% - 1000px) / 2)) 0;
   border-bottom: 3px solid var(--green);
   color: var(--red-dark);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
   text-decoration: none;
 }
 
@@ -267,14 +255,15 @@
   top: -22px;
   left: 0;
   color: var(--red-dark);
-  font: 13px monospace;
+  font: var(--fs-label) var(--font-mono);
   opacity: 0.75;
 }
 .detail-hero-title {
   position: static;
   margin: 0;
   color: inherit;
-  font: 800 clamp(56px, 8vw, 120px)/1 'Neue Regrade', sans-serif;
+  font-size: var(--fs-display);
+  line-height: 1;
 }
 .detail-hero-meta {
   width: calc(100% + 2rem);
@@ -342,11 +331,11 @@
   position: static;
   margin: 0 0 6px;
   color: var(--red-dark);
-  font: 700 28px/1.1 'Neue Regrade', sans-serif;
+  line-height: 1.1;
 }
 .detail-section-body {
   width: 100%;
-  font-size: 16px;
+  font-size: var(--fs-body);
   line-height: 1.45;
 }
 .detail-section-body p { margin: 0 0 1rem; }
@@ -390,27 +379,26 @@
   box-shadow: 0 10px 22px rgba(0,0,0,.15);
   transform: rotate(2.5deg);
   position: relative;
-  font-family: 'Neue Regrade', sans-serif;
+  font-family: var(--font-display);
 }
-.detail-postit-title { margin: 0 0 0.6rem; font-size: 1rem; font-weight: 700; }
+.detail-postit-title {
+  margin: 0 0 0.6rem;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-medium);
+}
 .detail-postit-overview {
   margin: 0 0 1rem;
-  font: 0.85rem/1.5 'Inclusive Sans', sans-serif;
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  line-height: 1.5;
 }
 .detail-postit-overview p { margin: 0 0 0.45rem; }
 .detail-postit-overview p:last-child { margin-bottom: 0; }
+/* look comes from buttons.css */
 .detail-postit-link {
-  display: inline-block;
   max-width: fit-content;
   margin-top: auto;
-  padding: 0.5rem 0.8rem;
-  border-radius: 0.5rem;
-  background: rgba(255,255,255,.55);
-  color: var(--red-dark);
-  font: 700 0.85rem 'Inclusive Sans', sans-serif;
-  text-decoration: none;
 }
-.detail-postit-link:hover { background: rgba(255,255,255,.8); }
 
 .detail-footer {
   max-width: 1000px;
@@ -418,16 +406,6 @@
   padding: 2rem 0 0;
 }
 .detail-project-nav { display: flex; justify-content: flex-end; gap: 0.75rem; }
-.detail-project-nav a {
-  display: inline-block;
-  padding: 0.6rem 1.1rem;
-  border: 2px solid var(--red-dark);
-  border-radius: 0.75rem;
-  color: var(--red-dark);
-  font-weight: 700;
-  text-decoration: none;
-}
-.detail-project-nav a:hover { background: var(--blue-light); }
 
 @media (max-width: 768px) {
   .projects-section {
@@ -472,13 +450,13 @@
     border-radius: 50%;
     background: var(--blue-light);
     color: var(--red-dark);
-    font-weight: 800;
+    font-weight: var(--fw-bold);
   }
   .projects-section .project-title {
     margin: 0;
   }
   .projects-section .project-type,
-  .projects-section .project-chips { margin-bottom: 0; font-size: 13px; }
+  .projects-section .project-chips { margin-bottom: 0; font-size: var(--fs-small); }
   .projects-section .project-meta { display: flex; flex-direction: column; gap: 0.25rem; }
   .projects-section .project-thumb {
     position: relative;
@@ -529,7 +507,6 @@
   }
   .detail-hero-row { display: block; }
   .detail-hero-row > div:first-child { padding: 2rem 1rem; }
-  .detail-hero-title { font-size: clamp(3.5rem, 17vw, 7rem); }
   .detail-hero-meta { width: 100%; margin: 0; }
   .detail-sections {
     max-width: none;

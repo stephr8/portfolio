@@ -10,4 +10,34 @@
     --green: #C5D77A;
     --yellow: #F2E8BE;
     --white: #FCFCFA;
+
+    /* Fonts */
+    --font-display: 'Neue Regrade', sans-serif;
+    --font-body: 'Inclusive Sans', sans-serif;
+    --font-mono: monospace;
+
+    /* Weights: headings are always medium, interactive things are always bold */
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-bold: 700;
+
+    /* Headings are fluid (same clamp pattern, min / vw / max). Text is fixed rem. */
+    --fs-display: clamp(3rem, 8vw, 7.5rem);
+    /* project titles, detail hero title */
+    --fs-h1: clamp(2rem, 5vw, 4.5rem);
+    /* hero name + tagline */
+    --fs-h2: clamp(1.75rem, 3.5vw, 2.5rem);
+    /* every section heading, logo */
+    --fs-h3: clamp(1.25rem, 2vw, 1.5rem);
+    /* post-it title, h3 */
+    --fs-body: 1rem;
+    --fs-small: 0.875rem;
+    /* chips, post-it text, captions */
+    --fs-label: 0.75rem;
+    /* monospace labels, "Frame 01" */
+
+    /* Buttons */
+    --btn-radius: 1rem;
+    --btn-border: 3px;
+    --btn-pad: 6px 16px;
 }
