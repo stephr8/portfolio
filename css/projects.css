@@ -1,14 +1,3 @@
-:root {
-  --blue-light: #DEE4F1;
-  --blue: #4A5FA8;
-  --pink: #FDC8EE;
-  --green: #C5D77A;
-  --yellow: #F2E8BE;
-  --red-dark: #4A1620;
-  --white: #fff;
-}
-
-
 body {
   margin: 0;
   background: #FBF7EF;
