@@ -6,7 +6,7 @@ button {
     font-weight: 700;
     font-size: clamp(1rem, 2vw, 1.625rem);
     line-height: 1.5;
-    background-color: var(--blue_light);
+    background-color: var(--blue-light);
     padding: 6px 14px;
     box-sizing: border-box;
     border-radius: 1rem;
@@ -17,11 +17,11 @@ button {
 
 button a {
     text-decoration: none;
-    color: var(--red_dark);
+    color: var(--red-dark);
 }
 
 /* Footer buttons — smaller, consistent text colour for both link and plain-text buttons */
 footer button {
     font-size: clamp(0.8rem, 1.1vw, 1rem);
-    color: var(--red_dark);
+    color: var(--red-dark);
 }
