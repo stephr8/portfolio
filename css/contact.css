@@ -131,7 +131,7 @@
   transition: transform 0.55s cubic-bezier(.5, 0, .3, 1);
 }
 
-.envelope-label { font: 13px 'Space Mono', monospace; opacity: 0.8; }
+.envelope-label { font: 13px monospace; opacity: 0.8; }
 
 .envelope-address {
   font-size: 14px;

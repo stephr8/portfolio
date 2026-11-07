@@ -8,10 +8,13 @@ body {
     line-height: 1.5;
     margin: 0;
     padding: 0;
-    background-color: var(--white);
+    background: #FBF7EF;
+    color: var(--red-dark);
 }
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
 h1 {
     font-family: 'Neue Regrade', sans-serif;

@@ -81,7 +81,7 @@
   border-radius: 999px;
   background: #ddd;
   color: var(--red-dark);
-  font: 10px 'Space Mono', monospace;
+  font: 10px monospace;
   line-height: 1.6;
 }
 
@@ -96,7 +96,7 @@
   padding: 8px;
   background: #e6e6e6;
   color: var(--red-dark);
-  font: 10px 'Space Mono', monospace;
+  font: 10px monospace;
   text-align: center;
 }
 
@@ -109,7 +109,7 @@
   background: none;
   color: #333;
   cursor: pointer;
-  font: 10px 'Space Mono', monospace;
+  font: 10px monospace;
 }
 
 .about-thumbnail span {
@@ -300,7 +300,7 @@
 .about-label {
   display: block;
   margin: 20px 0 6px;
-  font: 12px 'Space Mono', monospace;
+  font: 12px monospace;
   opacity: 0.75;
 }
 
@@ -366,7 +366,7 @@
 .about-skills-label {
   display: block;
   margin: 20px 0 0;
-  font: 12px 'Space Mono', monospace;
+  font: 12px monospace;
   opacity: 0.75;
 }
 
@@ -407,7 +407,7 @@
   gap: 6px;
   color: var(--red-dark);
   text-align: center;
-  font: 11px 'Space Mono', monospace;
+  font: 11px monospace;
   line-height: 1.15;
 }
 
